@@ -2,7 +2,7 @@ package gparap.games.falling;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import gparap.games.falling.screens.GameScreen;
+import gparap.games.falling.screens.MenuScreen;
 
 public class Falling extends Game {
 
@@ -11,7 +11,7 @@ public class Falling extends Game {
 		//create a new SpriteBatch
 		SpriteBatch spriteBatch = new SpriteBatch();
 
-		//create a new game screen
-		setScreen(new GameScreen(spriteBatch));
+		//create the main menu screen
+		setScreen(new MenuScreen(spriteBatch));
 	}
 }
