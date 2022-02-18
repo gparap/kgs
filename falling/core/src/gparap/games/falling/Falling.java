@@ -1,3 +1,8 @@
+/*******************************
+ * Katocheánian Gaming Studios *
+ * Little Jerry's Friends      *
+ * created by gparap           *
+ *******************************/
 package gparap.games.falling;
 
 import com.badlogic.gdx.Game;
@@ -12,6 +17,6 @@ public class Falling extends Game {
 		SpriteBatch spriteBatch = new SpriteBatch();
 
 		//create the main menu screen
-		setScreen(new MenuScreen(spriteBatch));
+		setScreen(new MenuScreen(spriteBatch, this));
 	}
 }

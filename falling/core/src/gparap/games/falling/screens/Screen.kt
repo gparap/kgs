@@ -1,12 +1,22 @@
+/*******************************
+ * Katocheánian Gaming Studios *
+ * Little Jerry's Friends      *
+ * created by gparap           *
+ *******************************/
 package gparap.games.falling.screens
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Screen
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.Texture
+import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter
 import com.badlogic.gdx.utils.ScreenUtils
 import com.badlogic.gdx.utils.viewport.ScreenViewport
+import gparap.games.falling.GameConstants
+
 
 /**
  * Base class for all screens of the game.
@@ -15,6 +25,7 @@ open class Screen(protected val spriteBatch: SpriteBatch) : Screen {
     private lateinit var background: Texture
     private lateinit var camera: OrthographicCamera
     protected lateinit var viewport: ScreenViewport
+    protected lateinit var font: BitmapFont
 
     override fun show() {
         //set up how the game world coordinates are mapped to and from the screen
@@ -45,11 +56,19 @@ open class Screen(protected val spriteBatch: SpriteBatch) : Screen {
         TODO("Not yet implemented - resume")
     }
 
-    override fun hide() {
-        TODO("Not yet implemented - hide")
-    }
+    override fun hide() {}
 
     override fun dispose() {
         background.dispose()
+    }
+
+    /** Creates the default font that will be used throughout the screens */
+    protected open fun createFont() {
+        font = BitmapFont(Gdx.files.internal("fonts/kenney_pixel.fnt"))
+        val generator = FreeTypeFontGenerator(Gdx.files.internal("fonts/kenney_pixel.otf"))
+        val parameter = FreeTypeFontParameter()
+        parameter.size = GameConstants.DEFAULT_FONT_SIZE
+        font = generator.generateFont(parameter)
+        generator.dispose()
     }
 }

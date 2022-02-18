@@ -1,3 +1,8 @@
+/*******************************
+ * Katocheánian Gaming Studios *
+ * Little Jerry's Friends      *
+ * created by gparap           *
+ *******************************/
 package gparap.games.falling.screens
 
 import com.badlogic.gdx.Gdx
@@ -8,11 +13,12 @@ import com.badlogic.gdx.scenes.scene2d.InputListener
 import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.scenes.scene2d.ui.Image
 import com.badlogic.gdx.scenes.scene2d.ui.Table
-import gparap.games.falling.GameConstants.MENU_BUTTON_HEIGHT
-import gparap.games.falling.GameConstants.MENU_BUTTON_PAD
-import gparap.games.falling.GameConstants.MENU_BUTTON_WIDTH
+import gparap.games.falling.Falling
+import gparap.games.falling.GameConstants.BUTTON_HEIGHT
+import gparap.games.falling.GameConstants.TABLE_CELL_PAD
+import gparap.games.falling.GameConstants.BUTTON_WIDTH
 
-class MenuScreen(spriteBatch: SpriteBatch) : Screen(spriteBatch) {
+class MenuScreen(spriteBatch: SpriteBatch, private val game: Falling) : Screen(spriteBatch) {
     private var isStartPressed = false
     private var isCreditsPressed = false
     private var isExitPressed = false
@@ -33,15 +39,18 @@ class MenuScreen(spriteBatch: SpriteBatch) : Screen(spriteBatch) {
 
         //redirect to target screen based on user input
         if (isStartPressed) {
-            this.dispose();
-            this.hide();
+            this.dispose()
+            this.hide()
             TODO("Not yet implemented - redirect to game screen")
+
         } else if (isCreditsPressed) {
-            this.dispose();
-            this.hide();
-            TODO("Not yet implemented - redirect to credints screen")
+            this.dispose()
+            this.hide()
+            game.screen = CreditsScreen(spriteBatch, game)
+
         } else if (isExitPressed) {
-            Gdx.app.exit();
+            this.dispose()
+            Gdx.app.exit()
         }
     }
 
@@ -53,18 +62,18 @@ class MenuScreen(spriteBatch: SpriteBatch) : Screen(spriteBatch) {
     private fun createTableActor() : Table {
         //create a table actor
         val table = Table()
-        table.center();
-        table.setFillParent(true);
+        table.center()
+        table.setFillParent(true)
 
         //add buttons to table
         val buttonStart = createImageButton(isStartButton = true, isCreditsButton = false, isExiButton = false)
-        table.add(buttonStart).size(MENU_BUTTON_WIDTH, MENU_BUTTON_HEIGHT).pad(MENU_BUTTON_PAD)
-        table.row();
+        table.add(buttonStart).size(BUTTON_WIDTH, BUTTON_HEIGHT).pad(TABLE_CELL_PAD)
+        table.row()
         val buttonCredits = createImageButton(isStartButton = false, isCreditsButton = true, isExiButton = false)
-        table.add(buttonCredits).size(MENU_BUTTON_WIDTH, MENU_BUTTON_HEIGHT).pad(MENU_BUTTON_PAD)
-        table.row();
+        table.add(buttonCredits).size(BUTTON_WIDTH, BUTTON_HEIGHT).pad(TABLE_CELL_PAD)
+        table.row()
         val buttonExit = createImageButton(isStartButton = false, isCreditsButton = false, isExiButton = true)
-        table.add(buttonExit).size(MENU_BUTTON_WIDTH, MENU_BUTTON_HEIGHT).pad(MENU_BUTTON_PAD)
+        table.add(buttonExit).size(BUTTON_WIDTH, BUTTON_HEIGHT).pad(TABLE_CELL_PAD)
 
         return table
     }
@@ -81,7 +90,7 @@ class MenuScreen(spriteBatch: SpriteBatch) : Screen(spriteBatch) {
             button = Image(Texture("button_exit.png"))
         }
 
-        button?.setSize(MENU_BUTTON_WIDTH, MENU_BUTTON_HEIGHT)
+        button?.setSize(BUTTON_WIDTH, BUTTON_HEIGHT)
 
         //add a click listener to button
         button?.addListener(object : InputListener() {
