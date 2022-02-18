@@ -22,6 +22,7 @@ class MenuScreen(spriteBatch: SpriteBatch, private val game: Falling) : Screen(s
     private var isStartPressed = false
     private var isCreditsPressed = false
     private var isExitPressed = false
+    private var isFriendsPressed = false
     private lateinit var stage: Stage
 
     override fun show() {
@@ -48,6 +49,11 @@ class MenuScreen(spriteBatch: SpriteBatch, private val game: Falling) : Screen(s
             this.hide()
             game.screen = CreditsScreen(spriteBatch, game)
 
+        } else if (isFriendsPressed) {
+            this.dispose()
+            this.hide()
+            game.screen = FriendsScreen(spriteBatch, game)
+
         } else if (isExitPressed) {
             this.dispose()
             Gdx.app.exit()
@@ -59,31 +65,41 @@ class MenuScreen(spriteBatch: SpriteBatch, private val game: Falling) : Screen(s
         stage.dispose()
     }
 
-    private fun createTableActor() : Table {
+    private fun createTableActor(): Table {
         //create a table actor
         val table = Table()
         table.center()
         table.setFillParent(true)
 
         //add buttons to table
-        val buttonStart = createImageButton(isStartButton = true, isCreditsButton = false, isExiButton = false)
+        val buttonStart = createImageButton(isStartButton = true)
         table.add(buttonStart).size(BUTTON_WIDTH, BUTTON_HEIGHT).pad(TABLE_CELL_PAD)
         table.row()
-        val buttonCredits = createImageButton(isStartButton = false, isCreditsButton = true, isExiButton = false)
+        val buttonFriends = createImageButton(isFriendsButton = true)
+        table.add(buttonFriends).size(BUTTON_WIDTH, BUTTON_HEIGHT).pad(TABLE_CELL_PAD)
+        table.row()
+        val buttonCredits = createImageButton(isCreditsButton = true)
         table.add(buttonCredits).size(BUTTON_WIDTH, BUTTON_HEIGHT).pad(TABLE_CELL_PAD)
         table.row()
-        val buttonExit = createImageButton(isStartButton = false, isCreditsButton = false, isExiButton = true)
+        val buttonExit = createImageButton(isExiButton = true)
         table.add(buttonExit).size(BUTTON_WIDTH, BUTTON_HEIGHT).pad(TABLE_CELL_PAD)
 
         return table
     }
 
-    private fun createImageButton(isStartButton: Boolean, isCreditsButton: Boolean, isExiButton: Boolean) : Image? {
+    private fun createImageButton(
+        isStartButton: Boolean = false,
+        isFriendsButton: Boolean = false,
+        isCreditsButton: Boolean = false,
+        isExiButton: Boolean = false
+    ): Image? {
         var button: Image? = null
 
         //create an image button
         if (isStartButton) {
             button = Image(Texture("button_start.png"))
+        } else if (isFriendsButton) {
+            button = Image(Texture("button_friends.png"))
         } else if (isCreditsButton) {
             button = Image(Texture("button_credits.png"))
         } else if (isExiButton) {
@@ -97,6 +113,8 @@ class MenuScreen(spriteBatch: SpriteBatch, private val game: Falling) : Screen(s
             override fun touchDown(event: InputEvent?, x: Float, y: Float, pointer: Int, button: Int): Boolean {
                 if (isStartButton) {
                     isStartPressed = true
+                } else if (isFriendsButton) {
+                    isFriendsPressed = true
                 } else if (isCreditsButton) {
                     isCreditsPressed = true
                 } else if (isExiButton) {
@@ -108,7 +126,9 @@ class MenuScreen(spriteBatch: SpriteBatch, private val game: Falling) : Screen(s
             override fun touchUp(event: InputEvent?, x: Float, y: Float, pointer: Int, button: Int) {
                 if (isStartButton) {
                     isStartPressed = false
-                } else if (isCreditsButton) {
+                } else if (isFriendsButton) {
+                    isCreditsPressed = false
+                }else if (isCreditsButton) {
                     isCreditsPressed = false
                 } else if (isExiButton) {
                     isExitPressed = false

@@ -6,6 +6,7 @@
 package gparap.games.falling.screens
 
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.Preferences
 import com.badlogic.gdx.Screen
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.Texture
@@ -26,6 +27,7 @@ open class Screen(protected val spriteBatch: SpriteBatch) : Screen {
     private lateinit var camera: OrthographicCamera
     protected lateinit var viewport: ScreenViewport
     protected lateinit var font: BitmapFont
+    protected lateinit var preferences: Preferences
 
     override fun show() {
         //set up how the game world coordinates are mapped to and from the screen
@@ -34,6 +36,9 @@ open class Screen(protected val spriteBatch: SpriteBatch) : Screen {
 
         //create background
         background = Texture("background.png")
+
+        //get the preferences of this game
+        preferences = Gdx.app.getPreferences(GameConstants.PREFERENCES)
     }
 
     override fun render(delta: Float) {
