@@ -32,6 +32,7 @@ open class Screen(protected val spriteBatch: SpriteBatch) : Screen {
     override fun show() {
         //set up how the game world coordinates are mapped to and from the screen
         camera = OrthographicCamera(Gdx.graphics.width * 4F, Gdx.graphics.height * 4F)
+        camera.setToOrtho(false)
         viewport = ScreenViewport(camera)
 
         //create background

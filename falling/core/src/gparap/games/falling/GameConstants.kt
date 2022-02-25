@@ -13,6 +13,7 @@ object GameConstants {
     const val TABLE_CELL_PAD = 8F
     const val DEFAULT_FONT_SIZE = 24
     const val TEXT_TAP = "Tap!"
+    const val PLAYER_SCALE_FACTOR = 1 / 2F
 
     //custom colors
     val COLOR_VANILLA = Color(0.95F, 0.90F, 0.67F, 1F)
@@ -23,10 +24,10 @@ object GameConstants {
     const val PREFERENCES_FRIEND = "friend"
     const val PREFERENCES_FRIEND_DEFAULT = "friend_green"
 
-    //friends
-    const val FRIEND_BEIGE = "friend_beige"
-    const val FRIEND_BLUE = "friend_blue"
-    const val FRIEND_GREEN = "friend_green"
-    const val FRIEND_PINK = "friend_pink"
-    const val FRIEND_YELLOW = "friend_yellow"
+    //friends .png
+    const val FRIEND_BEIGE = "friends/alien_beige.png"
+    const val FRIEND_BLUE = "friends/alien_blue.png"
+    const val FRIEND_GREEN = "friends/alien_green.png"
+    const val FRIEND_PINK = "friends/alien__pink.png"
+    const val FRIEND_YELLOW = "friends/alien_yellow.png"
 }

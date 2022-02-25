@@ -42,7 +42,7 @@ class MenuScreen(spriteBatch: SpriteBatch, private val game: Falling) : Screen(s
         if (isStartPressed) {
             this.dispose()
             this.hide()
-            TODO("Not yet implemented - redirect to game screen")
+            game.screen = GameScreen(spriteBatch, game)
 
         } else if (isCreditsPressed) {
             this.dispose()
