@@ -16,8 +16,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image
 import com.badlogic.gdx.scenes.scene2d.ui.Label
 import com.badlogic.gdx.scenes.scene2d.ui.Table
 import gparap.games.falling.Falling
-import gparap.games.falling.GameConstants.BUTTON_HEIGHT
-import gparap.games.falling.GameConstants.BUTTON_WIDTH
 import gparap.games.falling.GameConstants.COLOR_PINK
 import gparap.games.falling.GameConstants.COLOR_VANILLA
 import gparap.games.falling.GameConstants.FRIEND_BEIGE
@@ -113,70 +111,11 @@ class FriendsScreen(spriteBatch: SpriteBatch, private val game: Falling) : Scree
     }
 
     private fun createFriendsButtons() {
-        //beige friend
-        buttonBeige = Image(Texture("friends/alien_beige.png"))
-        buttonBeige!!.addListener(object : InputListener() {
-            override fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean {
-                isPressedBeige = true
-                return true
-            }
-
-            override fun touchUp(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int) {
-                isPressedBeige = false
-            }
-        })
-
-        //blue friend
-        buttonBlue = Image(Texture("friends/alien_blue.png"))
-        buttonBlue!!.addListener(object : InputListener() {
-            override fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean {
-                isPressedBlue = true
-                return true
-            }
-
-            override fun touchUp(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int) {
-                isPressedBlue = false
-            }
-        })
-
-        //green friend (aka Jerry!!!)
-        buttonGreen = Image(Texture("friends/alien_green.png"))
-        buttonGreen!!.addListener(object : InputListener() {
-            override fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean {
-                isPressedGreen = true
-                return true
-            }
-
-            override fun touchUp(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int) {
-                isPressedGreen = false
-            }
-        })
-
-        //pink friend
-        buttonPink = Image(Texture("friends/alien_pink.png"))
-        buttonPink!!.addListener(object : InputListener() {
-            override fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean {
-                isPressedPink = true
-                return true
-            }
-
-            override fun touchUp(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int) {
-                isPressedPink = false
-            }
-        })
-
-        //yellow friend
-        buttonYellow = Image(Texture("friends/alien_yellow.png"))
-        buttonYellow!!.addListener(object : InputListener() {
-            override fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean {
-                isPressedYellow = true
-                return true
-            }
-
-            override fun touchUp(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int) {
-                isPressedYellow = false
-            }
-        })
+        buttonBeige = createImageButton("friends/alien_beige.png")   //create beige friend
+        buttonBlue = createImageButton("friends/alien_blue.png")     //create blue friend
+        buttonGreen = createImageButton("friends/alien_green.png")   //create green friend (aka Jerry!!!)
+        buttonPink = createImageButton("friends/alien_pink.png")     //create pink friend
+        buttonYellow = createImageButton("friends/alien_yellow.png") //create yellow friend
     }
 
     private fun selectFriend(friend: String) {
@@ -188,4 +127,42 @@ class FriendsScreen(spriteBatch: SpriteBatch, private val game: Falling) : Scree
         this.dispose()
         game.screen = MenuScreen(spriteBatch, game)
     }
+
+    private fun createImageButton(filePath: String): Image {
+        val button = Image(Texture(filePath))
+        button.addListener(object : InputListener() {
+            override fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean {
+                if (filePath.contains("beige")) {
+                    isPressedBeige = true
+                } else if (filePath.contains("blue")) {
+                    isPressedBlue = true
+                } else if (filePath.contains("green")) {
+                    isPressedGreen = true
+                } else if (filePath.contains("pink")) {
+                    isPressedPink = true
+                } else if (filePath.contains("yellow")) {
+                    isPressedYellow = true
+                }
+
+                return true
+            }
+
+            override fun touchUp(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int) {
+                if (filePath.contains("beige")) {
+                    isPressedBeige = false
+                } else if (filePath.contains("blue")) {
+                    isPressedBlue = false
+                } else if (filePath.contains("green")) {
+                    isPressedGreen = false
+                } else if (filePath.contains("pink")) {
+                    isPressedPink = false
+                } else if (filePath.contains("yellow")) {
+                    isPressedYellow = false
+                }
+            }
+        })
+
+        return button
+    }
+
 }
