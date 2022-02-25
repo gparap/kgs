@@ -42,7 +42,7 @@ class MenuScreen(spriteBatch: SpriteBatch, private val game: Falling) : Screen(s
         if (isStartPressed) {
             this.dispose()
             this.hide()
-            game.screen = GameScreen(spriteBatch, game)
+            game.screen = GameScreen(spriteBatch)
 
         } else if (isCreditsPressed) {
             this.dispose()

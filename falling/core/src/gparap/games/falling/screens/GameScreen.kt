@@ -7,11 +7,10 @@ package gparap.games.falling.screens
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
-import gparap.games.falling.Falling
 import gparap.games.falling.GameConstants
-import gparap.games.falling.Player
+import gparap.games.falling.player.Player
 
-class GameScreen(spriteBatch: SpriteBatch, game: Falling) : Screen(spriteBatch){
+class GameScreen(spriteBatch: SpriteBatch) : Screen(spriteBatch){
     private lateinit var player: Player
 
     override fun show() {
@@ -23,6 +22,11 @@ class GameScreen(spriteBatch: SpriteBatch, game: Falling) : Screen(spriteBatch){
 
     override fun render(delta: Float) {
         super.render(delta)
+
+        //update game
+        player.update(delta)
+
+        //draw game
         spriteBatch.begin()
         player.draw(spriteBatch)
         spriteBatch.end()

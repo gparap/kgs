@@ -13,7 +13,8 @@ object GameConstants {
     const val TABLE_CELL_PAD = 8F
     const val DEFAULT_FONT_SIZE = 24
     const val TEXT_TAP = "Tap!"
-    const val PLAYER_SCALE_FACTOR = 1 / 2F
+    const val PLAYER_SCALE_FACTOR = 1 / 1.5F
+    const val GROUND_ZERO = 40F
 
     //custom colors
     val COLOR_VANILLA = Color(0.95F, 0.90F, 0.67F, 1F)
