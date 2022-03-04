@@ -31,4 +31,11 @@ object GameConstants {
     const val FRIEND_GREEN = "friends/alien_green.png"
     const val FRIEND_PINK = "friends/alien__pink.png"
     const val FRIEND_YELLOW = "friends/alien_yellow.png"
+
+    //tokens
+    const val TOKENS_COUNT = 4
+    const val TOKEN_GEM_BLUE = "tokens/gem_blue.png"
+    const val TOKEN_GEM_GREEN = "tokens/gem_green.png"
+    const val TOKEN_GEM_RED = "tokens/gem_red.png"
+    const val TOKEN_GEM_YELLOW = "tokens/gem_yellow.png"
 }
