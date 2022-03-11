@@ -8,24 +8,24 @@ package gparap.games.falling.screens
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import gparap.games.falling.GameConstants
+import gparap.games.falling.managers.SpawnManager
 import gparap.games.falling.managers.TokenManager
 import gparap.games.falling.player.Player
 
 class GameScreen(spriteBatch: SpriteBatch) : Screen(spriteBatch) {
     private lateinit var player: Player
     private lateinit var tokenManager: TokenManager
+    private lateinit var spawnManager: SpawnManager
 
     override fun show() {
         super.show()
 
         //create manager objects
         tokenManager = TokenManager()
+        spawnManager = SpawnManager(tokenManager)
 
         //create game objects
         player = Player(playerPref)
-        for (i in 0..2) {
-            tokenManager.createToken()
-        }
     }
 
     override fun render(delta: Float) {
@@ -34,6 +34,7 @@ class GameScreen(spriteBatch: SpriteBatch) : Screen(spriteBatch) {
         //update game
         player.update(delta)
         tokenManager.updateTokens(delta)
+        spawnManager.update(delta)
 
         //draw game
         spriteBatch.begin()

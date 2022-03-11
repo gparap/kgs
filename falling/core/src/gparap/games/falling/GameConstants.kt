@@ -29,7 +29,7 @@ object GameConstants {
     const val FRIEND_BEIGE = "friends/alien_beige.png"
     const val FRIEND_BLUE = "friends/alien_blue.png"
     const val FRIEND_GREEN = "friends/alien_green.png"
-    const val FRIEND_PINK = "friends/alien__pink.png"
+    const val FRIEND_PINK = "friends/alien_pink.png"
     const val FRIEND_YELLOW = "friends/alien_yellow.png"
 
     //tokens
@@ -46,4 +46,6 @@ object GameConstants {
     const val TOKEN_GEM_MAX_SPEED = 2.5F
     const val TOKEN_COIN_MAX_SPEED = 5F
     const val TOKEN_STAR_MAX_SPEED = 10F
+    const val TOKEN_SPAWN_TIMER = 5F
+    const val TOKEN_POOL_SIZE = 5
 }

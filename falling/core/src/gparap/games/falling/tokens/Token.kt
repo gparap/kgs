@@ -16,7 +16,10 @@ import kotlin.properties.Delegates
 abstract class Token(protected val sprite: Sprite) {
     protected var position = Vector2(0F, 480F)
     protected var speed by Delegates.notNull<Float>()
+    protected var isActive = false
 
+    abstract fun isActiveInGame(): Boolean
+    abstract fun setActiveInGame(active: Boolean)
     abstract fun update(delta: Float)
 
     open fun draw(spriteBatch: SpriteBatch) {

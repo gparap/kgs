@@ -16,7 +16,7 @@ import gparap.games.falling.tokens.*
  * This manager class is responsible for the lifecycle of a token in the game
  */
 class TokenManager {
-    private var activeTokens: MutableList<Token> = ArrayList()
+    private var tokens: MutableList<Token> = ArrayList()
     private lateinit var tokenType: TokenType
     private lateinit var tokenSprite: Sprite
     private var gems: MutableList<Sprite> = ArrayList()
@@ -27,7 +27,7 @@ class TokenManager {
         createTokenSprites()
     }
 
-    fun createToken() {
+    fun createToken(): Token {
         //set the token sprite
         randomizeTokenType()
         randomizeTokenSprite()
@@ -40,18 +40,25 @@ class TokenManager {
         }
 
         //add the token to active tokens list
-        activeTokens.add(token)
+        token.setActiveInGame(false)
+        tokens.add(token)
+
+        return token
     }
 
     fun updateTokens(delta: Float) {
-        for (token in activeTokens) {
-            token.update(delta)
+        for (token in tokens) {
+            if (token.isActiveInGame()) {
+                token.update(delta)
+            }
         }
     }
 
     fun drawTokens(spriteBatch: SpriteBatch) {
-        for (token in activeTokens) {
-            token.draw(spriteBatch)
+        for (token in tokens) {
+            if (token.isActiveInGame()) {
+                token.draw(spriteBatch)
+            }
         }
     }
 
