@@ -6,13 +6,17 @@
 package gparap.games.falling.tokens
 
 import com.badlogic.gdx.graphics.g2d.Sprite
-import com.badlogic.gdx.graphics.g2d.SpriteBatch
+import gparap.games.falling.GameConstants
 
 class GemToken(sprite: Sprite) : Token(sprite) {
 
-    override fun update(delta: Float) {
+    init {
+        speed = 1.33F
+        super.randomizeSpeed(GameConstants.TOKEN_GEM_MAX_SPEED)
     }
 
-    override fun draw(spriteBatch: SpriteBatch) {
+    override fun update(delta: Float) {
+        position.y -= speed + delta
+        sprite.y = position.y
     }
 }

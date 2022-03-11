@@ -7,17 +7,24 @@ package gparap.games.falling.tokens
 
 import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
+import com.badlogic.gdx.math.RandomXS128
 import com.badlogic.gdx.math.Vector2
+import gparap.games.falling.GameConstants
+import java.util.*
+import kotlin.properties.Delegates
 
-open class Token(protected val sprite: Sprite) {
-    protected var position = Vector2(0F, 0F)
+abstract class Token(protected val sprite: Sprite) {
+    protected var position = Vector2(0F, 480F)
+    protected var speed by Delegates.notNull<Float>()
 
-    open fun update(delta: Float) {
-        position.y -= 1F + delta
-        sprite.y = position.y
-    }
+    abstract fun update(delta: Float)
 
     open fun draw(spriteBatch: SpriteBatch) {
         sprite.draw(spriteBatch)
+    }
+
+    open fun randomizeSpeed(maxSpeed: Float) {
+        RandomXS128()
+        speed = Random().nextFloat() * (maxSpeed - GameConstants.TOKEN_MIN_SPEED) + GameConstants.TOKEN_MIN_SPEED
     }
 }

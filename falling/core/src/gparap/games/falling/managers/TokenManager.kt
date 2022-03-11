@@ -32,7 +32,14 @@ class TokenManager {
         randomizeTokenType()
         randomizeTokenSprite()
 
-        val token = Token(tokenSprite)
+        //create the token
+        val token = when (tokenType) {
+            TokenType.GEM -> GemToken(tokenSprite)
+            TokenType.COIN -> CoinToken(tokenSprite)
+            TokenType.STAR -> StarToken(tokenSprite)
+        }
+
+        //add the token to active tokens list
         activeTokens.add(token)
     }
 

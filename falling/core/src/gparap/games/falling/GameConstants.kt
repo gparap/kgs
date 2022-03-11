@@ -42,4 +42,8 @@ object GameConstants {
     const val TOKEN_COIN_GOLD = "tokens/coin_gold.png"
     const val TOKEN_COIN_SILVER = "tokens/coin_silver.png"
     const val TOKEN_STAR = "tokens/star.png"
+    const val TOKEN_MIN_SPEED = 1.25F
+    const val TOKEN_GEM_MAX_SPEED = 2.5F
+    const val TOKEN_COIN_MAX_SPEED = 5F
+    const val TOKEN_STAR_MAX_SPEED = 10F
 }

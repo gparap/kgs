@@ -42,10 +42,12 @@ class Player(filePath: String) {
         //handle jumping of falling
         if (state == PlayerState.JUMP) {
             velocity += velocityUpdateFactor
+            player.y += velocity + delta
+
         } else if (state == PlayerState.FALL) {
             velocity -= velocityUpdateFactor
+            player.y += velocity + delta
         }
-        player.y += velocity + delta
 
         //don't fall of the ground
         if (player.y < GROUND_ZERO) {
