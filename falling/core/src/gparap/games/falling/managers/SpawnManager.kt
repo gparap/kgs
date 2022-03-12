@@ -24,7 +24,6 @@ class SpawnManager(private val tokenManager: TokenManager) {
 
         //update the token timer
         tokenSpawnTimer += delta
-        println(tokenSpawnTimer)
     }
 
     /* Creates requested number of tokens and fills up the pool */

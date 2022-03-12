@@ -13,6 +13,7 @@ class StarToken(sprite: Sprite) : Token(sprite) {
     init {
         speed = 1.5F
         super.randomizeSpeed(GameConstants.TOKEN_STAR_MAX_SPEED)
+        tokenType = TokenType.STAR
     }
 
     override fun isActiveInGame(): Boolean {
@@ -21,10 +22,5 @@ class StarToken(sprite: Sprite) : Token(sprite) {
 
     override fun setActiveInGame(active: Boolean) {
         isActive = active
-    }
-
-    override fun update(delta: Float) {
-        position.y -= speed + delta
-        sprite.y = position.y
     }
 }

@@ -13,6 +13,7 @@ class GemToken(sprite: Sprite) : Token(sprite) {
     init {
         speed = 1.33F
         super.randomizeSpeed(GameConstants.TOKEN_GEM_MAX_SPEED)
+        tokenType = TokenType.GEM
     }
 
     override fun isActiveInGame(): Boolean {
@@ -21,10 +22,5 @@ class GemToken(sprite: Sprite) : Token(sprite) {
 
     override fun setActiveInGame(active: Boolean) {
         isActive = active
-    }
-
-    override fun update(delta: Float) {
-        position.y -= speed + delta
-        sprite.y = position.y
     }
 }

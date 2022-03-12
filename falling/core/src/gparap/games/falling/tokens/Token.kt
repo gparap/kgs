@@ -5,6 +5,7 @@
  *******************************/
 package gparap.games.falling.tokens
 
+import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.math.RandomXS128
@@ -13,21 +14,44 @@ import gparap.games.falling.GameConstants
 import java.util.*
 import kotlin.properties.Delegates
 
-abstract class Token(protected val sprite: Sprite) {
-    protected var position = Vector2(0F, 480F)
+abstract class Token(private val sprite: Sprite) {
+    private var position = Vector2(0F, 480F)
     protected var speed by Delegates.notNull<Float>()
     protected var isActive = false
+    protected lateinit var tokenType: TokenType
 
     abstract fun isActiveInGame(): Boolean
     abstract fun setActiveInGame(active: Boolean)
-    abstract fun update(delta: Float)
+
+    open fun update(delta: Float) {
+        //token is falling
+        position.y -= speed + delta
+        sprite.y = position.y
+
+        //token reaches the ground
+        if (position.y < 0 - sprite.height) {
+            setActiveInGame(false)
+            randomizePosition()
+            when (tokenType) {
+                TokenType.GEM -> randomizeSpeed(GameConstants.TOKEN_GEM_MAX_SPEED)
+                TokenType.COIN -> randomizeSpeed(GameConstants.TOKEN_COIN_MAX_SPEED)
+                TokenType.STAR -> randomizeSpeed(GameConstants.TOKEN_STAR_MAX_SPEED)
+            }
+        }
+    }
 
     open fun draw(spriteBatch: SpriteBatch) {
         sprite.draw(spriteBatch)
     }
 
     open fun randomizeSpeed(maxSpeed: Float) {
-        RandomXS128()
         speed = Random().nextFloat() * (maxSpeed - GameConstants.TOKEN_MIN_SPEED) + GameConstants.TOKEN_MIN_SPEED
+    }
+
+    /* Randomizes X position (x > 0 && x < screen_width - token_width) */
+    open fun randomizePosition() {
+        val random = RandomXS128().nextInt((Gdx.graphics.width - sprite.width).toInt())
+        position = Vector2(random.toFloat(), Gdx.graphics.height.toFloat())
+        sprite.setPosition(position.x, position.y)
     }
 }

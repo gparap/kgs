@@ -13,6 +13,7 @@ class CoinToken(sprite: Sprite) : Token(sprite) {
     init {
         speed = 1.25F
         super.randomizeSpeed(GameConstants.TOKEN_COIN_MAX_SPEED)
+        tokenType = TokenType.COIN
     }
 
     override fun isActiveInGame(): Boolean {
@@ -21,10 +22,5 @@ class CoinToken(sprite: Sprite) : Token(sprite) {
 
     override fun setActiveInGame(active: Boolean) {
         isActive = active
-    }
-
-    override fun update(delta: Float) {
-        position.y -= speed + delta
-        sprite.y = position.y
     }
 }
