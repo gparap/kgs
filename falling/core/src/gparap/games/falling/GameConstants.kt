@@ -11,10 +11,15 @@ object GameConstants {
     const val BUTTON_WIDTH = 128F
     const val BUTTON_HEIGHT = 64F
     const val TABLE_CELL_PAD = 8F
-    const val DEFAULT_FONT_SIZE = 24
     const val TEXT_TAP = "Tap!"
     const val PLAYER_SCALE_FACTOR = 1 / 1.5F
     const val GROUND_ZERO = 40F
+
+    //fonts
+    const val DEFAULT_FONT_SIZE = 24
+    const val LOW_RESOLUTION_FONT_SIZE = 32
+    const val DEFAULT_FONT = "fonts/kenney_pixel.fnt"
+    const val OPEN_TYPE_FONT = "fonts/kenney_pixel.otf"
 
     //custom colors
     val COLOR_VANILLA = Color(0.95F, 0.90F, 0.67F, 1F)
@@ -48,4 +53,10 @@ object GameConstants {
     const val TOKEN_STAR_MAX_SPEED = 10F
     const val TOKEN_SPAWN_TIMER = 5F
     const val TOKEN_POOL_SIZE = 5
+
+    //heads-up display
+    const val HUD_LABEL_SCORE = "SCORE: "
+    const val HUD_LABEL_LIFE = "LIFE: "
+    const val HUD_LABEL_FORMAT_STRING = "%s"
+    const val HUD_LABEL_FORMAT_INTEGER = "%3d"
 }

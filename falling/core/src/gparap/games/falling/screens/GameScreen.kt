@@ -8,6 +8,7 @@ package gparap.games.falling.screens
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import gparap.games.falling.GameConstants
+import gparap.games.falling.HUD
 import gparap.games.falling.managers.SpawnManager
 import gparap.games.falling.managers.TokenManager
 import gparap.games.falling.player.Player
@@ -16,6 +17,7 @@ class GameScreen(spriteBatch: SpriteBatch) : Screen(spriteBatch) {
     private lateinit var player: Player
     private lateinit var tokenManager: TokenManager
     private lateinit var spawnManager: SpawnManager
+    private lateinit var hud: HUD
 
     override fun show() {
         super.show()
@@ -26,6 +28,9 @@ class GameScreen(spriteBatch: SpriteBatch) : Screen(spriteBatch) {
 
         //create game objects
         player = Player(playerPref)
+
+        //create the heads-up display object
+        hud = HUD(spriteBatch)
     }
 
     override fun render(delta: Float) {
@@ -41,6 +46,9 @@ class GameScreen(spriteBatch: SpriteBatch) : Screen(spriteBatch) {
         player.draw(spriteBatch)
         tokenManager.drawTokens(spriteBatch)
         spriteBatch.end()
+
+        //draw heads-up display
+        hud.draw()
     }
 
     companion object {
