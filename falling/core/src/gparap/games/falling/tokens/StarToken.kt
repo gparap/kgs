@@ -23,4 +23,12 @@ class StarToken(sprite: Sprite) : Token(sprite) {
     override fun setActiveInGame(active: Boolean) {
         isActive = active
     }
+
+    override fun isCollectedInGame(): Boolean {
+        return isCollected
+    }
+
+    override fun setCollectedInGame(collected: Boolean) {
+        isCollected = collected
+    }
 }

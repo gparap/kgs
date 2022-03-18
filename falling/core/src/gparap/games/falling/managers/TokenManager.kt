@@ -51,6 +51,12 @@ class TokenManager {
             if (token.isActiveInGame()) {
                 token.update(delta)
             }
+            //token is collected
+            if (token.isCollectedInGame()) {
+                token.setActiveInGame(false)
+                token.randomizePosition()
+                token.setCollectedInGame(false)
+            }
         }
     }
 

@@ -15,6 +15,10 @@ class SpawnManager(private val tokenManager: TokenManager) {
     private var tokenSpawnTimer = 0F
     private var tokenPool = ArrayList<Token>()
 
+    fun getTokenPool() : ArrayList<Token>{
+        return tokenPool
+    }
+
     init {
         initTokenPool()
     }

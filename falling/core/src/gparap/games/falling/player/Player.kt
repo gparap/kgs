@@ -10,13 +10,14 @@ import com.badlogic.gdx.Input
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
+import com.badlogic.gdx.math.Rectangle
 import gparap.games.falling.GameConstants.GROUND_ZERO
 import gparap.games.falling.GameConstants.PLAYER_SCALE_FACTOR
 import kotlin.math.abs
 
 class Player(filePath: String) {
     //creates player sprite based on user selection of friend
-    private var player: Sprite = Sprite(Texture(filePath))
+    private var sprite: Sprite = Sprite(Texture(filePath))
     private val speed = 7.5F
     private var state = getPlayerState()
     private var velocity = 0F
@@ -24,8 +25,8 @@ class Player(filePath: String) {
     private var velocityUpdateMax = velocityUpdateFactor * 10
 
     init {
-        player.setPosition(0F, GROUND_ZERO)
-        player.setSize(player.width * PLAYER_SCALE_FACTOR, player.height * PLAYER_SCALE_FACTOR)
+        sprite.setPosition(0F, GROUND_ZERO)
+        sprite.setSize(sprite.width * PLAYER_SCALE_FACTOR, sprite.height * PLAYER_SCALE_FACTOR)
     }
 
     fun update(delta: Float) {
@@ -35,23 +36,23 @@ class Player(filePath: String) {
     }
 
     fun draw(spriteBatch: SpriteBatch) {
-        player.draw(spriteBatch)
+        sprite.draw(spriteBatch)
     }
 
     private fun updatePlayerJumping(delta: Float) {
         //handle jumping of falling
         if (state == PlayerState.JUMP) {
             velocity += velocityUpdateFactor
-            player.y += velocity + delta
+            sprite.y += velocity + delta
 
         } else if (state == PlayerState.FALL) {
             velocity -= velocityUpdateFactor
-            player.y += velocity + delta
+            sprite.y += velocity + delta
         }
 
         //don't fall of the ground
-        if (player.y < GROUND_ZERO) {
-            player.y = GROUND_ZERO
+        if (sprite.y < GROUND_ZERO) {
+            sprite.y = GROUND_ZERO
             state = PlayerState.WALK
         }
 
@@ -69,16 +70,16 @@ class Player(filePath: String) {
     private fun checkIfPlayerShouldJump() {
         if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) && ((getPlayerState() != PlayerState.JUMP) && (getPlayerState() != PlayerState.FALL))) {
             state = PlayerState.JUMP
-            player.y = GROUND_ZERO
+            sprite.y = GROUND_ZERO
         }
     }
 
     private fun getPlayerState(): PlayerState {
-        if (player.y == GROUND_ZERO) {
+        if (sprite.y == GROUND_ZERO) {
             return PlayerState.WALK
-        } else if (player.y > GROUND_ZERO && velocity > 0) {
+        } else if (sprite.y > GROUND_ZERO && velocity > 0) {
             return PlayerState.JUMP
-        } else if (player.y > GROUND_ZERO && velocity < 0) {
+        } else if (sprite.y > GROUND_ZERO && velocity < 0) {
             return PlayerState.FALL
         }
         return PlayerState.WALK
@@ -87,21 +88,32 @@ class Player(filePath: String) {
     private fun updatePlayerMovement(delta: Float) {
         if (Gdx.input.isTouched) {
             //right
-            if (Gdx.input.x > player.x + player.width) {
-                player.x += speed + delta
+            if (Gdx.input.x > sprite.x + sprite.width) {
+                sprite.x += speed + delta
                 //keep inside screen
-                if (player.x + player.width > Gdx.graphics.width) {
-                    player.x = Gdx.graphics.width - player.width
+                if (sprite.x + sprite.width > Gdx.graphics.width) {
+                    sprite.x = Gdx.graphics.width - sprite.width
                 }
             }
             //left
-            if (Gdx.input.x < player.x) {
-                player.x -= speed + delta
+            if (Gdx.input.x < sprite.x) {
+                sprite.x -= speed + delta
                 //keep inside screen
-                if (player.x < 0) {
-                    player.x = 0F
+                if (sprite.x < 0) {
+                    sprite.x = 0F
                 }
             }
         }
+    }
+
+    /* Returns the collision boundaries for the player */
+    fun getCollisionBounds() : Rectangle {
+        val rectangle = Rectangle()
+        rectangle.width = sprite.width
+        rectangle.height = sprite.height
+        rectangle.width = sprite.width - (sprite.width / 10F)
+        rectangle.height = sprite.height - (sprite.height / 10F)
+        rectangle.setPosition(sprite.x, sprite.y)
+        return rectangle
     }
 }
