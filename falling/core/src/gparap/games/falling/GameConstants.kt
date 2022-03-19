@@ -53,6 +53,9 @@ object GameConstants {
     const val TOKEN_STAR_MAX_SPEED = 10F
     const val TOKEN_SPAWN_TIMER = 5F
     const val TOKEN_POOL_SIZE = 5
+    const val SCORE_POINTS_GEM = 100
+    const val SCORE_POINTS_COIN = 10
+    const val SCORE_POINTS_STAR = 1000
 
     //heads-up display
     const val HUD_LABEL_SCORE = "SCORE: "

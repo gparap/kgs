@@ -33,7 +33,7 @@ class GameScreen(spriteBatch: SpriteBatch) : Screen(spriteBatch) {
         //create manager objects
         tokenManager = TokenManager()
         spawnManager = SpawnManager(tokenManager)
-        collisionManager = CollisionManager(player, spawnManager)
+        collisionManager = CollisionManager(player, spawnManager, hud)
     }
 
     override fun render(delta: Float) {
@@ -44,6 +44,7 @@ class GameScreen(spriteBatch: SpriteBatch) : Screen(spriteBatch) {
         tokenManager.updateTokens(delta)
         spawnManager.update(delta)
         collisionManager.update()
+        hud.update()
 
         //draw game
         spriteBatch.begin()

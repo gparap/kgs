@@ -28,6 +28,8 @@ abstract class Token(private val sprite: Sprite) {
     abstract fun isCollectedInGame(): Boolean
     abstract fun setCollectedInGame(collected: Boolean)
 
+    abstract fun getScorePoints(): Int
+
     open fun update(delta: Float) {
         //token is falling
         position.y -= speed + delta

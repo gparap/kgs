@@ -34,6 +34,10 @@ class HUD(spriteBatch: SpriteBatch?) : Disposable {
     private var labelLifeL: Label? = null   //displays the label "LIFE: "
     private var labelLifeR: Label? = null   //displays the actual life
 
+    fun setScore(score: Int) {
+        this.score += score
+    }
+
     init {
         val viewport = FitViewport(Gdx.graphics.width.toFloat(), Gdx.graphics.height.toFloat(), OrthographicCamera())
         stage = Stage(viewport, spriteBatch)
@@ -43,6 +47,10 @@ class HUD(spriteBatch: SpriteBatch?) : Disposable {
         createFont()
         createLabels()
         stage.addActor(createLabelsTable())
+    }
+
+    fun update() {
+        labelScoreR?.setText(score)
     }
 
     fun draw() {

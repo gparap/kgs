@@ -31,4 +31,8 @@ class StarToken(sprite: Sprite) : Token(sprite) {
     override fun setCollectedInGame(collected: Boolean) {
         isCollected = collected
     }
+
+    override fun getScorePoints(): Int {
+        return GameConstants.SCORE_POINTS_STAR
+    }
 }
