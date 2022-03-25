@@ -39,6 +39,21 @@ object GameConstants {
     const val FRIEND_PINK = "friends/alien_pink.png"
     const val FRIEND_YELLOW = "friends/alien_yellow.png"
 
+    //enemies
+    const val ENEMIES_TYPES_COUNT = 6
+    const val ENEMY_BAT = "enemies/bat.png"
+    const val ENEMY_BAT_FLY = "enemies/bat_fly.png"
+    const val ENEMY_BEE = "enemies/bee.png"
+    const val ENEMY_BEE_FLY = "enemies/bee_fly.png"
+    const val ENEMY_BLOCKER = "enemies/blocker_mad.png"
+    const val ENEMY_SLIME_WALK1 = "enemies/slime_walk1.png"
+    const val ENEMY_SLIME_WALK2 = "enemies/slime_walk2.png"
+    const val ENEMY_SNAIL_SHELL = "enemies/snail_shell.png"
+    const val ENEMY_SNAIL_WALK1 = "enemies/snail_walk1.png"
+    const val ENEMY_SNAIL_WALK2 = "enemies/snail_walk2.png"
+    const val ENEMY_SNAKE = "enemies/snake.png"
+    const val ENEMY_SNAKE_ANIM = "enemies/snake_anim.png"
+
     //tokens
     const val TOKEN_TYPES_COUNT = 3
     const val TOKEN_GEM_BLUE = "tokens/gem_blue.png"
