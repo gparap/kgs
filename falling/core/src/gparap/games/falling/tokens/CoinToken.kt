@@ -14,6 +14,7 @@ class CoinToken(sprite: Sprite) : Token(sprite) {
         speed = 1.25F
         super.randomizeSpeed(GameConstants.TOKEN_COIN_MAX_SPEED)
         tokenType = TokenType.COIN
+        sprite.setPosition(GameConstants.OFF_SCREEN_X, GameConstants.OFF_SCREEN_Y)
     }
 
     override fun isActiveInGame(): Boolean {

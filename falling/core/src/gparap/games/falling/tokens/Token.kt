@@ -16,7 +16,7 @@ import java.util.*
 import kotlin.properties.Delegates
 
 abstract class Token(private val sprite: Sprite) {
-    private var position = Vector2(-100F, -100F)
+    private var position = Vector2(GameConstants.OFF_SCREEN_X, GameConstants.OFF_SCREEN_Y)
     protected var speed by Delegates.notNull<Float>()
     protected var isActive = false
     protected var isCollected = false

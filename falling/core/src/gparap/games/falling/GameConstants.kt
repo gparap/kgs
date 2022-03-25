@@ -14,6 +14,8 @@ object GameConstants {
     const val TEXT_TAP = "Tap!"
     const val PLAYER_SCALE_FACTOR = 1 / 1.5F
     const val GROUND_ZERO = 40F
+    const val OFF_SCREEN_X = -1600F
+    const val OFF_SCREEN_Y = -960F
 
     //fonts
     const val DEFAULT_FONT_SIZE = 24

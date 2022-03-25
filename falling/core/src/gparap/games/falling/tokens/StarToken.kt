@@ -14,6 +14,7 @@ class StarToken(sprite: Sprite) : Token(sprite) {
         speed = 1.5F
         super.randomizeSpeed(GameConstants.TOKEN_STAR_MAX_SPEED)
         tokenType = TokenType.STAR
+        sprite.setPosition(GameConstants.OFF_SCREEN_X, GameConstants.OFF_SCREEN_Y)
     }
 
     override fun isActiveInGame(): Boolean {
