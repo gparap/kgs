@@ -8,12 +8,14 @@ import com.badlogic.gdx.math.Vector2
 import gparap.games.falling.GameConstants
 import kotlin.properties.Delegates
 
-class Enemy() {
-    private lateinit var sprite: Sprite
+abstract class Enemy(private var sprite: Sprite) {
     private var position = Vector2(GameConstants.OFF_SCREEN_X, GameConstants.OFF_SCREEN_Y)
-    private var speed by Delegates.notNull<Float>()
-    private var isActive = false
-    private lateinit var enemyType: EnemyType
+    protected var speed by Delegates.notNull<Float>()
+    protected var isActive = false
+    protected lateinit var enemyType: EnemyType
+
+    abstract fun isActiveInGame(): Boolean
+    abstract fun setActiveInGame(active: Boolean)
 
     init {
         //choose a random enemy sprite

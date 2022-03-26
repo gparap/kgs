@@ -11,13 +11,14 @@ import gparap.games.falling.GameConstants
 import gparap.games.falling.HUD
 import gparap.games.falling.enemies.Enemy
 import gparap.games.falling.managers.CollisionManager
+import gparap.games.falling.managers.EnemyManager
 import gparap.games.falling.managers.SpawnManager
 import gparap.games.falling.managers.TokenManager
 import gparap.games.falling.player.Player
 
 class GameScreen(spriteBatch: SpriteBatch) : Screen(spriteBatch) {
     private lateinit var player: Player
-    private lateinit var enemy: Enemy
+    private lateinit var enemyManager: EnemyManager
     private lateinit var tokenManager: TokenManager
     private lateinit var spawnManager: SpawnManager
     private lateinit var collisionManager: CollisionManager
@@ -29,13 +30,11 @@ class GameScreen(spriteBatch: SpriteBatch) : Screen(spriteBatch) {
         //create player object
         player = Player(playerPref)
 
-        //create enemy object
-        enemy = Enemy()
-
         //create the heads-up display object
         hud = HUD(spriteBatch)
 
         //create manager objects
+        enemyManager = EnemyManager()
         tokenManager = TokenManager()
         spawnManager = SpawnManager(tokenManager)
         collisionManager = CollisionManager(player, spawnManager, hud)
@@ -46,7 +45,6 @@ class GameScreen(spriteBatch: SpriteBatch) : Screen(spriteBatch) {
 
         //update game
         player.update(delta)
-        enemy.update(delta)
         tokenManager.updateTokens(delta)
         spawnManager.update(delta)
         collisionManager.update()
@@ -55,7 +53,6 @@ class GameScreen(spriteBatch: SpriteBatch) : Screen(spriteBatch) {
         //draw game
         spriteBatch.begin()
         player.draw(spriteBatch)
-        enemy.draw(spriteBatch)
         tokenManager.drawTokens(spriteBatch)
         spriteBatch.end()
 
