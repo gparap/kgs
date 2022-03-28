@@ -9,7 +9,6 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import gparap.games.falling.GameConstants
 import gparap.games.falling.HUD
-import gparap.games.falling.enemies.Enemy
 import gparap.games.falling.managers.CollisionManager
 import gparap.games.falling.managers.EnemyManager
 import gparap.games.falling.managers.SpawnManager
@@ -36,7 +35,7 @@ class GameScreen(spriteBatch: SpriteBatch) : Screen(spriteBatch) {
         //create manager objects
         enemyManager = EnemyManager()
         tokenManager = TokenManager()
-        spawnManager = SpawnManager(tokenManager)
+        spawnManager = SpawnManager(tokenManager, enemyManager)
         collisionManager = CollisionManager(player, spawnManager, hud)
     }
 
@@ -46,6 +45,7 @@ class GameScreen(spriteBatch: SpriteBatch) : Screen(spriteBatch) {
         //update game
         player.update(delta)
         tokenManager.updateTokens(delta)
+        enemyManager.updateEnemies(delta)
         spawnManager.update(delta)
         collisionManager.update()
         hud.update()
@@ -54,6 +54,7 @@ class GameScreen(spriteBatch: SpriteBatch) : Screen(spriteBatch) {
         spriteBatch.begin()
         player.draw(spriteBatch)
         tokenManager.drawTokens(spriteBatch)
+        enemyManager.drawEnemies(spriteBatch)
         spriteBatch.end()
 
         //draw heads-up display

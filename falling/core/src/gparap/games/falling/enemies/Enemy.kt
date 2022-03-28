@@ -1,5 +1,6 @@
 package gparap.games.falling.enemies
 
+import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
@@ -19,32 +20,43 @@ abstract class Enemy(private var sprite: Sprite) {
 
     init {
         //choose a random enemy sprite
-        when(RandomXS128().nextInt(GameConstants.ENEMIES_TYPES_COUNT)) {
-            0-> sprite = Sprite(Texture(GameConstants.ENEMY_BAT))
-            1-> sprite = Sprite(Texture(GameConstants.ENEMY_BEE))
-            2-> sprite = Sprite(Texture(GameConstants.ENEMY_BLOCKER))
-            3-> sprite = Sprite(Texture(GameConstants.ENEMY_SLIME_WALK1))
-            4-> sprite = Sprite(Texture(GameConstants.ENEMY_SNAIL_WALK1))
-            5-> sprite = Sprite(Texture(GameConstants.ENEMY_SNAKE))
+        when (RandomXS128().nextInt(GameConstants.ENEMIES_TYPES_COUNT)) {
+            0 -> sprite = Sprite(Texture(GameConstants.ENEMY_BAT))
+            1 -> sprite = Sprite(Texture(GameConstants.ENEMY_BEE))
+            2 -> sprite = Sprite(Texture(GameConstants.ENEMY_BLOCKER))
+            3 -> sprite = Sprite(Texture(GameConstants.ENEMY_SLIME_WALK1))
+            4 -> sprite = Sprite(Texture(GameConstants.ENEMY_SNAIL_WALK1))
+            5 -> sprite = Sprite(Texture(GameConstants.ENEMY_SNAKE))
         }
 
         //set the enemy at a temporary position and speed
-        position= Vector2(800F, 480F)
+        randomizePosition()
+        //position= Vector2(GameConstants.OFF_SCREEN_X, GameConstants.OFF_SCREEN_Y)
+        //sprite.setPosition(position.x, position.y)
         speed = 1F
     }
 
     fun update(delta: Float) {
-        //enemy is falling
-        position.y -= speed + delta
-        sprite.y = position.y
+        if (isActive) {
+            //enemy is falling
+            position.y -= speed + delta
+            sprite.y = position.y
 
-        //don't fall of the ground
-        if (sprite.y < GameConstants.GROUND_ZERO) {
-            sprite.y = GameConstants.GROUND_ZERO
+            //don't fall of the ground
+            if (sprite.y < GameConstants.GROUND_ZERO) {
+                sprite.y = GameConstants.GROUND_ZERO
+            }
         }
     }
 
     fun draw(spriteBatch: SpriteBatch) {
         sprite.draw(spriteBatch)
+    }
+
+    /* Randomizes X position (x > 0 && x < screen_width - enemy_width) */
+    open fun randomizePosition() {
+        val random = RandomXS128().nextInt((Gdx.graphics.width - sprite.width).toInt())
+        position = Vector2(random.toFloat(), Gdx.graphics.height.toFloat())
+        sprite.setPosition(position.x, position.y)
     }
 }
