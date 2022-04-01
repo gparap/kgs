@@ -148,6 +148,5 @@ class EnemyManager {
         //create the enemy crawler sprites and add them to their list
         crawlers.add(Sprite(Texture(GameConstants.ENEMY_SLIME_WALK1)))
         crawlers.add(Sprite(Texture(GameConstants.ENEMY_SNAIL_WALK1)))
-        crawlers.add(Sprite(Texture(GameConstants.ENEMY_SNAKE)))
     }
 }

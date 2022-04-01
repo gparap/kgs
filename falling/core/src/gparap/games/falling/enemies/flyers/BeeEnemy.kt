@@ -6,16 +6,18 @@
 package gparap.games.falling.enemies.flyers
 
 import com.badlogic.gdx.graphics.g2d.Sprite
+import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import gparap.games.falling.GameConstants
 import gparap.games.falling.enemies.Enemy
 import gparap.games.falling.enemies.EnemyType
 
-class BeeEnemy(sprite: Sprite) : Enemy(sprite) {
+class BeeEnemy(enemySprite: Sprite) : Enemy() {
 
     init {
         speed = 1.33F
         enemyType = EnemyType.FLYER
-        sprite.setPosition(GameConstants.OFF_SCREEN_X, GameConstants.OFF_SCREEN_Y)
+        sprite = enemySprite
+        this.sprite.setPosition(GameConstants.OFF_SCREEN_X, GameConstants.OFF_SCREEN_Y)
     }
 
     override fun isActiveInGame(): Boolean {
@@ -24,5 +26,22 @@ class BeeEnemy(sprite: Sprite) : Enemy(sprite) {
 
     override fun setActiveInGame(active: Boolean) {
         isActive = active
+    }
+
+    override fun update(delta: Float) {
+        if (isActive) {
+            //enemy is falling
+            position.y -= speed + delta
+            this.sprite.y = position.y
+
+            //don't fall of the ground
+            if (this.sprite.y < GameConstants.GROUND_ZERO) {
+                this.sprite.y = GameConstants.GROUND_ZERO
+            }
+        }
+    }
+
+    override fun draw(spriteBatch: SpriteBatch) {
+        sprite.draw(spriteBatch)
     }
 }

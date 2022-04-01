@@ -40,8 +40,8 @@ object GameConstants {
     const val FRIEND_YELLOW = "friends/alien_yellow.png"
 
     //enemies
-    const val ENEMIES_TYPES_COUNT = 6
-    const val ENEMY_POOL_SIZE = 3
+    const val ENEMIES_TYPES_COUNT = 4
+    const val ENEMY_POOL_SIZE = 5
     const val ENEMY_SPAWN_TIMER = 5F
     const val ENEMY_BAT = "enemies/bat.png"
     const val ENEMY_BAT_FLY = "enemies/bat_fly.png"

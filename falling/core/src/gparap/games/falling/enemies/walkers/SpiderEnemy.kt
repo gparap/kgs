@@ -6,15 +6,17 @@
 package gparap.games.falling.enemies.walkers
 
 import com.badlogic.gdx.graphics.g2d.Sprite
+import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import gparap.games.falling.GameConstants
 import gparap.games.falling.enemies.Enemy
 import gparap.games.falling.enemies.EnemyType
 
-class SpiderEnemy(sprite: Sprite) : Enemy(sprite) {
+class SpiderEnemy(enemySprite: Sprite) : Enemy() {
 
     init {
         speed = 1.33F
         enemyType = EnemyType.WALKER
+        sprite = enemySprite
         sprite.setPosition(GameConstants.OFF_SCREEN_X, GameConstants.OFF_SCREEN_Y)
     }
 
@@ -24,5 +26,22 @@ class SpiderEnemy(sprite: Sprite) : Enemy(sprite) {
 
     override fun setActiveInGame(active: Boolean) {
         isActive = active
+    }
+
+    override fun update(delta: Float) {
+        if (isActive) {
+            //enemy is falling
+            position.y -= speed + delta
+            sprite.y = position.y
+
+            //don't fall of the ground
+            if (sprite.y < GameConstants.GROUND_ZERO) {
+                sprite.y = GameConstants.GROUND_ZERO
+            }
+        }
+    }
+
+    override fun draw(spriteBatch: SpriteBatch) {
+        sprite.draw(spriteBatch)
     }
 }
