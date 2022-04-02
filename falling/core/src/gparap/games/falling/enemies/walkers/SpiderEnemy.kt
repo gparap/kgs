@@ -17,7 +17,8 @@ class SpiderEnemy(enemySprite: Sprite) : Enemy() {
         speed = 1.33F
         enemyType = EnemyType.WALKER
         sprite = enemySprite
-        sprite.setPosition(GameConstants.OFF_SCREEN_X, GameConstants.OFF_SCREEN_Y)
+        position = randomizePosition(sprite.width)
+        sprite.setPosition(position.x, position.y)
     }
 
     override fun isActiveInGame(): Boolean {
