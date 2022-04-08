@@ -38,6 +38,10 @@ class HUD(spriteBatch: SpriteBatch?) : Disposable {
         this.score += score
     }
 
+    fun setLife(life: Int) {
+        this.life = life
+    }
+
     init {
         val viewport = FitViewport(Gdx.graphics.width.toFloat(), Gdx.graphics.height.toFloat(), OrthographicCamera())
         stage = Stage(viewport, spriteBatch)
@@ -51,6 +55,7 @@ class HUD(spriteBatch: SpriteBatch?) : Disposable {
 
     fun update() {
         labelScoreR?.setText(score)
+        labelLifeR?.setText(life)
     }
 
     fun draw() {
@@ -111,9 +116,7 @@ class HUD(spriteBatch: SpriteBatch?) : Disposable {
         //check for lower resolutions and adjust the size
         val width = Gdx.graphics.width.toFloat()
         val height = Gdx.graphics.height.toFloat()
-        if (width < Gdx.graphics.width.toFloat() || width < Gdx.graphics.height.toFloat() ||
-            height < Gdx.graphics.width.toFloat() || height < Gdx.graphics.height.toFloat()
-        ) {
+        if (width < Gdx.graphics.width.toFloat() || width < Gdx.graphics.height.toFloat() || height < Gdx.graphics.width.toFloat() || height < Gdx.graphics.height.toFloat()) {
             size = GameConstants.LOW_RESOLUTION_FONT_SIZE
         }
 

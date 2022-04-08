@@ -25,6 +25,8 @@ class CollisionManager(private val player: Player, private val spawnManager: Spa
         for (enemy in spawnManager.getEnemyPool()) {
             if (enemy.isActiveInGame() && player.getCollisionBounds().overlaps(enemy.getCollisionBounds())) {
                 enemy.setDestroyed()
+                player.loseLife()
+                hud.setLife(player.getLife())
             }
         }
     }

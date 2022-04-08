@@ -23,6 +23,11 @@ class Player(filePath: String) {
     private var velocity = 0F
     private var velocityUpdateFactor = 1.5F
     private var velocityUpdateMax = velocityUpdateFactor * 10
+    private var life = 5
+
+    fun getLife(): Int {
+        return life
+    }
 
     init {
         sprite.setPosition(0F, GROUND_ZERO)
@@ -107,7 +112,7 @@ class Player(filePath: String) {
     }
 
     /* Returns the collision boundaries for the player */
-    fun getCollisionBounds() : Rectangle {
+    fun getCollisionBounds(): Rectangle {
         val rectangle = Rectangle()
         rectangle.width = sprite.width
         rectangle.height = sprite.height
@@ -115,5 +120,17 @@ class Player(filePath: String) {
         rectangle.height = sprite.height - (sprite.height / 10F)
         rectangle.setPosition(sprite.x, sprite.y)
         return rectangle
+    }
+
+    /**
+     * Makes the player lose 1 life
+     */
+    fun loseLife() {
+        life -= 1
+
+        //don't let life go bellow zero
+        if (life < 0) {
+            life = 0
+        }
     }
 }
