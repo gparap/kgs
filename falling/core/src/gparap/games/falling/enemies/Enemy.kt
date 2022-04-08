@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.math.RandomXS128
+import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import gparap.games.falling.GameConstants
 import kotlin.properties.Delegates
@@ -26,8 +27,28 @@ abstract class Enemy {
      *
      * (x > 0 && x < screen_width - enemy_width)
      */
-    fun randomizePosition(spriteWidth: Float) : Vector2 {
+    fun randomizePosition(spriteWidth: Float): Vector2 {
         val random = RandomXS128().nextInt((Gdx.graphics.width - spriteWidth).toInt())
         return Vector2(random.toFloat(), Gdx.graphics.height.toFloat())
+    }
+
+    /**
+     *  Returns the collision boundaries for this enemy
+     */
+    fun getCollisionBounds(): Rectangle {
+        val rectangle = Rectangle()
+        rectangle.width = sprite.width - (sprite.width / 10)
+        rectangle.height = sprite.height - (sprite.height / 10)
+        rectangle.setPosition(sprite.x, sprite.y)
+        return rectangle
+    }
+
+    /**
+     * Remove enemy from the screen
+     */
+    fun setDestroyed() {
+        isActive = false
+        position = randomizePosition(sprite.width)
+        sprite.setPosition(position.x, position.y)
     }
 }

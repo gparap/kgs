@@ -9,6 +9,7 @@ import gparap.games.falling.player.Player
 class CollisionManager(private val player: Player, private val spawnManager: SpawnManager, private val hud: HUD) {
     fun update() {
         handleCollisionWithToken()
+        handleCollisionWithEnemy()
     }
 
     private fun handleCollisionWithToken() {
@@ -16,6 +17,14 @@ class CollisionManager(private val player: Player, private val spawnManager: Spa
             if (token.isActiveInGame() && player.getCollisionBounds().overlaps(token.getCollisionBounds())) {
                 token.setCollectedInGame(true)
                 hud.setScore(token.getScorePoints())
+            }
+        }
+    }
+
+    private fun handleCollisionWithEnemy() {
+        for (enemy in spawnManager.getEnemyPool()) {
+            if (enemy.isActiveInGame() && player.getCollisionBounds().overlaps(enemy.getCollisionBounds())) {
+                enemy.setDestroyed()
             }
         }
     }
