@@ -18,7 +18,7 @@ import gparap.games.falling.enemies.flyers.BatEnemy
 import gparap.games.falling.enemies.flyers.BeeEnemy
 import gparap.games.falling.enemies.jumpers.BlockerEnemy
 import gparap.games.falling.enemies.jumpers.FrogEnemy
-import gparap.games.falling.enemies.walkers.SnakeEnemy
+import gparap.games.falling.enemies.walkers.MouseEnemy
 import gparap.games.falling.enemies.walkers.SpiderEnemy
 
 /**
@@ -60,7 +60,7 @@ class EnemyManager {
             }
             EnemyType.WALKER -> {
                 if (random == 0) {
-                    SnakeEnemy(enemySprite)
+                    MouseEnemy(enemySprite)
                 } else {
                     SpiderEnemy(enemySprite)
                 }
@@ -142,7 +142,7 @@ class EnemyManager {
         jumpers.add(Sprite(Texture(GameConstants.ENEMY_FROG)))
 
         //create the enemy walker sprites and add them to their list
-        walkers.add(Sprite(Texture(GameConstants.ENEMY_SNAKE)))
+        walkers.add(Sprite(Texture(GameConstants.ENEMY_MOUSE)))
         walkers.add(Sprite(Texture(GameConstants.ENEMY_SPIDER)))
 
         //create the enemy crawler sprites and add them to their list

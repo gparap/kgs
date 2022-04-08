@@ -29,6 +29,5 @@ abstract class Enemy {
     fun randomizePosition(spriteWidth: Float) : Vector2 {
         val random = RandomXS128().nextInt((Gdx.graphics.width - spriteWidth).toInt())
         return Vector2(random.toFloat(), Gdx.graphics.height.toFloat())
-        //sprite.setPosition(position.x, position.y)
     }
 }

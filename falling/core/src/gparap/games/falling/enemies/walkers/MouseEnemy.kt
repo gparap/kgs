@@ -11,7 +11,7 @@ import gparap.games.falling.GameConstants
 import gparap.games.falling.enemies.Enemy
 import gparap.games.falling.enemies.EnemyType
 
-class SnakeEnemy(enemySprite: Sprite) : Enemy() {
+class MouseEnemy(enemySprite: Sprite) : Enemy() {
 
     init {
         speed = 1.33F
