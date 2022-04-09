@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import gparap.games.falling.GameConstants
 import gparap.games.falling.enemies.Enemy
+import gparap.games.falling.enemies.EnemyState
 import gparap.games.falling.enemies.EnemyType
 
 class BeeEnemy(enemySprite: Sprite) : Enemy() {
@@ -33,11 +34,15 @@ class BeeEnemy(enemySprite: Sprite) : Enemy() {
         if (isActive) {
             //enemy is falling
             position.y -= speed + delta
-            this.sprite.y = position.y
+            sprite.y = position.y
 
             //don't fall of the ground
-            if (this.sprite.y < GameConstants.GROUND_ZERO) {
-                this.sprite.y = GameConstants.GROUND_ZERO
+            if (sprite.y < GameConstants.GROUND_ZERO) {
+                sprite.y = GameConstants.GROUND_ZERO
+                if (enemyState == EnemyState.FALLING) {
+                    enemyState = EnemyState.IDLE
+                }
+                super.moveSideways(delta)
             }
         }
     }

@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import gparap.games.falling.GameConstants
 import gparap.games.falling.enemies.Enemy
+import gparap.games.falling.enemies.EnemyState
 import gparap.games.falling.enemies.EnemyType
 
 class BlockerEnemy(enemySprite: Sprite) : Enemy() {
@@ -38,6 +39,10 @@ class BlockerEnemy(enemySprite: Sprite) : Enemy() {
             //don't fall of the ground
             if (sprite.y < GameConstants.GROUND_ZERO) {
                 sprite.y = GameConstants.GROUND_ZERO
+                if (enemyState == EnemyState.FALLING) {
+                    enemyState = EnemyState.IDLE
+                }
+                super.moveSideways(delta)
             }
         }
     }

@@ -1,3 +1,8 @@
+/*******************************
+ * Katocheánian Gaming Studios *
+ * Little Jerry's Friends      *
+ * created by gparap           *
+ *******************************/
 package gparap.games.falling.enemies
 
 import com.badlogic.gdx.Gdx
@@ -15,6 +20,8 @@ abstract class Enemy {
     protected var isActive = false
     protected lateinit var enemyType: EnemyType
     protected lateinit var sprite: Sprite
+    protected var enemyState: EnemyState = EnemyState.FALLING
+    private var movementDirection: MovementDirection = MovementDirection.LEFT
 
     abstract fun isActiveInGame(): Boolean
     abstract fun setActiveInGame(active: Boolean)
@@ -50,5 +57,30 @@ abstract class Enemy {
         isActive = false
         position = randomizePosition(sprite.width)
         sprite.setPosition(position.x, position.y)
+    }
+
+    /**
+     * Moves enemy left or right when they stop falling (a.k.a. by default entered the game)
+     */
+    fun moveSideways(delta: Float) {
+        if (enemyState == EnemyState.IDLE) {
+            enemyState = EnemyState.MOVING
+            //randomize in which direction the enemy will move
+            val random = RandomXS128().nextInt(2)
+            movementDirection = if (random == 0) {
+                MovementDirection.LEFT
+            }else{
+                MovementDirection.RIGHT
+            }
+        }
+
+        //move enemy left or right
+        if (movementDirection == MovementDirection.LEFT) {
+            position.x -= speed + delta
+            sprite.x = position.x
+        }else{
+            position.x += speed + delta
+            sprite.x = position.x
+        }
     }
 }
