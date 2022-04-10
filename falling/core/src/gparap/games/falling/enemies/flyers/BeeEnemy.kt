@@ -36,9 +36,9 @@ class BeeEnemy(enemySprite: Sprite) : Enemy() {
             position.y -= speed + delta
             sprite.y = position.y
 
-            //don't fall of the ground
-            if (sprite.y < GameConstants.GROUND_ZERO) {
-                sprite.y = GameConstants.GROUND_ZERO
+            //fly above the ground
+            if (sprite.y < GameConstants.GROUND_ZERO + sprite.height) {
+                sprite.y = GameConstants.GROUND_ZERO + sprite.height
                 if (enemyState == EnemyState.FALLING) {
                     enemyState = EnemyState.IDLE
                 }
