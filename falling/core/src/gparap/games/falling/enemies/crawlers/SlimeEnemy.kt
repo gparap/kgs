@@ -39,6 +39,7 @@ class SlimeEnemy(enemySprite: Sprite) : Enemy() {
             //don't fall of the ground
             if (sprite.y < GameConstants.GROUND_ZERO) {
                 sprite.y = GameConstants.GROUND_ZERO
+                position.y = GameConstants.GROUND_ZERO
                 if (enemyState == EnemyState.FALLING) {
                     enemyState = EnemyState.IDLE
                 }

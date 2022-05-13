@@ -128,7 +128,7 @@ class EnemyManager {
             0 -> enemyType = EnemyType.FLYER
             1 -> enemyType = EnemyType.JUMPER
             2 -> enemyType = EnemyType.WALKER
-            4 -> enemyType = EnemyType.CRAWLER
+            3 -> enemyType = EnemyType.CRAWLER
         }
     }
 

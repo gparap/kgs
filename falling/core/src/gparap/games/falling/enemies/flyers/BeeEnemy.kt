@@ -39,6 +39,7 @@ class BeeEnemy(enemySprite: Sprite) : Enemy() {
             //fly above the ground
             if (sprite.y < GameConstants.GROUND_ZERO + sprite.height) {
                 sprite.y = GameConstants.GROUND_ZERO + sprite.height
+                position.y = GameConstants.GROUND_ZERO + sprite.height
                 if (enemyState == EnemyState.FALLING) {
                     enemyState = EnemyState.IDLE
                 }
