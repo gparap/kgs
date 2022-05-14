@@ -69,7 +69,7 @@ abstract class Enemy {
             val random = RandomXS128().nextInt(2)
             movementDirection = if (random == 0) {
                 MovementDirection.LEFT
-            }else{
+            } else {
                 MovementDirection.RIGHT
             }
         }
@@ -78,9 +78,25 @@ abstract class Enemy {
         if (movementDirection == MovementDirection.LEFT) {
             position.x -= speed + delta
             sprite.x = position.x
-        }else{
+        } else {
             position.x += speed + delta
             sprite.x = position.x
         }
+
+        //handle the enemy when is off-screen
+        if (isOffScreenBoundaries()) {
+            setDestroyed()
+        }
+    }
+
+    //Checks if the enemy is off-screen to the left or right
+    private fun isOffScreenBoundaries(): Boolean {
+        if (sprite.x > Gdx.graphics.width) {
+            return true
+        }
+        if (sprite.x + sprite.width < 0) {
+            return true
+        }
+        return false
     }
 }
