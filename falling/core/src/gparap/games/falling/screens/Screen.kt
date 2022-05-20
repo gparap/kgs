@@ -69,11 +69,11 @@ open class Screen(protected val spriteBatch: SpriteBatch) : Screen {
     }
 
     /** Creates the default font that will be used throughout the screens */
-    protected open fun createFont() {
+    protected open fun createFont(fontSize: Int = GameConstants.DEFAULT_FONT_SIZE) {
         font = BitmapFont(Gdx.files.internal("fonts/kenney_pixel.fnt"))
         val generator = FreeTypeFontGenerator(Gdx.files.internal("fonts/kenney_pixel.otf"))
         val parameter = FreeTypeFontParameter()
-        parameter.size = GameConstants.DEFAULT_FONT_SIZE
+        parameter.size = fontSize
         font = generator.generateFont(parameter)
         generator.dispose()
     }

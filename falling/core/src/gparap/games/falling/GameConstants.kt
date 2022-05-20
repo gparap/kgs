@@ -12,12 +12,17 @@ object GameConstants {
     const val BUTTON_HEIGHT = 64F
     const val TABLE_CELL_PAD = 8F
     const val TEXT_TAP = "Tap!"
+    const val TEXT_GAME_OVER = "Game Over!"
+    const val TEXT_START = "start"
+    const val TEXT_MENU = "menu"
+    const val TEXT_EXIT = "exit"
     const val PLAYER_SCALE_FACTOR = 1 / 1.5F
     const val GROUND_ZERO = 40F
     const val OFF_SCREEN_X = -1600F
     const val OFF_SCREEN_Y = -960F
 
     //fonts
+    const val GAME_OVER_FONT_SIZE = 48
     const val DEFAULT_FONT_SIZE = 24
     const val LOW_RESOLUTION_FONT_SIZE = 32
     const val DEFAULT_FONT = "fonts/kenney_pixel.fnt"

@@ -16,6 +16,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image
 import com.badlogic.gdx.scenes.scene2d.ui.Label
 import com.badlogic.gdx.scenes.scene2d.ui.Table
 import gparap.games.falling.Falling
+import gparap.games.falling.GameConstants
 import gparap.games.falling.GameConstants.COLOR_PINK
 import gparap.games.falling.GameConstants.COLOR_VANILLA
 import gparap.games.falling.GameConstants.FRIEND_BEIGE
@@ -47,7 +48,7 @@ class FriendsScreen(spriteBatch: SpriteBatch, private val game: Falling) : Scree
 
     override fun show() {
         super.show()
-        super.createFont()
+        super.createFont(GameConstants.DEFAULT_FONT_SIZE)
         createLabels()
         createFriendsButtons()
         stage = Stage(viewport, spriteBatch)
