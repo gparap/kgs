@@ -39,7 +39,7 @@ class GameOverScreen(spriteBatch: SpriteBatch, private val game: Falling) : Scre
         if (isStartPressed) {
             this.dispose()
             this.hide()
-            game.screen = GameScreen(spriteBatch)
+            game.screen = GameScreen(spriteBatch, game)
 
         } else if (isMenuPressed) {
             this.dispose()
