@@ -20,6 +20,7 @@ import com.badlogic.gdx.utils.Align
 import com.badlogic.gdx.utils.Disposable
 import com.badlogic.gdx.utils.viewport.FitViewport
 import java.util.*
+import kotlin.collections.ArrayList
 
 /**
  * Heads-up display (presents game data to the user)
@@ -27,8 +28,11 @@ import java.util.*
 class HUD(spriteBatch: SpriteBatch?) : Disposable {
     private val stage: Stage
     private var font: BitmapFont
+    private var highScore = 0
     private var score = 0
     private var life = 0
+    private var labelHighScoreL: Label? = null  //displays the label "HIGH SCORE:
+    private var labelHighScoreR: Label? = null  //displays the actual high score
     private var labelScoreL: Label? = null  //displays the label "SCORE:
     private var labelScoreR: Label? = null  //displays the actual score
     private var labelLifeL: Label? = null   //displays the label "LIFE: "
@@ -46,14 +50,18 @@ class HUD(spriteBatch: SpriteBatch?) : Disposable {
         val viewport = FitViewport(Gdx.graphics.width.toFloat(), Gdx.graphics.height.toFloat(), OrthographicCamera())
         stage = Stage(viewport, spriteBatch)
         font = BitmapFont(Gdx.files.internal(GameConstants.DEFAULT_FONT))
+        highScore = 0
         score = 0
         life = 5
         createFont()
         createLabels()
-        stage.addActor(createLabelsTable())
+        createLabelsTables().forEach {
+            stage.addActor(it)
+        }
     }
 
     fun update() {
+        labelHighScoreR?.setText(highScore)
         labelScoreR?.setText(score)
         labelLifeR?.setText(life)
     }
@@ -77,6 +85,14 @@ class HUD(spriteBatch: SpriteBatch?) : Disposable {
 
     /* Creates all the labels that will be shown in the heads-up display */
     private fun createLabels() {
+        labelHighScoreL = Label(
+            String.format(Locale.getDefault(), GameConstants.HUD_LABEL_FORMAT_STRING, GameConstants.HUD_LABEL_HIGH_SCORE),
+            LabelStyle(font, Color.GOLD)
+        )
+        labelHighScoreR = Label(
+            String.format(Locale.getDefault(), GameConstants.HUD_LABEL_FORMAT_INTEGER, highScore),
+            LabelStyle(font, Color.GOLD)
+        )
         labelScoreL = Label(
             String.format(Locale.getDefault(), GameConstants.HUD_LABEL_FORMAT_STRING, GameConstants.HUD_LABEL_SCORE),
             LabelStyle(font, Color.GOLD)
@@ -96,17 +112,37 @@ class HUD(spriteBatch: SpriteBatch?) : Disposable {
     }
 
     /* Creates the table that will hold all labels that will be shown in the heads-up display */
-    private fun createLabelsTable(): Table {
-        val table = Table()
+    private fun createLabelsTables(): ArrayList<Table> {
+        val tables = kotlin.collections.ArrayList<Table>()
+
+        //create score and life table and add them to the list
+        var table = Table()
         table.left().top()
         table.setFillParent(true)
         table.row()
-        table.add(labelScoreL).align(Align.right)
+        table.add(labelScoreL).align(Align.right).padLeft(GameConstants.HUD_TABLE_PADDING)
         table.add(labelScoreR).align(Align.left)
+        tables.add(table)
+
+        //create high score and add it to the list
+        table = Table()
+        table.center().top()
+        table.setFillParent(true)
+        table.row()
+        table.add(labelHighScoreL).align(Align.right)
+        table.add(labelHighScoreR).align(Align.left)
+        tables.add(table)
+
+        //create life table and add it to the list
+        table = Table()
+        table.right().top()
+        table.setFillParent(true)
         table.row()
         table.add(labelLifeL).align(Align.right)
-        table.add(labelLifeR).align(Align.left)
-        return table
+        table.add(labelLifeR).align(Align.left).padRight(GameConstants.HUD_TABLE_PADDING)
+        tables.add(table)
+
+        return tables
     }
 
     /* Returns the font size in pixels */

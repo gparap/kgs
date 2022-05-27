@@ -87,8 +87,10 @@ object GameConstants {
     const val SCORE_POINTS_STAR = 1000
 
     //heads-up display
+    const val HUD_LABEL_HIGH_SCORE = "HIGH SCORE: "
     const val HUD_LABEL_SCORE = "SCORE: "
     const val HUD_LABEL_LIFE = "LIFE: "
     const val HUD_LABEL_FORMAT_STRING = "%s"
     const val HUD_LABEL_FORMAT_INTEGER = "%3d"
+    const val HUD_TABLE_PADDING = 16F
 }
