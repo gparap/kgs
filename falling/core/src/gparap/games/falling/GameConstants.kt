@@ -36,6 +36,7 @@ object GameConstants {
     const val PREFERENCES = "jnf_preferences"
     const val PREFERENCES_FRIEND = "friend"
     const val PREFERENCES_FRIEND_DEFAULT = "friend_green"
+    const val PREFERENCES_HIGH_SCORE = "jnf_high_score"
 
     //friends .png
     const val FRIEND_BEIGE = "friends/alien_beige.png"

@@ -6,6 +6,7 @@
 package gparap.games.falling
 
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.Preferences
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.g2d.BitmapFont
@@ -20,7 +21,6 @@ import com.badlogic.gdx.utils.Align
 import com.badlogic.gdx.utils.Disposable
 import com.badlogic.gdx.utils.viewport.FitViewport
 import java.util.*
-import kotlin.collections.ArrayList
 
 /**
  * Heads-up display (presents game data to the user)
@@ -28,7 +28,7 @@ import kotlin.collections.ArrayList
 class HUD(spriteBatch: SpriteBatch?) : Disposable {
     private val stage: Stage
     private var font: BitmapFont
-    private var highScore = 0
+    private var highScore: Int = 0
     private var score = 0
     private var life = 0
     private var labelHighScoreL: Label? = null  //displays the label "HIGH SCORE:
@@ -37,6 +37,7 @@ class HUD(spriteBatch: SpriteBatch?) : Disposable {
     private var labelScoreR: Label? = null  //displays the actual score
     private var labelLifeL: Label? = null   //displays the label "LIFE: "
     private var labelLifeR: Label? = null   //displays the actual life
+    private var preferences: Preferences? = null
 
     fun setScore(score: Int) {
         this.score += score
@@ -50,7 +51,9 @@ class HUD(spriteBatch: SpriteBatch?) : Disposable {
         val viewport = FitViewport(Gdx.graphics.width.toFloat(), Gdx.graphics.height.toFloat(), OrthographicCamera())
         stage = Stage(viewport, spriteBatch)
         font = BitmapFont(Gdx.files.internal(GameConstants.DEFAULT_FONT))
-        highScore = 0
+        preferences = Gdx.app.getPreferences(GameConstants.PREFERENCES).apply {
+            highScore = this.getInteger(GameConstants.PREFERENCES_HIGH_SCORE, 0)
+        }
         score = 0
         life = 5
         createFont()
@@ -64,6 +67,13 @@ class HUD(spriteBatch: SpriteBatch?) : Disposable {
         labelHighScoreR?.setText(highScore)
         labelScoreR?.setText(score)
         labelLifeR?.setText(life)
+
+        //check for high score
+        if (score > highScore) {
+            highScore = score
+            preferences?.putInteger(GameConstants.PREFERENCES_HIGH_SCORE, highScore)
+            preferences?.flush()
+        }
     }
 
     fun draw() {
@@ -86,7 +96,11 @@ class HUD(spriteBatch: SpriteBatch?) : Disposable {
     /* Creates all the labels that will be shown in the heads-up display */
     private fun createLabels() {
         labelHighScoreL = Label(
-            String.format(Locale.getDefault(), GameConstants.HUD_LABEL_FORMAT_STRING, GameConstants.HUD_LABEL_HIGH_SCORE),
+            String.format(
+                Locale.getDefault(),
+                GameConstants.HUD_LABEL_FORMAT_STRING,
+                GameConstants.HUD_LABEL_HIGH_SCORE
+            ),
             LabelStyle(font, Color.GOLD)
         )
         labelHighScoreR = Label(
