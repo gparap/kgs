@@ -19,7 +19,7 @@ class Player(filePath: String) {
     //creates player sprite based on user selection of friend
     private var sprite: Sprite = Sprite(Texture(filePath))
     private val speed = 7.5F
-    private var state = getPlayerState()
+    private var state: PlayerState
     private var velocity = 0F
     private var velocityUpdateFactor = 1.5F
     private var velocityUpdateMax = velocityUpdateFactor * 10
@@ -32,10 +32,12 @@ class Player(filePath: String) {
     init {
         sprite.setPosition(0F, GROUND_ZERO)
         sprite.setSize(sprite.width * PLAYER_SCALE_FACTOR, sprite.height * PLAYER_SCALE_FACTOR)
+        state = PlayerState.IDLE
     }
 
     fun update(delta: Float) {
         updatePlayerMovement(delta)
+        updatePlayerState()
         checkIfPlayerShouldJump()
         updatePlayerJumping(delta)
     }
@@ -73,21 +75,23 @@ class Player(filePath: String) {
     }
 
     private fun checkIfPlayerShouldJump() {
-        if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) && ((getPlayerState() != PlayerState.JUMP) && (getPlayerState() != PlayerState.FALL))) {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) && ((state != PlayerState.JUMP) && (state != PlayerState.FALL))) {
             state = PlayerState.JUMP
             sprite.y = GROUND_ZERO
         }
     }
 
-    private fun getPlayerState(): PlayerState {
+    private fun updatePlayerState() {
         if (sprite.y == GROUND_ZERO) {
-            return PlayerState.WALK
+            state = PlayerState.IDLE
+            if (Gdx.input.isTouched) {
+                state = PlayerState.WALK
+            }
         } else if (sprite.y > GROUND_ZERO && velocity > 0) {
-            return PlayerState.JUMP
+            state = PlayerState.JUMP
         } else if (sprite.y > GROUND_ZERO && velocity < 0) {
-            return PlayerState.FALL
+            state = PlayerState.FALL
         }
-        return PlayerState.WALK
     }
 
     private fun updatePlayerMovement(delta: Float) {

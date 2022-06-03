@@ -6,5 +6,5 @@
 package gparap.games.falling.player
 
 enum class PlayerState {
-    WALK, JUMP, FALL, HURT
+    IDLE, WALK, JUMP, FALL, HURT
 }
