@@ -1,2 +1,2 @@
 # Katocheánian Gaming Studios
-Android games using LibGDX and Cococ2d-x frameworks
+Android games using LibGDX and Cocos2d-x frameworks
