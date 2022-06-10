@@ -8,6 +8,7 @@ package gparap.games.falling.player
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Input
 import com.badlogic.gdx.graphics.Texture
+import com.badlogic.gdx.graphics.g2d.Animation
 import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.math.Rectangle
@@ -18,12 +19,18 @@ import kotlin.math.abs
 class Player(filePath: String) {
     //creates player sprite based on user selection of friend
     private var sprite: Sprite = Sprite(Texture(filePath))
+    private var spriteIdle: Sprite = Sprite(Texture(filePath))
     private val speed = 7.5F
     private var state: PlayerState
     private var velocity = 0F
     private var velocityUpdateFactor = 1.5F
     private var velocityUpdateMax = velocityUpdateFactor * 10
     private var life = 5
+    private val animationLeft: Animation<Texture>
+    private val animationRight: Animation<Texture>
+    private var facing: PlayerFacing
+    private var stateTime = 0f
+    private var frameDuration = 0.1f
 
     fun getLife(): Int {
         return life
@@ -32,7 +39,13 @@ class Player(filePath: String) {
     init {
         sprite.setPosition(0F, GROUND_ZERO)
         sprite.setSize(sprite.width * PLAYER_SCALE_FACTOR, sprite.height * PLAYER_SCALE_FACTOR)
+
         state = PlayerState.IDLE
+        facing = PlayerFacing.NONE
+
+        //create player walking animations (left/right)
+        animationLeft = Animation(frameDuration, PlayerAnimation(filePath).getAnimationFrames(isFacingLeft = true))
+        animationRight = Animation(frameDuration, PlayerAnimation(filePath).getAnimationFrames(isFacingRight = true))
     }
 
     fun update(delta: Float) {
@@ -40,10 +53,32 @@ class Player(filePath: String) {
         updatePlayerState()
         checkIfPlayerShouldJump()
         updatePlayerJumping(delta)
+        updateSpriteTexture()
     }
 
     fun draw(spriteBatch: SpriteBatch) {
         sprite.draw(spriteBatch)
+    }
+
+    private fun updateSpriteTexture() {
+        //player is idle
+        if (state == PlayerState.IDLE) {
+            sprite.texture = spriteIdle.texture
+            stateTime = 0F
+
+            //player is walking
+        } else {
+            if (state == PlayerState.WALK) {
+                if (facing == PlayerFacing.LEFT) {
+                    sprite.texture = animationLeft.getKeyFrame(stateTime, true)
+                } else if (facing == PlayerFacing.RIGHT) {
+                    sprite.texture = animationRight.getKeyFrame(stateTime, true)
+                }
+
+                //increase the amount of seconds player has spent in current animation state
+                stateTime += frameDuration
+            }
+        }
     }
 
     private fun updatePlayerJumping(delta: Float) {
@@ -98,6 +133,7 @@ class Player(filePath: String) {
         if (Gdx.input.isTouched) {
             //right
             if (Gdx.input.x > sprite.x + sprite.width) {
+                facing = PlayerFacing.RIGHT
                 sprite.x += speed + delta
                 //keep inside screen
                 if (sprite.x + sprite.width > Gdx.graphics.width) {
@@ -105,17 +141,24 @@ class Player(filePath: String) {
                 }
             }
             //left
-            if (Gdx.input.x < sprite.x) {
+            else if (Gdx.input.x < sprite.x) {
+                facing = PlayerFacing.LEFT
                 sprite.x -= speed + delta
                 //keep inside screen
                 if (sprite.x < 0) {
                     sprite.x = 0F
                 }
             }
+            //idle
+            else {
+                facing = PlayerFacing.NONE
+            }
         }
     }
 
-    /* Returns the collision boundaries for the player */
+    /**
+     * Returns the collision boundaries for the player
+     */
     fun getCollisionBounds(): Rectangle {
         val rectangle = Rectangle()
         rectangle.width = sprite.width
