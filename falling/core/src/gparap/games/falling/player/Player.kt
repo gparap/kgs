@@ -6,20 +6,24 @@
 package gparap.games.falling.player
 
 import com.badlogic.gdx.Gdx
-import com.badlogic.gdx.Input
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.Animation
 import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
+import com.badlogic.gdx.input.GestureDetector
+import com.badlogic.gdx.input.GestureDetector.GestureListener
 import com.badlogic.gdx.math.Rectangle
+import com.badlogic.gdx.math.Vector2
 import gparap.games.falling.GameConstants.GROUND_ZERO
 import gparap.games.falling.GameConstants.PLAYER_SCALE_FACTOR
 import kotlin.math.abs
 
-class Player(filePath: String) {
+class Player(private val filePath: String) : GestureListener {
     //creates player sprite based on user selection of friend
     private var sprite: Sprite = Sprite(Texture(filePath))
     private var spriteIdle: Sprite = Sprite(Texture(filePath))
+    private var spriteJumpLeft: Sprite
+    private var spriteJumpRight: Sprite
     private val speed = 7.5F
     private var state: PlayerState
     private var velocity = 0F
@@ -31,6 +35,8 @@ class Player(filePath: String) {
     private var facing: PlayerFacing
     private var stateTime = 0f
     private var frameDuration = 0.1f
+    private var shouldJump = false
+    private val friend: String
 
     fun getLife(): Int {
         return life
@@ -46,6 +52,15 @@ class Player(filePath: String) {
         //create player walking animations (left/right)
         animationLeft = Animation(frameDuration, PlayerAnimation(filePath).getAnimationFrames(isFacingLeft = true))
         animationRight = Animation(frameDuration, PlayerAnimation(filePath).getAnimationFrames(isFacingRight = true))
+
+        //creates a GestureDetector for up and down swipes
+        val gestureDetector = GestureDetector(this)
+        Gdx.input.inputProcessor = gestureDetector
+
+        //create jumping sprites
+        friend = getFriendFromFilePath()
+        spriteJumpLeft = Sprite(Texture("friends/animations/" + friend + "/" + friend + "_jump_left.png"))
+        spriteJumpRight = Sprite(Texture("friends/animations/" + friend + "/" + friend + "_jump_right.png"))
     }
 
     fun update(delta: Float) {
@@ -66,8 +81,8 @@ class Player(filePath: String) {
             sprite.texture = spriteIdle.texture
             stateTime = 0F
 
-            //player is walking
         } else {
+            //player is walking
             if (state == PlayerState.WALK) {
                 if (facing == PlayerFacing.LEFT) {
                     sprite.texture = animationLeft.getKeyFrame(stateTime, true)
@@ -77,6 +92,15 @@ class Player(filePath: String) {
 
                 //increase the amount of seconds player has spent in current animation state
                 stateTime += frameDuration
+            }
+
+            //player is jumping
+            if (state == PlayerState.JUMP) {
+                if (facing == PlayerFacing.LEFT) {
+                    sprite.texture = spriteJumpLeft.texture
+                } else if (facing == PlayerFacing.RIGHT) {
+                    sprite.texture = spriteJumpRight.texture
+                }
             }
         }
     }
@@ -110,9 +134,10 @@ class Player(filePath: String) {
     }
 
     private fun checkIfPlayerShouldJump() {
-        if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) && ((state != PlayerState.JUMP) && (state != PlayerState.FALL))) {
+        if (shouldJump && ((state != PlayerState.JUMP) && (state != PlayerState.FALL))) {
             state = PlayerState.JUMP
             sprite.y = GROUND_ZERO
+            shouldJump = false
         }
     }
 
@@ -179,5 +204,56 @@ class Player(filePath: String) {
         if (life < 0) {
             life = 0
         }
+    }
+
+    private fun getFriendFromFilePath(): String {
+        var friend = filePath
+        friend = friend.substringAfter("/")
+        friend = friend.substringBefore(".")
+        return friend
+    }
+
+    override fun touchDown(x: Float, y: Float, pointer: Int, button: Int): Boolean {
+        return true
+    }
+
+    override fun tap(x: Float, y: Float, count: Int, button: Int): Boolean {
+        return true
+    }
+
+    override fun longPress(x: Float, y: Float): Boolean {
+        return true
+    }
+
+    //detect up & down swipes for jumping and ducking
+    override fun fling(velocityX: Float, velocityY: Float, button: Int): Boolean {
+        if (velocityY < 0) {
+            shouldJump = true
+        }
+        return true
+    }
+
+    override fun pan(x: Float, y: Float, deltaX: Float, deltaY: Float): Boolean {
+        return true
+    }
+
+    override fun panStop(x: Float, y: Float, pointer: Int, button: Int): Boolean {
+        return true
+    }
+
+    override fun zoom(initialDistance: Float, distance: Float): Boolean {
+        return true
+    }
+
+    override fun pinch(
+        initialPointer1: Vector2?,
+        initialPointer2: Vector2?,
+        pointer1: Vector2?,
+        pointer2: Vector2?
+    ): Boolean {
+        return true
+    }
+
+    override fun pinchStop() {
     }
 }
