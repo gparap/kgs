@@ -5,7 +5,7 @@
  *******************************/
 package gparap.games.falling.managers
 
-import gparap.games.falling.GameConstants
+import gparap.games.falling.utils.GameConstants
 import gparap.games.falling.enemies.Enemy
 import gparap.games.falling.tokens.Token
 

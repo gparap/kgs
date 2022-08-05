@@ -3,7 +3,7 @@
  * Little Jerry's Friends      *
  * created by gparap           *
  *******************************/
-package gparap.games.falling
+package gparap.games.falling.utils
 
 import com.badlogic.gdx.graphics.Color
 
@@ -94,4 +94,11 @@ object GameConstants {
     const val HUD_LABEL_FORMAT_STRING = "%s"
     const val HUD_LABEL_FORMAT_INTEGER = "%3d"
     const val HUD_TABLE_PADDING = 16F
+
+    //animations
+    const val PLAYER_ANIMATION_PATH = "friends/animations/"
+    const val PLAYER_ANIMATION_WALK1_LEFT = "_walk1_left.png"
+    const val PLAYER_ANIMATION_WALK2_LEFT = "_walk2_left.png"
+    const val PLAYER_ANIMATION_WALK1_RIGHT = "_walk1_right.png"
+    const val PLAYER_ANIMATION_WALK2_RIGHT = "_walk2_right.png"
 }

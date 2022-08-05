@@ -11,7 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image
 import com.badlogic.gdx.scenes.scene2d.ui.Label
 import com.badlogic.gdx.scenes.scene2d.ui.Table
 import gparap.games.falling.Falling
-import gparap.games.falling.GameConstants
+import gparap.games.falling.utils.GameConstants
 
 class GameOverScreen(spriteBatch: SpriteBatch, private val game: Falling) : Screen(spriteBatch) {
     private var labelGameOver: Label? = null

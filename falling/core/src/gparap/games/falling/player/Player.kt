@@ -11,14 +11,14 @@ import com.badlogic.gdx.graphics.g2d.Animation
 import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.input.GestureDetector
-import com.badlogic.gdx.input.GestureDetector.GestureListener
+import com.badlogic.gdx.input.GestureDetector.GestureAdapter
 import com.badlogic.gdx.math.Rectangle
-import com.badlogic.gdx.math.Vector2
-import gparap.games.falling.GameConstants.GROUND_ZERO
-import gparap.games.falling.GameConstants.PLAYER_SCALE_FACTOR
+import gparap.games.falling.utils.GameConstants.GROUND_ZERO
+import gparap.games.falling.utils.GameConstants.PLAYER_SCALE_FACTOR
+import gparap.games.falling.utils.GameUtils
 import kotlin.math.abs
 
-class Player(private val filePath: String) : GestureListener {
+class Player(filePath: String) : GestureAdapter() {
     //creates player sprite based on user selection of friend
     private var sprite: Sprite = Sprite(Texture(filePath))
     private var spriteIdle: Sprite = Sprite(Texture(filePath))
@@ -58,7 +58,7 @@ class Player(private val filePath: String) : GestureListener {
         Gdx.input.inputProcessor = gestureDetector
 
         //create jumping sprites
-        friend = getFriendFromFilePath()
+        friend = GameUtils.getFriendFromFilePath(filePath)
         spriteJumpLeft = Sprite(Texture("friends/animations/" + friend + "/" + friend + "_jump_left.png"))
         spriteJumpRight = Sprite(Texture("friends/animations/" + friend + "/" + friend + "_jump_right.png"))
     }
@@ -206,26 +206,9 @@ class Player(private val filePath: String) : GestureListener {
         }
     }
 
-    private fun getFriendFromFilePath(): String {
-        var friend = filePath
-        friend = friend.substringAfter("/")
-        friend = friend.substringBefore(".")
-        return friend
-    }
-
-    override fun touchDown(x: Float, y: Float, pointer: Int, button: Int): Boolean {
-        return true
-    }
-
-    override fun tap(x: Float, y: Float, count: Int, button: Int): Boolean {
-        return true
-    }
-
-    override fun longPress(x: Float, y: Float): Boolean {
-        return true
-    }
-
-    //detect up & down swipes for jumping and ducking
+    /**
+     * Detect up & down swipes for jumping and ducking
+     */
     override fun fling(velocityX: Float, velocityY: Float, button: Int): Boolean {
         if (velocityY < 0) {
             shouldJump = true
@@ -233,27 +216,4 @@ class Player(private val filePath: String) : GestureListener {
         return true
     }
 
-    override fun pan(x: Float, y: Float, deltaX: Float, deltaY: Float): Boolean {
-        return true
-    }
-
-    override fun panStop(x: Float, y: Float, pointer: Int, button: Int): Boolean {
-        return true
-    }
-
-    override fun zoom(initialDistance: Float, distance: Float): Boolean {
-        return true
-    }
-
-    override fun pinch(
-        initialPointer1: Vector2?,
-        initialPointer2: Vector2?,
-        pointer1: Vector2?,
-        pointer2: Vector2?
-    ): Boolean {
-        return true
-    }
-
-    override fun pinchStop() {
-    }
 }

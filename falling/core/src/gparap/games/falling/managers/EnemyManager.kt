@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.math.RandomXS128
-import gparap.games.falling.GameConstants
+import gparap.games.falling.utils.GameConstants
 import gparap.games.falling.enemies.Enemy
 import gparap.games.falling.enemies.EnemyType
 import gparap.games.falling.enemies.crawlers.SlimeEnemy

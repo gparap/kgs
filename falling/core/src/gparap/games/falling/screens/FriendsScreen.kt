@@ -16,17 +16,17 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image
 import com.badlogic.gdx.scenes.scene2d.ui.Label
 import com.badlogic.gdx.scenes.scene2d.ui.Table
 import gparap.games.falling.Falling
-import gparap.games.falling.GameConstants
-import gparap.games.falling.GameConstants.COLOR_PINK
-import gparap.games.falling.GameConstants.COLOR_VANILLA
-import gparap.games.falling.GameConstants.FRIEND_BEIGE
-import gparap.games.falling.GameConstants.FRIEND_BLUE
-import gparap.games.falling.GameConstants.FRIEND_GREEN
-import gparap.games.falling.GameConstants.FRIEND_PINK
-import gparap.games.falling.GameConstants.FRIEND_YELLOW
-import gparap.games.falling.GameConstants.PREFERENCES_FRIEND
-import gparap.games.falling.GameConstants.TABLE_CELL_PAD
-import gparap.games.falling.GameConstants.TEXT_TAP
+import gparap.games.falling.utils.GameConstants
+import gparap.games.falling.utils.GameConstants.COLOR_PINK
+import gparap.games.falling.utils.GameConstants.COLOR_VANILLA
+import gparap.games.falling.utils.GameConstants.FRIEND_BEIGE
+import gparap.games.falling.utils.GameConstants.FRIEND_BLUE
+import gparap.games.falling.utils.GameConstants.FRIEND_GREEN
+import gparap.games.falling.utils.GameConstants.FRIEND_PINK
+import gparap.games.falling.utils.GameConstants.FRIEND_YELLOW
+import gparap.games.falling.utils.GameConstants.PREFERENCES_FRIEND
+import gparap.games.falling.utils.GameConstants.TABLE_CELL_PAD
+import gparap.games.falling.utils.GameConstants.TEXT_TAP
 
 class FriendsScreen(spriteBatch: SpriteBatch, private val game: Falling) : Screen(spriteBatch) {
     private var buttonBeige: Image? = null

@@ -11,7 +11,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.math.RandomXS128
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
-import gparap.games.falling.GameConstants
+import gparap.games.falling.utils.GameConstants
 import kotlin.properties.Delegates
 
 abstract class Enemy {

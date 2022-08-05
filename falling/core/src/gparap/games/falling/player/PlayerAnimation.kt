@@ -7,14 +7,20 @@ package gparap.games.falling.player
 
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.utils.Array
+import gparap.games.falling.utils.GameConstants.PLAYER_ANIMATION_PATH
+import gparap.games.falling.utils.GameConstants.PLAYER_ANIMATION_WALK1_LEFT
+import gparap.games.falling.utils.GameConstants.PLAYER_ANIMATION_WALK1_RIGHT
+import gparap.games.falling.utils.GameConstants.PLAYER_ANIMATION_WALK2_LEFT
+import gparap.games.falling.utils.GameConstants.PLAYER_ANIMATION_WALK2_RIGHT
+import gparap.games.falling.utils.GameUtils
 
-class PlayerAnimation(private val filePath: String) {
-    private val friend: String
+class PlayerAnimation(filePath: String) {
+    private val friend: String?
     private val framesLeft: Array<Texture>?
     private val framesRight: Array<Texture>?
 
     init {
-        friend = getFriendFromFilePath()
+        friend = GameUtils.getFriendFromFilePath(filePath)
         framesLeft = createAnimationFrames(isFacingLeft = true)
         framesRight = createAnimationFrames(isFacingRight = true)
     }
@@ -32,22 +38,15 @@ class PlayerAnimation(private val filePath: String) {
     ): Array<Texture>? {
         val frames = Array<Texture>()
         if (isFacingLeft) {
-            frames.add(Texture("friends/animations/" + friend + "/" + friend + "_walk1_left.png"))
-            frames.add(Texture("friends/animations/" + friend + "/" + friend + "_walk2_left.png"))
+            frames.add(Texture("$PLAYER_ANIMATION_PATH$friend/$friend$PLAYER_ANIMATION_WALK1_LEFT"))
+            frames.add(Texture("$PLAYER_ANIMATION_PATH$friend/$friend$PLAYER_ANIMATION_WALK2_LEFT"))
             return frames
         }
         if (isFacingRight) {
-            frames.add(Texture("friends/animations/" + friend + "/" + friend + "_walk1_right.png"))
-            frames.add(Texture("friends/animations/" + friend + "/" + friend + "_walk2_right.png"))
+            frames.add(Texture("$PLAYER_ANIMATION_PATH$friend/$friend$PLAYER_ANIMATION_WALK1_RIGHT"))
+            frames.add(Texture("$PLAYER_ANIMATION_PATH$friend/$friend$PLAYER_ANIMATION_WALK2_RIGHT"))
             return frames
         }
         return null
-    }
-
-    private fun getFriendFromFilePath(): String {
-        var friend = filePath
-        friend = friend.substringAfter("/")
-        friend = friend.substringBefore(".")
-        return friend
     }
 }

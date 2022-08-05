@@ -17,9 +17,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle
 import com.badlogic.gdx.scenes.scene2d.ui.Table
 import gparap.games.falling.Falling
-import gparap.games.falling.GameConstants.BUTTON_HEIGHT
-import gparap.games.falling.GameConstants.BUTTON_WIDTH
-import gparap.games.falling.GameConstants.TABLE_CELL_PAD
+import gparap.games.falling.utils.GameConstants.BUTTON_HEIGHT
+import gparap.games.falling.utils.GameConstants.BUTTON_WIDTH
+import gparap.games.falling.utils.GameConstants.TABLE_CELL_PAD
 
 class CreditsScreen(spriteBatch: SpriteBatch, private val game: Falling) : Screen(spriteBatch) {
     private var buttonMenu: Image? = null

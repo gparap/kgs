@@ -6,7 +6,7 @@
 package gparap.games.falling.tokens
 
 import com.badlogic.gdx.graphics.g2d.Sprite
-import gparap.games.falling.GameConstants
+import gparap.games.falling.utils.GameConstants
 
 class CoinToken(sprite: Sprite) : Token(sprite) {
 

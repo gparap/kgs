@@ -7,7 +7,7 @@ package gparap.games.falling.enemies.crawlers
 
 import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
-import gparap.games.falling.GameConstants
+import gparap.games.falling.utils.GameConstants
 import gparap.games.falling.enemies.Enemy
 import gparap.games.falling.enemies.EnemyState
 import gparap.games.falling.enemies.EnemyType

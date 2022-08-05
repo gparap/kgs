@@ -8,8 +8,8 @@ package gparap.games.falling.screens
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import gparap.games.falling.Falling
-import gparap.games.falling.GameConstants
-import gparap.games.falling.HUD
+import gparap.games.falling.utils.GameConstants
+import gparap.games.falling.hud.HUD
 import gparap.games.falling.managers.CollisionManager
 import gparap.games.falling.managers.EnemyManager
 import gparap.games.falling.managers.SpawnManager

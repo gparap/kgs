@@ -3,7 +3,7 @@
  * Little Jerry's Friends      *
  * created by gparap           *
  *******************************/
-package gparap.games.falling
+package gparap.games.falling.hud
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Preferences
@@ -20,6 +20,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table
 import com.badlogic.gdx.utils.Align
 import com.badlogic.gdx.utils.Disposable
 import com.badlogic.gdx.utils.viewport.FitViewport
+import gparap.games.falling.utils.GameConstants
 import java.util.*
 
 /**

@@ -5,7 +5,7 @@
  *******************************/
 package gparap.games.falling.managers
 
-import gparap.games.falling.HUD
+import gparap.games.falling.hud.HUD
 import gparap.games.falling.player.Player
 
 /**
