@@ -19,7 +19,6 @@ import gparap.games.falling.utils.GameUtils
 import kotlin.math.abs
 
 class Player(filePath: String) : GestureAdapter() {
-    //creates player sprite based on user selection of friend
     private var sprite: Sprite = Sprite(Texture(filePath))
     private var spriteIdle: Sprite = Sprite(Texture(filePath))
     private var spriteJumpLeft: Sprite

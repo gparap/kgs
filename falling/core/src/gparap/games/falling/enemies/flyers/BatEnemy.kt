@@ -37,9 +37,9 @@ class BatEnemy(enemySprite: Sprite) : Enemy() {
             sprite.y = position.y
 
             //fly above the ground
-            if (sprite.y < GameConstants.GROUND_ZERO + sprite.height) {
-                sprite.y = GameConstants.GROUND_ZERO + sprite.height
-                position.y = GameConstants.GROUND_ZERO + sprite.height
+            if (sprite.y < GameConstants.GROUND_ZERO + sprite.height * 2) {
+                sprite.y = GameConstants.GROUND_ZERO + sprite.height * 2
+                position.y = GameConstants.GROUND_ZERO + sprite.height * 2
                 if (enemyState == EnemyState.FALLING) {
                     enemyState = EnemyState.IDLE
                 }
