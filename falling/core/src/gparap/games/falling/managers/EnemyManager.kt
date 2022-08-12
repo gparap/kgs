@@ -16,6 +16,8 @@ import gparap.games.falling.enemies.crawlers.SlimeEnemy
 import gparap.games.falling.enemies.crawlers.SnailEnemy
 import gparap.games.falling.enemies.flyers.BatEnemy
 import gparap.games.falling.enemies.flyers.BeeEnemy
+import gparap.games.falling.enemies.flyers.FlyEnemy
+import gparap.games.falling.enemies.flyers.LadyBugEnemy
 import gparap.games.falling.enemies.jumpers.BlockerEnemy
 import gparap.games.falling.enemies.jumpers.FrogEnemy
 import gparap.games.falling.enemies.walkers.MouseEnemy
@@ -45,10 +47,14 @@ class EnemyManager {
         //create the enemy
         val enemy = when (enemyType) {
             EnemyType.FLYER -> {
-                if (random == 0) {
-                    BatEnemy(enemySprite)
-                } else {
-                    BeeEnemy(enemySprite)
+                when (random) {
+                    0 -> BatEnemy(enemySprite)
+                    1 -> BeeEnemy(enemySprite)
+                    2 -> FlyEnemy(enemySprite)
+                    3 -> LadyBugEnemy(enemySprite)
+                    else -> {
+                        BatEnemy(enemySprite)
+                    }
                 }
             }
             EnemyType.JUMPER -> {
@@ -136,6 +142,8 @@ class EnemyManager {
         //create the enemy flyers sprites and add them to their list
         flyers.add(Sprite(Texture(GameConstants.ENEMY_BAT)))
         flyers.add(Sprite(Texture(GameConstants.ENEMY_BEE)))
+        flyers.add(Sprite(Texture(GameConstants.ENEMY_FLY)))
+        flyers.add(Sprite(Texture(GameConstants.ENEMY_LADY_BUG_FLY)))
 
         //create the enemy jumper sprites and add them to their list
         jumpers.add(Sprite(Texture(GameConstants.ENEMY_BLOCKER)))
