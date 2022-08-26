@@ -21,7 +21,7 @@ abstract class Enemy {
     protected lateinit var enemyType: EnemyType
     protected lateinit var sprite: Sprite
     protected var enemyState: EnemyState = EnemyState.FALLING
-    private var movementDirection: MovementDirection = MovementDirection.LEFT
+    protected var movementDirection: MovementDirection = MovementDirection.LEFT
 
     abstract fun isActiveInGame(): Boolean
     abstract fun setActiveInGame(active: Boolean)
