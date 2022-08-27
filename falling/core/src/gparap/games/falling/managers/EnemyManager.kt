@@ -14,10 +14,10 @@ import gparap.games.falling.enemies.Enemy
 import gparap.games.falling.enemies.EnemyType
 import gparap.games.falling.enemies.crawlers.SlimeEnemy
 import gparap.games.falling.enemies.crawlers.SnailEnemy
-import gparap.games.falling.enemies.flyers.BatEnemy
-import gparap.games.falling.enemies.flyers.BeeEnemy
-import gparap.games.falling.enemies.flyers.FlyEnemy
-import gparap.games.falling.enemies.flyers.LadyBugEnemy
+import gparap.games.falling.enemies.flyers.bat.BatEnemy
+import gparap.games.falling.enemies.flyers.bee.BeeEnemy
+import gparap.games.falling.enemies.flyers.fly.FlyEnemy
+import gparap.games.falling.enemies.flyers.lady_bug.LadyBugEnemy
 import gparap.games.falling.enemies.jumpers.BlockerEnemy
 import gparap.games.falling.enemies.jumpers.FrogEnemy
 import gparap.games.falling.enemies.walkers.MouseEnemy

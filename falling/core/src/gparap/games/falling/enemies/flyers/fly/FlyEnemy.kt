@@ -3,34 +3,29 @@
  * Little Jerry's Friends      *
  * created by gparap           *
  *******************************/
-package gparap.games.falling.enemies.flyers
+package gparap.games.falling.enemies.flyers.fly
 
-import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.Animation
 import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
-import gparap.games.falling.utils.GameConstants
 import gparap.games.falling.enemies.Enemy
 import gparap.games.falling.enemies.EnemyState
 import gparap.games.falling.enemies.EnemyType
 import gparap.games.falling.enemies.MovementDirection
+import gparap.games.falling.utils.GameConstants
 
-class LadyBugEnemy(enemySprite: Sprite) : Enemy() {
-    private val animationLeft: Animation<Texture>
-    private val animationRight: Animation<Texture>
-    private var stateTime = 0f
-    private var frameDuration = 0.1f
+class FlyEnemy(enemySprite: Sprite) : Enemy() {
 
     init {
-        speed = 1.33F
+        speed = 1.5F
         enemyType = EnemyType.FLYER
         sprite = enemySprite
         position = randomizePosition(sprite.width)
         sprite.setPosition(position.x, position.y)
 
         //create flying animations (left/right)
-        animationLeft = Animation(frameDuration, LadyBugEnemyAnimation().getAnimationFrames(isFacingLeft = true))
-        animationRight = Animation(frameDuration, LadyBugEnemyAnimation().getAnimationFrames(isFacingRight = true))
+        animationLeft = Animation(frameDuration, FlyEnemyAnimation().getAnimationFrames(isFacingLeft = true))
+        animationRight = Animation(frameDuration, FlyEnemyAnimation().getAnimationFrames(isFacingRight = true))
     }
 
     override fun isActiveInGame(): Boolean {
@@ -59,13 +54,13 @@ class LadyBugEnemy(enemySprite: Sprite) : Enemy() {
             }
 
             //increase the amount of seconds the bat has spent in current animation state
-            stateTime += frameDuration / 10
+            stateTime += frameDuration.div(GameConstants.FRAME_DURATION_DIVIDER)
 
             //animate
             if (movementDirection == MovementDirection.LEFT) {
-                sprite.texture = animationLeft.getKeyFrame(stateTime, true)
+                sprite.texture = animationLeft?.getKeyFrame(stateTime, true)
             } else {
-                sprite.texture = animationRight.getKeyFrame(stateTime, true)
+                sprite.texture = animationRight?.getKeyFrame(stateTime, true)
             }
         }
     }

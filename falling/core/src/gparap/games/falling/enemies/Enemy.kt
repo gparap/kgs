@@ -6,6 +6,8 @@
 package gparap.games.falling.enemies
 
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.graphics.Texture
+import com.badlogic.gdx.graphics.g2d.Animation
 import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.math.RandomXS128
@@ -22,6 +24,10 @@ abstract class Enemy {
     protected lateinit var sprite: Sprite
     protected var enemyState: EnemyState = EnemyState.FALLING
     protected var movementDirection: MovementDirection = MovementDirection.LEFT
+    protected var animationLeft: Animation<Texture>? = null
+    protected var animationRight: Animation<Texture>? = null
+    protected var stateTime = 0f
+    protected var frameDuration = 0.1f
 
     abstract fun isActiveInGame(): Boolean
     abstract fun setActiveInGame(active: Boolean)

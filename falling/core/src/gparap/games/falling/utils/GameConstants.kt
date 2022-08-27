@@ -20,6 +20,7 @@ object GameConstants {
     const val GROUND_ZERO = 40F
     const val OFF_SCREEN_X = -1600F
     const val OFF_SCREEN_Y = -960F
+    const val FRAME_DURATION_DIVIDER = 10
 
     //fonts
     const val GAME_OVER_FONT_SIZE = 48
@@ -107,7 +108,7 @@ object GameConstants {
     const val HUD_LABEL_FORMAT_INTEGER = "%3d"
     const val HUD_TABLE_PADDING = 16F
 
-    //animations
+    //player animations
     const val PLAYER_ANIMATION_PATH = "friends/animations/"
     const val PLAYER_ANIMATION_WALK1_LEFT = "_walk1_left.png"
     const val PLAYER_ANIMATION_WALK2_LEFT = "_walk2_left.png"
