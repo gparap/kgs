@@ -20,8 +20,8 @@ import gparap.games.falling.enemies.flyers.fly.FlyEnemy
 import gparap.games.falling.enemies.flyers.lady_bug.LadyBugEnemy
 import gparap.games.falling.enemies.jumpers.BlockerEnemy
 import gparap.games.falling.enemies.jumpers.FrogEnemy
-import gparap.games.falling.enemies.walkers.MouseEnemy
-import gparap.games.falling.enemies.walkers.SpiderEnemy
+import gparap.games.falling.enemies.walkers.mouse.MouseEnemy
+import gparap.games.falling.enemies.walkers.spider.SpiderEnemy
 
 /**
  * This manager class is responsible for the lifecycle of an enemy in the game
@@ -150,8 +150,8 @@ class EnemyManager {
         jumpers.add(Sprite(Texture(GameConstants.ENEMY_FROG)))
 
         //create the enemy walker sprites and add them to their list
-        walkers.add(Sprite(Texture(GameConstants.ENEMY_MOUSE)))
-        walkers.add(Sprite(Texture(GameConstants.ENEMY_SPIDER)))
+        walkers.add(Sprite(Texture(GameConstants.ENEMY_MOUSE_LEFT)))
+        walkers.add(Sprite(Texture(GameConstants.ENEMY_SPIDER_LEFT)))
 
         //create the enemy crawler sprites and add them to their list
         crawlers.add(Sprite(Texture(GameConstants.ENEMY_SLIME_WALK1)))
