@@ -12,8 +12,8 @@ import com.badlogic.gdx.math.RandomXS128
 import gparap.games.falling.utils.GameConstants
 import gparap.games.falling.enemies.Enemy
 import gparap.games.falling.enemies.EnemyType
-import gparap.games.falling.enemies.crawlers.SlimeEnemy
-import gparap.games.falling.enemies.crawlers.SnailEnemy
+import gparap.games.falling.enemies.crawlers.slime.SlimeEnemy
+import gparap.games.falling.enemies.crawlers.snail.SnailEnemy
 import gparap.games.falling.enemies.flyers.bat.BatEnemy
 import gparap.games.falling.enemies.flyers.bee.BeeEnemy
 import gparap.games.falling.enemies.flyers.fly.FlyEnemy
@@ -154,7 +154,7 @@ class EnemyManager {
         walkers.add(Sprite(Texture(GameConstants.ENEMY_SPIDER_LEFT)))
 
         //create the enemy crawler sprites and add them to their list
-        crawlers.add(Sprite(Texture(GameConstants.ENEMY_SLIME_WALK1)))
-        crawlers.add(Sprite(Texture(GameConstants.ENEMY_SNAIL_WALK1)))
+        crawlers.add(Sprite(Texture(GameConstants.ENEMY_SLIME_WALK1_LEFT)))
+        crawlers.add(Sprite(Texture(GameConstants.ENEMY_SNAIL_WALK1_LEFT)))
     }
 }

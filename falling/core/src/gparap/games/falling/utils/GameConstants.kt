@@ -79,11 +79,15 @@ object GameConstants {
     const val ENEMY_SPIDER_RIGHT = "enemies/spider_right.png"
     const val ENEMY_SPIDER_WALK1_RIGHT = "enemies/spider_walk1_right.png"
     const val ENEMY_SPIDER_WALK2_RIGHT = "enemies/spider_walk2_right.png"
-    const val ENEMY_SLIME_WALK1 = "enemies/slime_walk1.png"
-    const val ENEMY_SLIME_WALK2 = "enemies/slime_walk2.png"
+    const val ENEMY_SLIME_WALK1_LEFT = "enemies/slime_walk1_left.png"
+    const val ENEMY_SLIME_WALK2_LEFT = "enemies/slime_walk2_left.png"
+    const val ENEMY_SLIME_WALK1_RIGHT = "enemies/slime_walk1_right.png"
+    const val ENEMY_SLIME_WALK2_RIGHT = "enemies/slime_walk2_right.png"
     const val ENEMY_SNAIL_SHELL = "enemies/snail_shell.png"
-    const val ENEMY_SNAIL_WALK1 = "enemies/snail_walk1.png"
-    const val ENEMY_SNAIL_WALK2 = "enemies/snail_walk2.png"
+    const val ENEMY_SNAIL_WALK1_LEFT = "enemies/snail_walk1_left.png"
+    const val ENEMY_SNAIL_WALK2_LEFT = "enemies/snail_walk2_left.png"
+    const val ENEMY_SNAIL_WALK1_RIGHT = "enemies/snail_walk1_right.png"
+    const val ENEMY_SNAIL_WALK2_RIGHT = "enemies/snail_walk2_right.png"
 
     //tokens
     const val TOKEN_TYPES_COUNT = 3
