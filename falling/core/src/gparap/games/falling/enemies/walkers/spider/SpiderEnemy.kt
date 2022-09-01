@@ -53,14 +53,17 @@ class SpiderEnemy(enemySprite: Sprite) : Enemy() {
                 super.moveSideways(delta)
             }
 
-            //increase the amount of seconds the spider has spent in current animation state
-            stateTime += frameDuration.div(GameConstants.FRAME_DURATION_DIVIDER)
+            //animate walking enemy
+            if (enemyState == EnemyState.MOVING) {
+                //increase the amount of seconds the bat has spent in current animation state
+                stateTime += frameDuration.div(GameConstants.FRAME_DURATION_DIVIDER)
 
-            //animate
-            if (movementDirection == MovementDirection.LEFT) {
-                sprite.texture = animationLeft?.getKeyFrame(stateTime, true)
-            } else {
-                sprite.texture = animationRight?.getKeyFrame(stateTime, true)
+                //animate
+                if (movementDirection == MovementDirection.LEFT) {
+                    sprite.texture = animationLeft?.getKeyFrame(stateTime, true)
+                } else {
+                    sprite.texture = animationRight?.getKeyFrame(stateTime, true)
+                }
             }
         }
     }

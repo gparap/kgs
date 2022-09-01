@@ -61,6 +61,7 @@ abstract class Enemy {
      */
     fun setDestroyed() {
         isActive = false
+        enemyState = EnemyState.IDLE
         position = randomizePosition(sprite.width)
         sprite.setPosition(position.x, position.y)
     }
