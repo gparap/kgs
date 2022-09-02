@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.math.RandomXS128
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
+import com.badlogic.gdx.utils.Array
 import gparap.games.falling.utils.GameConstants
 import kotlin.properties.Delegates
 
@@ -23,9 +24,11 @@ abstract class Enemy {
     protected lateinit var enemyType: EnemyType
     protected lateinit var sprite: Sprite
     protected var enemyState: EnemyState = EnemyState.FALLING
-    protected var movementDirection: MovementDirection = MovementDirection.LEFT
+    private var movementDirection: MovementDirection = MovementDirection.LEFT
     protected var animationLeft: Animation<Texture>? = null
     protected var animationRight: Animation<Texture>? = null
+    protected var framesLeft: Array<Texture>? = null
+    protected var framesRight: Array<Texture>? = null
     protected var stateTime = 0f
     protected var frameDuration = 0.1f
 
@@ -96,7 +99,7 @@ abstract class Enemy {
         }
     }
 
-    //Checks if the enemy is off-screen to the left or right
+    /* Checks if the enemy is off-screen to the left or right */
     private fun isOffScreenBoundaries(): Boolean {
         if (sprite.x > Gdx.graphics.width) {
             return true
@@ -105,5 +108,31 @@ abstract class Enemy {
             return true
         }
         return false
+    }
+
+    /** Returns an array that contains the animation frames based on facing. */
+    fun getAnimationFrames(isFacingLeft: Boolean = false, isFacingRight: Boolean = false): Array<Texture>? {
+        if (isFacingLeft) return framesLeft
+        if (isFacingRight) return framesRight
+        return null
+    }
+
+    /** Creates the enemy left & right animations by storing the frame duration and key frames. */
+    fun createAnimations() {
+        animationLeft = Animation(frameDuration, getAnimationFrames(isFacingLeft = true))
+        animationRight = Animation(frameDuration, getAnimationFrames(isFacingRight = true))
+    }
+
+    /** Animates the enemy sprites based on facing. */
+    fun animate() {
+        //increase the amount of seconds the bat has spent in current animation state
+        stateTime += frameDuration.div(GameConstants.FRAME_DURATION_DIVIDER)
+
+        //animate
+        if (movementDirection == MovementDirection.LEFT) {
+            sprite.texture = animationLeft?.getKeyFrame(stateTime, true)
+        } else {
+            sprite.texture = animationRight?.getKeyFrame(stateTime, true)
+        }
     }
 }

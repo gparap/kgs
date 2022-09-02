@@ -3,26 +3,30 @@
  * Little Jerry's Friends      *
  * created by gparap           *
  *******************************/
-package gparap.games.falling.enemies.flyers.bat
+package gparap.games.falling.enemies.flyers
 
-import com.badlogic.gdx.graphics.g2d.Animation
+import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
-import gparap.games.falling.enemies.*
+import com.badlogic.gdx.utils.Array
+import gparap.games.falling.enemies.Enemy
+import gparap.games.falling.enemies.EnemyState
+import gparap.games.falling.enemies.EnemyType
 import gparap.games.falling.utils.GameConstants
 
-class BatEnemy(enemySprite: Sprite) : Enemy() {
+class FlyEnemy(enemySprite: Sprite) : Enemy() {
 
     init {
-        speed = 1.33F
+        speed = 1.5F
         enemyType = EnemyType.FLYER
         sprite = enemySprite
         position = randomizePosition(sprite.width)
         sprite.setPosition(position.x, position.y)
 
         //create flying animations (left/right)
-        animationLeft = Animation(frameDuration, BatEnemyAnimation().getAnimationFrames(isFacingLeft = true))
-        animationRight = Animation(frameDuration, BatEnemyAnimation().getAnimationFrames(isFacingRight = true))
+        framesLeft = createAnimationFrames(isFacingLeft = true)
+        framesRight = createAnimationFrames(isFacingRight = true)
+        createAnimations()
     }
 
     override fun isActiveInGame(): Boolean {
@@ -52,20 +56,31 @@ class BatEnemy(enemySprite: Sprite) : Enemy() {
 
             //animate flying enemy
             if (enemyState == EnemyState.MOVING) {
-                //increase the amount of seconds the bat has spent in current animation state
-                stateTime += frameDuration.div(GameConstants.FRAME_DURATION_DIVIDER)
-
-                //animate
-                if (movementDirection == MovementDirection.LEFT) {
-                    sprite.texture = animationLeft?.getKeyFrame(stateTime, true)
-                } else {
-                    sprite.texture = animationRight?.getKeyFrame(stateTime, true)
-                }
+                animate()
             }
         }
     }
 
     override fun draw(spriteBatch: SpriteBatch) {
         sprite.draw(spriteBatch)
+    }
+
+    /* Creates an array of textures that contains the animation frames for this enemy */
+    private fun createAnimationFrames(
+        isFacingLeft: Boolean = false,
+        isFacingRight: Boolean = false
+    ): Array<Texture>? {
+        val frames = Array<Texture>()
+        if (isFacingLeft) {
+            frames.add(Texture(GameConstants.ENEMY_FLY))
+            frames.add(Texture(GameConstants.ENEMY_FLY_FLY))
+            return frames
+        }
+        if (isFacingRight) {
+            frames.add(Texture(GameConstants.ENEMY_FLY_RIGHT))
+            frames.add(Texture(GameConstants.ENEMY_FLY_FLY_RIGHT))
+            return frames
+        }
+        return null
     }
 }

@@ -12,16 +12,16 @@ import com.badlogic.gdx.math.RandomXS128
 import gparap.games.falling.utils.GameConstants
 import gparap.games.falling.enemies.Enemy
 import gparap.games.falling.enemies.EnemyType
-import gparap.games.falling.enemies.crawlers.slime.SlimeEnemy
-import gparap.games.falling.enemies.crawlers.snail.SnailEnemy
-import gparap.games.falling.enemies.flyers.bat.BatEnemy
-import gparap.games.falling.enemies.flyers.bee.BeeEnemy
-import gparap.games.falling.enemies.flyers.fly.FlyEnemy
-import gparap.games.falling.enemies.flyers.lady_bug.LadyBugEnemy
+import gparap.games.falling.enemies.crawlers.SlimeEnemy
+import gparap.games.falling.enemies.crawlers.SnailEnemy
+import gparap.games.falling.enemies.flyers.BatEnemy
+import gparap.games.falling.enemies.flyers.BeeEnemy
+import gparap.games.falling.enemies.flyers.FlyEnemy
+import gparap.games.falling.enemies.flyers.LadyBugEnemy
 import gparap.games.falling.enemies.jumpers.BlockerEnemy
 import gparap.games.falling.enemies.jumpers.FrogEnemy
-import gparap.games.falling.enemies.walkers.mouse.MouseEnemy
-import gparap.games.falling.enemies.walkers.spider.SpiderEnemy
+import gparap.games.falling.enemies.walkers.MouseEnemy
+import gparap.games.falling.enemies.walkers.SpiderEnemy
 
 /**
  * This manager class is responsible for the lifecycle of an enemy in the game
@@ -140,7 +140,7 @@ class EnemyManager {
 
     private fun createEnemySprites() {
         //create the enemy flyers sprites and add them to their list
-        flyers.add(Sprite(Texture(GameConstants.ENEMY_BAT)))
+        flyers.add(Sprite(Texture(GameConstants.ENEMY_BAT_LEFT)))
         flyers.add(Sprite(Texture(GameConstants.ENEMY_BEE)))
         flyers.add(Sprite(Texture(GameConstants.ENEMY_FLY)))
         flyers.add(Sprite(Texture(GameConstants.ENEMY_LADY_BUG_FLY)))

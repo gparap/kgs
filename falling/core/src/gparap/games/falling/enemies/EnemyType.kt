@@ -6,7 +6,7 @@
 package gparap.games.falling.enemies
 
 enum class EnemyType {
-    FLYER,      //BAT, BEE
+    FLYER,      //BAT, BEE, FLY, LADY_BUG
     JUMPER,     //BLOCKER, FROG
     WALKER,     //SNAKE, SPIDER
     CRAWLER,    //SLIME, SNAIL
