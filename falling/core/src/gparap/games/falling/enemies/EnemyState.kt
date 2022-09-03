@@ -6,5 +6,5 @@
 package gparap.games.falling.enemies
 
 enum class EnemyState {
-    FALLING, IDLE, MOVING
+    FALLING, IDLE, MOVING, JUMPING
 }

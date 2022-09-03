@@ -13,6 +13,7 @@ import gparap.games.falling.enemies.EnemyState
 import gparap.games.falling.enemies.EnemyType
 
 class FrogEnemy(enemySprite: Sprite) : Enemy() {
+    private var isAbleToJump = false
 
     init {
         speed = 1.33F
@@ -36,14 +37,32 @@ class FrogEnemy(enemySprite: Sprite) : Enemy() {
             position.y -= speed + delta
             sprite.y = position.y
 
+            //handle when enemy is able to jump
+            if (enemyState == EnemyState.IDLE) {
+                isAbleToJump = false
+            }
+            if (isAbleToJump) {
+                super.moveSideways(delta)
+            }
+
             //don't fall of the ground
             if (sprite.y < GameConstants.GROUND_ZERO) {
+                enemyState = EnemyState.FALLING
                 sprite.y = GameConstants.GROUND_ZERO
                 position.y = GameConstants.GROUND_ZERO
-                if (enemyState == EnemyState.FALLING) {
-                    enemyState = EnemyState.IDLE
+
+                //jump
+                if (enemyState != EnemyState.JUMPING) {
+                    position.y += speed * 100 + delta
+                    sprite.y = position.y
+                    enemyState = EnemyState.JUMPING
+                    isAbleToJump = true
                 }
-                super.moveSideways(delta)
+
+                //end the jump
+                if (enemyState == EnemyState.JUMPING) {
+                    enemyState = EnemyState.FALLING
+                }
             }
         }
     }
