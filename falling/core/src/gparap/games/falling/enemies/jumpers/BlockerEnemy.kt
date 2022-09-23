@@ -5,15 +5,19 @@
  *******************************/
 package gparap.games.falling.enemies.jumpers
 
+import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
+import com.badlogic.gdx.math.RandomXS128
 import gparap.games.falling.utils.GameConstants
 import gparap.games.falling.enemies.Enemy
 import gparap.games.falling.enemies.EnemyState
 import gparap.games.falling.enemies.EnemyType
+import gparap.games.falling.enemies.MovementDirection
 
 class BlockerEnemy(enemySprite: Sprite) : Enemy() {
     private var isAbleToJump = false
+    private var jumpDirection = MovementDirection.LEFT
 
     init {
         speed = 1.33F
@@ -40,9 +44,30 @@ class BlockerEnemy(enemySprite: Sprite) : Enemy() {
             //handle when enemy is able to jump
             if (enemyState == EnemyState.IDLE) {
                 isAbleToJump = false
+
+                //randomize in which direction the enemy will jump
+                val random = RandomXS128().nextInt(2)
+                jumpDirection = if (random == 0) {
+                    MovementDirection.LEFT
+                } else {
+                    MovementDirection.RIGHT
+                }
             }
+
             if (isAbleToJump) {
-                super.moveSideways(delta)
+                //jump enemy left or right
+                if (jumpDirection == MovementDirection.LEFT) {
+                    position.x -= speed + delta
+                    sprite.x = position.x
+                } else {
+                    position.x += speed + delta
+                    sprite.x = position.x
+                }
+            }
+
+            //handle the enemy when is off-screen
+            if ((sprite.x > Gdx.graphics.width) || (sprite.x + sprite.width < 0)) {
+                setDestroyed()
             }
 
             //don't fall of the ground
