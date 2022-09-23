@@ -147,7 +147,7 @@ class EnemyManager {
 
         //create the enemy jumper sprites and add them to their list
         jumpers.add(Sprite(Texture(GameConstants.ENEMY_BLOCKER)))
-        jumpers.add(Sprite(Texture(GameConstants.ENEMY_FROG)))
+        jumpers.add(Sprite(Texture(GameConstants.ENEMY_FROG_LEFT)))
 
         //create the enemy walker sprites and add them to their list
         walkers.add(Sprite(Texture(GameConstants.ENEMY_MOUSE_LEFT)))

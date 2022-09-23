@@ -6,6 +6,7 @@
 package gparap.games.falling.enemies.jumpers
 
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.math.RandomXS128
@@ -17,7 +18,11 @@ import gparap.games.falling.enemies.MovementDirection
 
 class FrogEnemy(enemySprite: Sprite) : Enemy() {
     private var isAbleToJump = false
-    private var jumpDirection = MovementDirection.RIGHT
+    private var jumpDirection = MovementDirection.LEFT
+    private var spriteLeft = GameConstants.ENEMY_FROG_LEFT
+    private var spriteRight = GameConstants.ENEMY_FROG_RIGHT
+    private var spriteJumpLeft = GameConstants.ENEMY_FROG_JUMP_LEFT
+    private var spriteJumpRight = GameConstants.ENEMY_FROG_JUMP_RIGHT
 
     init {
         speed = 1.33F
@@ -59,9 +64,11 @@ class FrogEnemy(enemySprite: Sprite) : Enemy() {
                 if (jumpDirection == MovementDirection.LEFT) {
                     position.x -= speed + delta
                     sprite.x = position.x
+                    sprite.texture = Texture(spriteJumpLeft)
                 } else {
                     position.x += speed + delta
                     sprite.x = position.x
+                    sprite.texture = Texture(spriteJumpRight)
                 }
             }
 
@@ -75,6 +82,13 @@ class FrogEnemy(enemySprite: Sprite) : Enemy() {
                 enemyState = EnemyState.FALLING
                 sprite.y = GameConstants.GROUND_ZERO
                 position.y = GameConstants.GROUND_ZERO
+
+                //animate slightly enemy jump
+                if (jumpDirection == MovementDirection.LEFT) {
+                    sprite.texture = Texture(spriteLeft)
+                } else {
+                    sprite.texture = Texture(spriteRight)
+                }
 
                 //jump
                 if (enemyState != EnemyState.JUMPING) {
