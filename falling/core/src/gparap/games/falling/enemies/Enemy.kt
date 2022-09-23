@@ -24,19 +24,55 @@ abstract class Enemy {
     protected lateinit var enemyType: EnemyType
     protected lateinit var sprite: Sprite
     protected var enemyState: EnemyState = EnemyState.FALLING
-    private var movementDirection: MovementDirection = MovementDirection.LEFT
-    protected var animationLeft: Animation<Texture>? = null
-    protected var animationRight: Animation<Texture>? = null
+    private var facingDirection: FacingDirection = FacingDirection.LEFT
+    private var animationLeft: Animation<Texture>? = null
+    private var animationRight: Animation<Texture>? = null
     protected var framesLeft: Array<Texture>? = null
     protected var framesRight: Array<Texture>? = null
-    protected var stateTime = 0f
-    protected var frameDuration = 0.1f
+    private var stateTime = 0f
+    private var frameDuration = 0.1f
 
     abstract fun isActiveInGame(): Boolean
     abstract fun setActiveInGame(active: Boolean)
 
     abstract fun update(delta: Float)
     abstract fun draw(spriteBatch: SpriteBatch)
+
+    /** Handles the enemy positioning when it reaches or approaches the ground */
+    fun setGroundedPosition() {
+        if (enemyType == EnemyType.CRAWLER || enemyType == EnemyType.JUMPER || enemyType == EnemyType.WALKER) {
+            sprite.y = GameConstants.GROUND_ZERO
+            position.y = GameConstants.GROUND_ZERO
+
+        } else if (enemyType == EnemyType.FLYER) {
+            sprite.y = GameConstants.GROUND_ZERO + sprite.height * 2
+            position.y = GameConstants.GROUND_ZERO + sprite.height * 2
+        }
+    }
+
+    /** Handles the enemy state when it reaches or approaches the ground */
+    fun setGroundedState() {
+        if (enemyState == EnemyState.FALLING) {
+            enemyState = EnemyState.IDLE
+            stateTime = 0F
+        }
+    }
+
+    /** Makes enemy falling downwards simulating gravity */
+    fun setFalling(delta: Float) {
+        position.y -= speed + delta
+        sprite.y = position.y
+    }
+
+    /** Randomizes which direction the enemy will be facing */
+    fun randomizeFacingDirection(): FacingDirection {
+        val random = RandomXS128().nextInt(2)
+        return if (random == 0) {
+            FacingDirection.LEFT
+        } else {
+            FacingDirection.RIGHT
+        }
+    }
 
     /**
      * Randomizes X position
@@ -76,27 +112,32 @@ abstract class Enemy {
         if (enemyState == EnemyState.IDLE) {
             enemyState = EnemyState.MOVING
             //randomize in which direction the enemy will move
-            val random = RandomXS128().nextInt(2)
-            movementDirection = if (random == 0) {
-                MovementDirection.LEFT
-            } else {
-                MovementDirection.RIGHT
-            }
+            facingDirection = randomizeFacingDirection()
         }
 
         //move enemy left or right
-        if (movementDirection == MovementDirection.LEFT) {
-            position.x -= speed + delta
-            sprite.x = position.x
+        if (facingDirection == FacingDirection.LEFT) {
+            moveLeft(delta)
         } else {
-            position.x += speed + delta
-            sprite.x = position.x
+            moveRight(delta)
         }
 
         //handle the enemy when is off-screen
         if (isOffScreenBoundaries()) {
             setDestroyed()
         }
+    }
+
+    /** Moves enemy left */
+    fun moveLeft(delta: Float) {
+        position.x -= speed + delta
+        sprite.x = position.x
+    }
+
+    /** Moves enemy right */
+    fun moveRight(delta: Float) {
+        position.x += speed + delta
+        sprite.x = position.x
     }
 
     /* Checks if the enemy is off-screen to the left or right */
@@ -111,7 +152,7 @@ abstract class Enemy {
     }
 
     /** Returns an array that contains the animation frames based on facing. */
-    fun getAnimationFrames(isFacingLeft: Boolean = false, isFacingRight: Boolean = false): Array<Texture>? {
+    private fun getAnimationFrames(isFacingLeft: Boolean = false, isFacingRight: Boolean = false): Array<Texture>? {
         if (isFacingLeft) return framesLeft
         if (isFacingRight) return framesRight
         return null
@@ -129,7 +170,7 @@ abstract class Enemy {
         stateTime += frameDuration.div(GameConstants.FRAME_DURATION_DIVIDER)
 
         //animate
-        if (movementDirection == MovementDirection.LEFT) {
+        if (facingDirection == FacingDirection.LEFT) {
             sprite.texture = animationLeft?.getKeyFrame(stateTime, true)
         } else {
             sprite.texture = animationRight?.getKeyFrame(stateTime, true)

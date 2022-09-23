@@ -9,16 +9,15 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
-import com.badlogic.gdx.math.RandomXS128
-import gparap.games.falling.utils.GameConstants
 import gparap.games.falling.enemies.Enemy
 import gparap.games.falling.enemies.EnemyState
 import gparap.games.falling.enemies.EnemyType
-import gparap.games.falling.enemies.MovementDirection
+import gparap.games.falling.enemies.FacingDirection
+import gparap.games.falling.utils.GameConstants
 
 class FrogEnemy(enemySprite: Sprite) : Enemy() {
     private var isAbleToJump = false
-    private var jumpDirection = MovementDirection.LEFT
+    private var jumpDirection = FacingDirection.LEFT
     private var spriteLeft = GameConstants.ENEMY_FROG_LEFT
     private var spriteRight = GameConstants.ENEMY_FROG_RIGHT
     private var spriteJumpLeft = GameConstants.ENEMY_FROG_JUMP_LEFT
@@ -42,32 +41,23 @@ class FrogEnemy(enemySprite: Sprite) : Enemy() {
 
     override fun update(delta: Float) {
         if (isActive) {
-            //enemy is falling
-            position.y -= speed + delta
-            sprite.y = position.y
+            setFalling(delta)
 
             //handle when enemy is able to jump
             if (enemyState == EnemyState.IDLE) {
                 isAbleToJump = false
 
                 //randomize in which direction the enemy will jump
-                val random = RandomXS128().nextInt(2)
-                jumpDirection = if (random == 0) {
-                    MovementDirection.LEFT
-                } else {
-                    MovementDirection.RIGHT
-                }
+                jumpDirection = randomizeFacingDirection()
             }
 
             if (isAbleToJump) {
                 //jump enemy left or right
-                if (jumpDirection == MovementDirection.LEFT) {
-                    position.x -= speed + delta
-                    sprite.x = position.x
+                if (jumpDirection == FacingDirection.LEFT) {
+                    moveLeft(delta)
                     sprite.texture = Texture(spriteJumpLeft)
                 } else {
-                    position.x += speed + delta
-                    sprite.x = position.x
+                    moveRight(delta)
                     sprite.texture = Texture(spriteJumpRight)
                 }
             }
@@ -80,11 +70,10 @@ class FrogEnemy(enemySprite: Sprite) : Enemy() {
             //don't fall of the ground
             if (sprite.y < GameConstants.GROUND_ZERO) {
                 enemyState = EnemyState.FALLING
-                sprite.y = GameConstants.GROUND_ZERO
-                position.y = GameConstants.GROUND_ZERO
+                setGroundedPosition()
 
                 //animate slightly enemy jump
-                if (jumpDirection == MovementDirection.LEFT) {
+                if (jumpDirection == FacingDirection.LEFT) {
                     sprite.texture = Texture(spriteLeft)
                 } else {
                     sprite.texture = Texture(spriteRight)
@@ -92,7 +81,7 @@ class FrogEnemy(enemySprite: Sprite) : Enemy() {
 
                 //jump
                 if (enemyState != EnemyState.JUMPING) {
-                    position.y += speed * 100 + delta
+                    position.y += speed * GameConstants.ENEMY_JUMP_FACTOR + delta
                     sprite.y = position.y
                     enemyState = EnemyState.JUMPING
                     isAbleToJump = true

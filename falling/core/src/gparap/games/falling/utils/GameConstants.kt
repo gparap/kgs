@@ -21,6 +21,7 @@ object GameConstants {
     const val OFF_SCREEN_X = -1600F
     const val OFF_SCREEN_Y = -960F
     const val FRAME_DURATION_DIVIDER = 10
+    const val ENEMY_JUMP_FACTOR = 100F
 
     //fonts
     const val GAME_OVER_FONT_SIZE = 48

@@ -39,19 +39,13 @@ class SpiderEnemy(enemySprite: Sprite) : Enemy() {
 
     override fun update(delta: Float) {
         if (isActive) {
-            //enemy is falling
-            position.y -= speed + delta
-            sprite.y = position.y
+            setFalling(delta)
 
             //don't fall of the ground
             if (sprite.y < GameConstants.GROUND_ZERO) {
-                sprite.y = GameConstants.GROUND_ZERO
-                position.y = GameConstants.GROUND_ZERO
-                if (enemyState == EnemyState.FALLING) {
-                    enemyState = EnemyState.IDLE
-                    stateTime = 0F
-                }
-                super.moveSideways(delta)
+                setGroundedPosition()
+                setGroundedState()
+                moveSideways(delta)
             }
 
             //animate walking enemy

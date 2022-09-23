@@ -5,6 +5,6 @@
  *******************************/
 package gparap.games.falling.enemies
 
-enum class MovementDirection {
+enum class FacingDirection {
     LEFT, RIGHT
 }

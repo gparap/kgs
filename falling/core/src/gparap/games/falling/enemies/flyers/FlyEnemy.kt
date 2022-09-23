@@ -39,19 +39,13 @@ class FlyEnemy(enemySprite: Sprite) : Enemy() {
 
     override fun update(delta: Float) {
         if (isActive) {
-            //enemy is falling
-            position.y -= speed + delta
-            sprite.y = position.y
+            setFalling(delta)
 
             //fly above the ground
             if (sprite.y < GameConstants.GROUND_ZERO + sprite.height * 2) {
-                sprite.y = GameConstants.GROUND_ZERO + sprite.height * 2
-                position.y = GameConstants.GROUND_ZERO + sprite.height * 2
-                if (enemyState == EnemyState.FALLING) {
-                    enemyState = EnemyState.IDLE
-                    stateTime = 0F
-                }
-                super.moveSideways(delta)
+                setGroundedPosition()
+                setGroundedState()
+                moveSideways(delta)
             }
 
             //animate flying enemy
