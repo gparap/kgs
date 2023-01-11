@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="bfed973b-cc76-420e-a388-50d69011a418" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/AndroidManifest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/atlas_platformer.pack" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/atlas_platformer.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/background/blue_grass.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/background/blue_land.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/background/colored_grass.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/background/colored_land.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/fonts/Kenney Pixel.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/fonts/kenney_pixel.fnt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/fonts/kenney_pixel.otf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/fonts/kenney_pixel.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/fonts/kenney_pixel.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/levels/level01.tmx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/levels/level02.tmx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/levels/level03.tmx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/levels/level04.tmx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/levels/level05.tmx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/levels/level06.tmx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/levels/level07.tmx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/license" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/music/platformer_01.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/music/platformer_02.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/music/platformer_03.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/music/platformer_04.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/music/platformer_05.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/music/platformer_06.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/music/platformer_07.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/sfx/hit_crate.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/sfx/hit_enemy_head.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/sfx/hit_player_lose.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/sfx/hit_wall.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/sfx/jump_player.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/sfx/pickup.wav" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/tiles/box_coin.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/tiles/box_coin_disabled.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/tiles/box_crate.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/tiles/box_crate_double.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/tiles/box_item.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/tiles/box_wall.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/tiles/candy_land/cakeCenter.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/tiles/candy_land/cakeHillLeft.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/tiles/candy_land/cakeHillRight.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/tiles/candy_land/cakeLeft.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/tiles/candy_land/cakeMid.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/tiles/candy_land/cakeRight.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/tiles/candy_land/cherry.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/tiles/candy_land/chocoCenter.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/tiles/candy_land/chocoHillLeft.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/tiles/candy_land/chocoHillRight.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/tiles/candy_land/chocoLeft.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/tiles/candy_land/chocoMid.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/tiles/candy_land/chocoRight.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/tiles/candy_land/creamChoco.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/tiles/candy_land/creamMocca.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/tiles/candy_land/creamPink.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/tiles/candy_land/cupCake.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/tiles/candy_land/gummyGreen.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/tiles/candy_land/gummyRed.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/tiles/candy_land/waffleChoco.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/tiles/candy_land/waffleWhite.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/tiles/coin_brown.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/tiles/coin_gold.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/tiles/coin_silver.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/tiles/grass_center.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/tiles/grass_left.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/tiles/grass_mid.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/tiles/grass_right.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/tiles/placeholder.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/assets/tiles/sign_exit.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/ic_launcher-web.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/proguard-rules.pro" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/project.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/res/drawable-hdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/res/drawable-mdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/res/drawable-xhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/res/drawable-xxhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/res/drawable-xxxhdpi/ic_launcher.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/res/layout/dialog_licenses.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/res/values/strings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/res/values/styles.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/res/xml/backup_descriptor.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/src/dmn/games/platformer/AndroidLauncher.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/dmn/games/platformer/Background.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/dmn/games/platformer/HUD.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/dmn/games/platformer/Platformer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/dmn/games/platformer/Player.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/dmn/games/platformer/enemies/Blocker.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/dmn/games/platformer/enemies/Enemy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/dmn/games/platformer/enemies/Slime.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/dmn/games/platformer/enemies/Snail.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/dmn/games/platformer/level/Level.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/dmn/games/platformer/level/LevelFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/dmn/games/platformer/level/LevelManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/dmn/games/platformer/physics/BodyFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/dmn/games/platformer/physics/CollisionDetector.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/dmn/games/platformer/screens/Credits.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/dmn/games/platformer/screens/GameOver.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/dmn/games/platformer/screens/LevelComplete.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/dmn/games/platformer/screens/Menu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/dmn/games/platformer/screens/Play.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/dmn/games/platformer/screens/Screen.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/dmn/games/platformer/tiles/Candy.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/dmn/games/platformer/tiles/Coin.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/dmn/games/platformer/tiles/Crate.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/dmn/games/platformer/tiles/Exit.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/dmn/games/platformer/tiles/Tile.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/dmn/games/platformer/touch/TouchManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/dmn/games/platformer/touch/TouchPad.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[T704020002412]" />
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2KBSobNj4HJP7OpVEIayyN2nSzT" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "/home/gp/Documents/GitHub/kgs/platformer/build.gradle",
+    "settings.editor.selected.configurable": "AndroidSdkUpdater"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="android" type="AndroidRunConfigurationType" factoryName="Android App">
+      <module name="platformer.android.main" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="ALL_USERS" value="false" />
+      <option name="ALWAYS_INSTALL_WITH_PM" value="false" />
+      <option name="CLEAR_APP_STORAGE" value="false" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="INSPECTION_WITHOUT_ACTIVITY_RESTART" value="false" />
+      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
+      <option name="DEBUGGER_TYPE" value="Java" />
+      <Java />
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Java/Kotlin Method Sample (legacy)" />
+        <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
+        <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
+      <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="bfed973b-cc76-420e-a388-50d69011a418" name="Changes" comment="" />
+      <created>1673446658426</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1673446658426</updated>
+    </task>
+    <servers />
+  </component>
+</project>
