@@ -4,8 +4,116 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d5b2c05e-9609-43b4-8fa0-3245e26acff2" name="Changes" comment="">
+    <list default="true" id="d5b2c05e-9609-43b4-8fa0-3245e26acff2" name="Changes" comment="Initial commit (rethink platformer)">
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/res/layout/dialog_licenses.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/res/values/styles.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/android/res/xml/backup_descriptor.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/atlas_platformer.pack" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/atlas_platformer.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/background/blue_grass.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/background/blue_land.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/background/colored_grass.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/background/colored_land.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/fonts/Kenney Pixel.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/fonts/kenney_pixel.fnt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/fonts/kenney_pixel.otf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/fonts/kenney_pixel.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/fonts/kenney_pixel.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/levels/level01.tmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/levels/level02.tmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/levels/level03.tmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/levels/level04.tmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/levels/level05.tmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/levels/level06.tmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/levels/level07.tmx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/license" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/music/platformer_01.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/music/platformer_02.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/music/platformer_03.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/music/platformer_04.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/music/platformer_05.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/music/platformer_06.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/music/platformer_07.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/sfx/hit_crate.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/sfx/hit_enemy_head.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/sfx/hit_player_lose.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/sfx/hit_wall.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/sfx/jump_player.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/sfx/pickup.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/tiles/box_coin.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/tiles/box_coin_disabled.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/tiles/box_crate.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/tiles/box_crate_double.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/tiles/box_item.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/tiles/box_wall.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/tiles/candy_land/cakeCenter.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/tiles/candy_land/cakeHillLeft.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/tiles/candy_land/cakeHillRight.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/tiles/candy_land/cakeLeft.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/tiles/candy_land/cakeMid.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/tiles/candy_land/cakeRight.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/tiles/candy_land/cherry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/tiles/candy_land/chocoCenter.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/tiles/candy_land/chocoHillLeft.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/tiles/candy_land/chocoHillRight.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/tiles/candy_land/chocoLeft.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/tiles/candy_land/chocoMid.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/tiles/candy_land/chocoRight.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/tiles/candy_land/creamChoco.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/tiles/candy_land/creamMocca.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/tiles/candy_land/creamPink.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/tiles/candy_land/cupCake.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/tiles/candy_land/gummyGreen.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/tiles/candy_land/gummyRed.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/tiles/candy_land/waffleChoco.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/tiles/candy_land/waffleWhite.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/tiles/coin_brown.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/tiles/coin_gold.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/tiles/coin_silver.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/tiles/grass_center.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/tiles/grass_left.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/tiles/grass_mid.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/tiles/grass_right.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/tiles/placeholder.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/tiles/sign_exit.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/dmn/games/platformer/Background.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/dmn/games/platformer/HUD.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/dmn/games/platformer/Player.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/dmn/games/platformer/enemies/Blocker.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/dmn/games/platformer/enemies/Enemy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/dmn/games/platformer/enemies/Slime.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/dmn/games/platformer/enemies/Snail.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/dmn/games/platformer/level/Level.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/dmn/games/platformer/level/LevelFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/dmn/games/platformer/level/LevelManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/dmn/games/platformer/physics/BodyFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/dmn/games/platformer/physics/CollisionDetector.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/dmn/games/platformer/screens/Credits.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/dmn/games/platformer/screens/GameOver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/dmn/games/platformer/screens/LevelComplete.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/dmn/games/platformer/screens/Menu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/dmn/games/platformer/screens/Play.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/dmn/games/platformer/screens/Screen.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/dmn/games/platformer/tiles/Candy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/dmn/games/platformer/tiles/Coin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/dmn/games/platformer/tiles/Crate.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/dmn/games/platformer/tiles/Exit.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/dmn/games/platformer/tiles/Tile.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/dmn/games/platformer/touch/TouchManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/src/dmn/games/platformer/touch/TouchPad.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/android/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/ic_launcher-web.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/ic_launcher-web.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/proguard-rules.pro" beforeDir="false" afterPath="$PROJECT_DIR$/android/proguard-rules.pro" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/res/drawable-hdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/res/drawable-hdpi/ic_launcher.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/res/drawable-mdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/res/drawable-mdpi/ic_launcher.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/res/drawable-xhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/res/drawable-xhdpi/ic_launcher.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/res/drawable-xxhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/res/drawable-xxhdpi/ic_launcher.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/res/drawable-xxxhdpi/ic_launcher.png" beforeDir="false" afterPath="$PROJECT_DIR$/android/res/drawable-xxxhdpi/ic_launcher.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/android/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/badlogic.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/dmn/games/platformer/Platformer.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/dmn/games/platformer/Platformer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +167,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
   <component name="ProjectId" id="2KDbAXIwBH8dpkI42pECB6tAt28" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -72,7 +186,7 @@
     "settings.editor.selected.configurable": "AndroidSdkUpdater"
   }
 }]]></component>
-  <component name="RunManager" selected="Gradle.platformer:desktop [run]">
+  <component name="RunManager" selected="Android App.android">
     <configuration name="android" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
       <module name="platformer.android.main" />
       <option name="DEPLOY" value="true" />
@@ -144,6 +258,18 @@
       <option name="presentableId" value="Default" />
       <updated>1673511957746</updated>
     </task>
+    <task id="LOCAL-00001" summary="Initial commit (rethink platformer)">
+      <created>1673512532915</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1673512532915</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial commit (rethink platformer)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial commit (rethink platformer)" />
   </component>
 </project>
