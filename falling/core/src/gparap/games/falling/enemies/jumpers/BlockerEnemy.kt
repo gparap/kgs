@@ -42,8 +42,12 @@ class BlockerEnemy(enemySprite: Sprite) : Enemy() {
             if (enemyState == EnemyState.IDLE) {
                 isAbleToJump = false
 
-                //randomize in which direction the enemy will jump
-                jumpDirection = randomizeFacingDirection()
+                //set which direction the enemy will jump to
+                jumpDirection = if (position.x > playerPosition.x) {
+                    FacingDirection.LEFT
+                } else {
+                    FacingDirection.RIGHT
+                }
             }
 
             if (isAbleToJump) {

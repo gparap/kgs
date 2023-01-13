@@ -20,7 +20,7 @@ import kotlin.properties.Delegates
 
 abstract class Enemy {
     protected var position = Vector2(GameConstants.OFF_SCREEN_X, GameConstants.OFF_SCREEN_Y)
-    protected var playerPosition = Vector2(0f,0f)
+    protected var playerPosition = Vector2(0f, 0f)
     protected var speed by Delegates.notNull<Float>()
     protected var isActive = false
     protected lateinit var enemyType: EnemyType
@@ -66,16 +66,6 @@ abstract class Enemy {
         sprite.y = position.y
     }
 
-    /** Randomizes which direction the enemy will be facing */
-    fun randomizeFacingDirection(): FacingDirection {
-        val random = RandomXS128().nextInt(2)
-        return if (random == 0) {
-            FacingDirection.LEFT
-        } else {
-            FacingDirection.RIGHT
-        }
-    }
-
     /**
      * Randomizes X position
      *
@@ -113,8 +103,12 @@ abstract class Enemy {
     fun moveSideways(delta: Float) {
         if (enemyState == EnemyState.IDLE) {
             enemyState = EnemyState.MOVING
-            //randomize in which direction the enemy will move
-            facingDirection = randomizeFacingDirection()
+            //set which direction the enemy will move to
+            facingDirection = if (position.x > playerPosition.x) {
+                FacingDirection.LEFT
+            } else {
+                FacingDirection.RIGHT
+            }
         }
 
         //move enemy left or right
