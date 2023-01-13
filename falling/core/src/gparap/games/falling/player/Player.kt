@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.input.GestureDetector
 import com.badlogic.gdx.input.GestureDetector.GestureAdapter
 import com.badlogic.gdx.math.Rectangle
+import com.badlogic.gdx.math.Vector2
 import gparap.games.falling.utils.GameConstants.GROUND_ZERO
 import gparap.games.falling.utils.GameConstants.PLAYER_SCALE_FACTOR
 import gparap.games.falling.utils.GameUtils
@@ -36,6 +37,10 @@ class Player(filePath: String) : GestureAdapter() {
     private var frameDuration = 0.1f
     private var shouldJump = false
     private val friend: String
+
+    fun getPosition(): Vector2 {
+        return Vector2(sprite.x, sprite.y)
+    }
 
     fun getLife(): Int {
         return life

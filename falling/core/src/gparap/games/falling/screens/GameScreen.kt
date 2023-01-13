@@ -55,7 +55,7 @@ class GameScreen(spriteBatch: SpriteBatch, private val game: Falling) : Screen(s
         //update game
         player.update(delta)
         tokenManager.updateTokens(delta)
-        enemyManager.updateEnemies(delta)
+        enemyManager.updateEnemies(delta, player.getPosition())
         spawnManager.update(delta)
         collisionManager.update()
         hud.update()

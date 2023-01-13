@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.math.RandomXS128
-import gparap.games.falling.utils.GameConstants
+import com.badlogic.gdx.math.Vector2
 import gparap.games.falling.enemies.Enemy
 import gparap.games.falling.enemies.EnemyType
 import gparap.games.falling.enemies.crawlers.SlimeEnemy
@@ -22,6 +22,7 @@ import gparap.games.falling.enemies.jumpers.BlockerEnemy
 import gparap.games.falling.enemies.jumpers.FrogEnemy
 import gparap.games.falling.enemies.walkers.MouseEnemy
 import gparap.games.falling.enemies.walkers.SpiderEnemy
+import gparap.games.falling.utils.GameConstants
 
 /**
  * This manager class is responsible for the lifecycle of an enemy in the game
@@ -57,6 +58,7 @@ class EnemyManager {
                     }
                 }
             }
+
             EnemyType.JUMPER -> {
                 if (random == 0) {
                     BlockerEnemy(enemySprite)
@@ -64,6 +66,7 @@ class EnemyManager {
                     FrogEnemy(enemySprite)
                 }
             }
+
             EnemyType.WALKER -> {
                 if (random == 0) {
                     MouseEnemy(enemySprite)
@@ -71,6 +74,7 @@ class EnemyManager {
                     SpiderEnemy(enemySprite)
                 }
             }
+
             EnemyType.CRAWLER -> {
                 if (random == 0) {
                     SlimeEnemy(enemySprite)
@@ -87,9 +91,10 @@ class EnemyManager {
         return enemy
     }
 
-    fun updateEnemies(delta: Float) {
+    fun updateEnemies(delta: Float, playerPosition: Vector2) {
         for (enemy in enemies) {
             if (enemy.isActiveInGame()) {
+                enemy.syncPlayerPosition(playerPosition)
                 enemy.update(delta)
             }
         }
@@ -111,14 +116,17 @@ class EnemyManager {
                 random = seed.nextInt(flyers.size)
                 enemySprite = flyers[random]
             }
+
             EnemyType.JUMPER -> {
                 random = seed.nextInt(jumpers.size)
                 enemySprite = jumpers[random]
             }
+
             EnemyType.WALKER -> {
                 random = seed.nextInt(walkers.size)
                 enemySprite = walkers[random]
             }
+
             EnemyType.CRAWLER -> {
                 random = seed.nextInt(crawlers.size)
                 enemySprite = crawlers[random]

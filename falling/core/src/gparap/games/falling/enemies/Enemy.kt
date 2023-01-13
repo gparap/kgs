@@ -15,10 +15,12 @@ import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.utils.Array
 import gparap.games.falling.utils.GameConstants
+import javax.swing.text.Position
 import kotlin.properties.Delegates
 
 abstract class Enemy {
     protected var position = Vector2(GameConstants.OFF_SCREEN_X, GameConstants.OFF_SCREEN_Y)
+    protected var playerPosition = Vector2(0f,0f)
     protected var speed by Delegates.notNull<Float>()
     protected var isActive = false
     protected lateinit var enemyType: EnemyType
@@ -175,5 +177,10 @@ abstract class Enemy {
         } else {
             sprite.texture = animationRight?.getKeyFrame(stateTime, true)
         }
+    }
+
+    /** Synchronizes its information about the player's current position in the game. */
+    fun syncPlayerPosition(position: Vector2) {
+        playerPosition = position
     }
 }
