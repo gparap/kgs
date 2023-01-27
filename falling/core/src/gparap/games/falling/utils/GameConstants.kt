@@ -125,4 +125,12 @@ object GameConstants {
     const val PLAYER_ANIMATION_WALK2_LEFT = "_walk2_left.png"
     const val PLAYER_ANIMATION_WALK1_RIGHT = "_walk1_right.png"
     const val PLAYER_ANIMATION_WALK2_RIGHT = "_walk2_right.png"
+
+    //debris
+    const val DEBRIS_ROCK_LARGE_DARK  = "debris/rock_large_dark.png"
+    const val DEBRIS_ROCK_LARGE_LIGHT = "debris/rock_large_light.png"
+    const val DEBRIS_ROCK_SMALL_DARK  = "debris/rock_small_dark.png"
+    const val DEBRIS_ROCK_SMALL_LIGHT = "debris/rock_small_light.png"
+    const val DEBRIS_MIN_SPEED = 2.5F
+    const val DEBRIS_MAX_SPEED = 7.5F
 }
