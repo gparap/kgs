@@ -10,14 +10,12 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import gparap.games.falling.Falling
 import gparap.games.falling.utils.GameConstants
 import gparap.games.falling.hud.HUD
-import gparap.games.falling.managers.CollisionManager
-import gparap.games.falling.managers.EnemyManager
-import gparap.games.falling.managers.SpawnManager
-import gparap.games.falling.managers.TokenManager
+import gparap.games.falling.managers.*
 import gparap.games.falling.player.Player
 
 class GameScreen(spriteBatch: SpriteBatch, private val game: Falling) : Screen(spriteBatch) {
     private lateinit var player: Player
+    private lateinit var debrisManager: DebrisManager
     private lateinit var enemyManager: EnemyManager
     private lateinit var tokenManager: TokenManager
     private lateinit var spawnManager: SpawnManager
@@ -36,6 +34,7 @@ class GameScreen(spriteBatch: SpriteBatch, private val game: Falling) : Screen(s
         hud = HUD(spriteBatch)
 
         //create manager objects
+        debrisManager = DebrisManager()
         enemyManager = EnemyManager()
         tokenManager = TokenManager()
         spawnManager = SpawnManager(tokenManager, enemyManager)
@@ -54,6 +53,7 @@ class GameScreen(spriteBatch: SpriteBatch, private val game: Falling) : Screen(s
 
         //update game
         player.update(delta)
+        debrisManager.updateDebris(delta)
         tokenManager.updateTokens(delta)
         enemyManager.updateEnemies(delta, player.getPosition())
         spawnManager.update(delta)
@@ -64,6 +64,7 @@ class GameScreen(spriteBatch: SpriteBatch, private val game: Falling) : Screen(s
         spriteBatch.begin()
         player.draw(spriteBatch)
         tokenManager.drawTokens(spriteBatch)
+        debrisManager.drawDebris(spriteBatch)
         enemyManager.drawEnemies(spriteBatch)
         spriteBatch.end()
 
