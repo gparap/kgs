@@ -132,5 +132,7 @@ object GameConstants {
     const val DEBRIS_ROCK_SMALL_DARK  = "debris/rock_small_dark.png"
     const val DEBRIS_ROCK_SMALL_LIGHT = "debris/rock_small_light.png"
     const val DEBRIS_MIN_SPEED = 2.5F
-    const val DEBRIS_MAX_SPEED = 7.5F
+    const val DEBRIS_MAX_SPEED = 5F
+    const val DEBRIS_POOL_SIZE = 4
+    const val DEBRIS_SPAWN_TIMER = 5F
 }

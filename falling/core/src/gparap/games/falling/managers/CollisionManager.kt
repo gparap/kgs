@@ -15,6 +15,7 @@ class CollisionManager(private val player: Player, private val spawnManager: Spa
     fun update() {
         handleCollisionWithToken()
         handleCollisionWithEnemy()
+        handleCollisionWithDebris()
     }
 
     private fun handleCollisionWithToken() {
@@ -30,6 +31,16 @@ class CollisionManager(private val player: Player, private val spawnManager: Spa
         for (enemy in spawnManager.getEnemyPool()) {
             if (enemy.isActiveInGame() && player.getCollisionBounds().overlaps(enemy.getCollisionBounds())) {
                 enemy.setDestroyed()
+                player.loseLife()
+                hud.setLife(player.getLife())
+            }
+        }
+    }
+
+    private fun handleCollisionWithDebris() {
+        for (debris in spawnManager.getDebrisPool()) {
+            if (debris.isActiveInGame() && player.getCollisionBounds().overlaps(debris.getCollisionBounds())) {
+                debris.setHitInGame(true)
                 player.loseLife()
                 hud.setLife(player.getLife())
             }

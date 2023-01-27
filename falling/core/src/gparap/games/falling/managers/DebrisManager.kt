@@ -64,7 +64,7 @@ class DebrisManager {
     //Randomizes the sprite of the active debris
     private fun randomizeDebrisSprite() {
         val seed = RandomXS128()
-        val random: Int = seed.nextInt(debris.size)
+        val random: Int = seed.nextInt(sprites.size)
         sprite = sprites[random]
     }
 

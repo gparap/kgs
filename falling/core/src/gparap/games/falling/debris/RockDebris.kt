@@ -6,7 +6,6 @@ import gparap.games.falling.utils.GameConstants
 class RockDebris (sprite: Sprite) : Debris(sprite) {
 
     init {
-//        speed = 1.25F
         super.randomizeSpeed(GameConstants.DEBRIS_MAX_SPEED)
         sprite.setPosition(GameConstants.OFF_SCREEN_X, GameConstants.OFF_SCREEN_Y)
     }

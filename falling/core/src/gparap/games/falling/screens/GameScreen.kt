@@ -37,7 +37,7 @@ class GameScreen(spriteBatch: SpriteBatch, private val game: Falling) : Screen(s
         debrisManager = DebrisManager()
         enemyManager = EnemyManager()
         tokenManager = TokenManager()
-        spawnManager = SpawnManager(tokenManager, enemyManager)
+        spawnManager = SpawnManager(debrisManager, tokenManager, enemyManager)
         collisionManager = CollisionManager(player, spawnManager, hud)
     }
 
