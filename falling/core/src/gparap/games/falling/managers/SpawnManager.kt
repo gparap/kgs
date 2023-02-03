@@ -81,6 +81,9 @@ class SpawnManager(
     /* Makes a debris from the pool active in the game based on a time interval */
     private fun spawnDebris() {
         if (debrisSpawnTimer >= GameConstants.DEBRIS_SPAWN_TIMER) {
+            //randomly shuffle debris in the pool
+            debrisPool.shuffle()
+
             //retrieve the first active debris from the pool
             for (d: Debris in debrisPool) {
                 if (!d.isActiveInGame()) {
