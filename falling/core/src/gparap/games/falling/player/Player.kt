@@ -6,6 +6,8 @@
 package gparap.games.falling.player
 
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.assets.AssetManager
+import com.badlogic.gdx.audio.Sound
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.Animation
 import com.badlogic.gdx.graphics.g2d.Sprite
@@ -19,7 +21,7 @@ import gparap.games.falling.utils.GameConstants.PLAYER_SCALE_FACTOR
 import gparap.games.falling.utils.GameUtils
 import kotlin.math.abs
 
-class Player(filePath: String) : GestureAdapter() {
+class Player(filePath: String, assetManager: AssetManager) : GestureAdapter() {
     private var sprite: Sprite = Sprite(Texture(filePath))
     private var spriteIdle: Sprite = Sprite(Texture(filePath))
     private var spriteJumpLeft: Sprite
@@ -37,6 +39,7 @@ class Player(filePath: String) : GestureAdapter() {
     private var frameDuration = 0.1f
     private var shouldJump = false
     private val friend: String
+    private val sfxJump: Sound
 
     fun getPosition(): Vector2 {
         return Vector2(sprite.x, sprite.y)
@@ -65,6 +68,9 @@ class Player(filePath: String) : GestureAdapter() {
         friend = GameUtils.getFriendFromFilePath(filePath)
         spriteJumpLeft = Sprite(Texture("friends/animations/" + friend + "/" + friend + "_jump_left.png"))
         spriteJumpRight = Sprite(Texture("friends/animations/" + friend + "/" + friend + "_jump_right.png"))
+
+        //init jumping SFX
+        sfxJump = assetManager.get("sfx/jump_player.wav")
     }
 
     fun update(delta: Float) {
@@ -105,6 +111,9 @@ class Player(filePath: String) : GestureAdapter() {
                 } else if (facing == PlayerFacing.RIGHT) {
                     sprite.texture = spriteJumpRight.texture
                 }
+
+                //play SFX
+                sfxJump.play(0.1f)
             }
         }
     }

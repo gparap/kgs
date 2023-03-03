@@ -28,7 +28,7 @@ class GameScreen(spriteBatch: SpriteBatch, private val game: Falling) : Screen(s
         //create player object
         val friendPref: String = Gdx.app.getPreferences(GameConstants.PREFERENCES)
             .getString(GameConstants.PREFERENCES_FRIEND, GameConstants.PREFERENCES_FRIEND_DEFAULT)
-        player = Player(friendPref)
+        player = Player(friendPref, game.assetManager)
 
         //create the heads-up display object
         hud = HUD(spriteBatch)
@@ -38,7 +38,7 @@ class GameScreen(spriteBatch: SpriteBatch, private val game: Falling) : Screen(s
         enemyManager = EnemyManager()
         tokenManager = TokenManager()
         spawnManager = SpawnManager(debrisManager, tokenManager, enemyManager)
-        collisionManager = CollisionManager(player, spawnManager, hud)
+        collisionManager = CollisionManager(player, spawnManager, hud, game.assetManager)
     }
 
     override fun render(delta: Float) {
