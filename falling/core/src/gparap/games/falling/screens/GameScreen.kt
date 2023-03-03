@@ -21,6 +21,7 @@ class GameScreen(spriteBatch: SpriteBatch, private val game: Falling) : Screen(s
     private lateinit var spawnManager: SpawnManager
     private lateinit var collisionManager: CollisionManager
     private lateinit var hud: HUD
+    private var sfxGameOver = SfxManager.getInstance().getSFX(GameConstants.SFX_GAME_OVER)
 
     override fun show() {
         super.show()
@@ -28,7 +29,7 @@ class GameScreen(spriteBatch: SpriteBatch, private val game: Falling) : Screen(s
         //create player object
         val friendPref: String = Gdx.app.getPreferences(GameConstants.PREFERENCES)
             .getString(GameConstants.PREFERENCES_FRIEND, GameConstants.PREFERENCES_FRIEND_DEFAULT)
-        player = Player(friendPref, game.assetManager)
+        player = Player(friendPref)
 
         //create the heads-up display object
         hud = HUD(spriteBatch)
@@ -38,7 +39,7 @@ class GameScreen(spriteBatch: SpriteBatch, private val game: Falling) : Screen(s
         enemyManager = EnemyManager()
         tokenManager = TokenManager()
         spawnManager = SpawnManager(debrisManager, tokenManager, enemyManager)
-        collisionManager = CollisionManager(player, spawnManager, hud, game.assetManager)
+        collisionManager = CollisionManager(player, spawnManager, hud)
     }
 
     override fun render(delta: Float) {
@@ -49,6 +50,7 @@ class GameScreen(spriteBatch: SpriteBatch, private val game: Falling) : Screen(s
             this.dispose()
             this.hide()
             game.screen = GameOverScreen(spriteBatch, game)
+            sfxGameOver.play(GameConstants.SFX_VOLUME_DEFAULT)
         }
 
         //update game

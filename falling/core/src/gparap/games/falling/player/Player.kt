@@ -6,7 +6,6 @@
 package gparap.games.falling.player
 
 import com.badlogic.gdx.Gdx
-import com.badlogic.gdx.assets.AssetManager
 import com.badlogic.gdx.audio.Sound
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.Animation
@@ -16,12 +15,14 @@ import com.badlogic.gdx.input.GestureDetector
 import com.badlogic.gdx.input.GestureDetector.GestureAdapter
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
+import gparap.games.falling.managers.SfxManager
+import gparap.games.falling.utils.GameConstants
 import gparap.games.falling.utils.GameConstants.GROUND_ZERO
 import gparap.games.falling.utils.GameConstants.PLAYER_SCALE_FACTOR
 import gparap.games.falling.utils.GameUtils
 import kotlin.math.abs
 
-class Player(filePath: String, assetManager: AssetManager) : GestureAdapter() {
+class Player(filePath: String) : GestureAdapter() {
     private var sprite: Sprite = Sprite(Texture(filePath))
     private var spriteIdle: Sprite = Sprite(Texture(filePath))
     private var spriteJumpLeft: Sprite
@@ -70,7 +71,7 @@ class Player(filePath: String, assetManager: AssetManager) : GestureAdapter() {
         spriteJumpRight = Sprite(Texture("friends/animations/" + friend + "/" + friend + "_jump_right.png"))
 
         //init jumping SFX
-        sfxJump = assetManager.get("sfx/jump_player.wav")
+        sfxJump = SfxManager.getInstance().getSFX(GameConstants.SFX_PLAYER_JUMP)
     }
 
     fun update(delta: Float) {
@@ -113,7 +114,7 @@ class Player(filePath: String, assetManager: AssetManager) : GestureAdapter() {
                 }
 
                 //play SFX
-                sfxJump.play(0.1f)
+                sfxJump.play(GameConstants.SFX_VOLUME_MIN)
             }
         }
     }

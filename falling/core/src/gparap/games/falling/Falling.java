@@ -6,38 +6,26 @@
 package gparap.games.falling;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import gparap.games.falling.managers.SfxManager;
 import gparap.games.falling.screens.MenuScreen;
 
 public class Falling extends Game {
-	private AssetManager assetManager;
+    @Override
+    public void create() {
+        //load sound effects
+        SfxManager.getInstance().loadSFX();
 
-	public AssetManager getAssetManager() {
-		return assetManager;
-	}
+        //create a new SpriteBatch
+        SpriteBatch spriteBatch = new SpriteBatch();
 
-	@Override
-	public void create () {
-		//load SFX
-		assetManager = new AssetManager();
-		assetManager.load("sfx/hit_debris.wav", Sound.class);
-		assetManager.load("sfx/hit_enemy.wav", Sound.class);
-		assetManager.load("sfx/jump_player.wav", Sound.class);
-		assetManager.load("sfx/pick_token.wav", Sound.class);
-		assetManager.finishLoading();
+        //create the main menu screen
+        setScreen(new MenuScreen(spriteBatch, this));
+    }
 
-		//create a new SpriteBatch
-		SpriteBatch spriteBatch = new SpriteBatch();
-
-		//create the main menu screen
-		setScreen(new MenuScreen(spriteBatch, this));
-	}
-
-	@Override
-	public void dispose() {
-		super.dispose();
-		assetManager.dispose();
-	}
+    @Override
+    public void dispose() {
+        super.dispose();
+        SfxManager.getInstance().dispose();
+    }
 }

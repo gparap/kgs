@@ -138,4 +138,13 @@ object GameConstants {
     const val DEBRIS_MAX_SPEED = 5F
     const val DEBRIS_POOL_SIZE = 4
     const val DEBRIS_SPAWN_TIMER = 5F
+
+    //SFX
+    const val SFX_GAME_OVER = "sfx/game_over.wav"
+    const val SFX_PLAYER_HIT_DEBRIS = "sfx/hit_debris.wav"
+    const val SFX_PLAYER_HIT_ENEMY = "sfx/hit_enemy.wav"
+    const val SFX_PLAYER_JUMP = "sfx/jump_player.wav"
+    const val SFX_PLAYER_PICKUP_TOKEN = "sfx/pick_token.wav"
+    const val SFX_VOLUME_DEFAULT = 0.5f
+    const val SFX_VOLUME_MIN = 0.1f
 }
