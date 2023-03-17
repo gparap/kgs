@@ -147,4 +147,8 @@ object GameConstants {
     const val SFX_PLAYER_PICKUP_TOKEN = "sfx/pick_token.wav"
     const val SFX_VOLUME_DEFAULT = 0.5f
     const val SFX_VOLUME_MIN = 0.1f
+
+    //music
+    const val MUSIC_DEFAULT_VOL = 0.4F
+    const val MUSIC_THEME_PATH = "music/theme.mp3"
 }

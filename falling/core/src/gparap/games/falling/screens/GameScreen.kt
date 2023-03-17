@@ -40,6 +40,9 @@ class GameScreen(spriteBatch: SpriteBatch, private val game: Falling) : Screen(s
         tokenManager = TokenManager()
         spawnManager = SpawnManager(debrisManager, tokenManager, enemyManager)
         collisionManager = CollisionManager(player, spawnManager, hud)
+
+        //start playing the main music theme
+        MusicManager.playTheme()
     }
 
     override fun render(delta: Float) {
@@ -51,6 +54,7 @@ class GameScreen(spriteBatch: SpriteBatch, private val game: Falling) : Screen(s
             this.hide()
             game.screen = GameOverScreen(spriteBatch, game)
             sfxGameOver.play(GameConstants.SFX_VOLUME_DEFAULT)
+            MusicManager.stopTheme()
         }
 
         //update game

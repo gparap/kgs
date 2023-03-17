@@ -7,12 +7,16 @@ package gparap.games.falling;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import gparap.games.falling.managers.MusicManager;
 import gparap.games.falling.managers.SfxManager;
 import gparap.games.falling.screens.MenuScreen;
 
 public class Falling extends Game {
     @Override
     public void create() {
+        //load music theme
+        MusicManager.INSTANCE.loadTheme();
+
         //load sound effects
         SfxManager.getInstance().loadSFX();
 
@@ -27,5 +31,6 @@ public class Falling extends Game {
     public void dispose() {
         super.dispose();
         SfxManager.getInstance().dispose();
+        MusicManager.INSTANCE.dispose();
     }
 }
