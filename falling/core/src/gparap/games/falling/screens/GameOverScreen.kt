@@ -48,6 +48,7 @@ class GameOverScreen(spriteBatch: SpriteBatch, private val game: Falling) : Scre
 
         } else if (isExitPressed) {
             this.dispose()
+            game.dispose()
             Gdx.app.exit()
         }
     }
