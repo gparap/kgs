@@ -23,6 +23,7 @@ class MenuScreen(spriteBatch: SpriteBatch, private val game: Falling) : Screen(s
     private var isCreditsPressed = false
     private var isExitPressed = false
     private var isFriendsPressed = false
+    private var isSettingsPressed = false
     private lateinit var stage: Stage
 
     override fun show() {
@@ -54,7 +55,11 @@ class MenuScreen(spriteBatch: SpriteBatch, private val game: Falling) : Screen(s
             this.hide()
             game.screen = FriendsScreen(spriteBatch, game)
 
-        } else if (isExitPressed) {
+        } else if (isSettingsPressed){
+            TODO("Settings screen not implemented yet.")
+        }
+
+        else if (isExitPressed) {
             this.dispose()
             Gdx.app.exit()
         }
@@ -78,6 +83,9 @@ class MenuScreen(spriteBatch: SpriteBatch, private val game: Falling) : Screen(s
         val buttonFriends = createImageButton(isFriendsButton = true)
         table.add(buttonFriends).size(BUTTON_WIDTH, BUTTON_HEIGHT).pad(TABLE_CELL_PAD)
         table.row()
+        val buttonSettings = createImageButton(isSettingsButton = true)
+        table.add(buttonSettings).size(BUTTON_WIDTH, BUTTON_HEIGHT).pad(TABLE_CELL_PAD)
+        table.row()
         val buttonCredits = createImageButton(isCreditsButton = true)
         table.add(buttonCredits).size(BUTTON_WIDTH, BUTTON_HEIGHT).pad(TABLE_CELL_PAD)
         table.row()
@@ -90,6 +98,7 @@ class MenuScreen(spriteBatch: SpriteBatch, private val game: Falling) : Screen(s
     private fun createImageButton(
         isStartButton: Boolean = false,
         isFriendsButton: Boolean = false,
+        isSettingsButton: Boolean = false,
         isCreditsButton: Boolean = false,
         isExiButton: Boolean = false
     ): Image? {
@@ -100,6 +109,8 @@ class MenuScreen(spriteBatch: SpriteBatch, private val game: Falling) : Screen(s
             button = Image(Texture("button_start.png"))
         } else if (isFriendsButton) {
             button = Image(Texture("button_friends.png"))
+        } else if (isSettingsButton) {
+            button = Image(Texture("button_settings.png"))
         } else if (isCreditsButton) {
             button = Image(Texture("button_credits.png"))
         } else if (isExiButton) {
@@ -115,6 +126,8 @@ class MenuScreen(spriteBatch: SpriteBatch, private val game: Falling) : Screen(s
                     isStartPressed = true
                 } else if (isFriendsButton) {
                     isFriendsPressed = true
+                } else if (isSettingsButton) {
+                    isSettingsPressed = true
                 } else if (isCreditsButton) {
                     isCreditsPressed = true
                 } else if (isExiButton) {
@@ -128,7 +141,9 @@ class MenuScreen(spriteBatch: SpriteBatch, private val game: Falling) : Screen(s
                     isStartPressed = false
                 } else if (isFriendsButton) {
                     isCreditsPressed = false
-                }else if (isCreditsButton) {
+                }else if (isSettingsButton) {
+                    isSettingsPressed = false
+                } else if (isCreditsButton) {
                     isCreditsPressed = false
                 } else if (isExiButton) {
                     isExitPressed = false
