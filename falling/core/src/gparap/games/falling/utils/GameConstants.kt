@@ -22,6 +22,7 @@ object GameConstants {
     const val OFF_SCREEN_Y = -960F
     const val FRAME_DURATION_DIVIDER = 10
     const val ENEMY_JUMP_FACTOR = 100F
+    const val SETTINGS_SCREEN_PAD = 2F.times(BUTTON_HEIGHT)
 
     //fonts
     const val GAME_OVER_FONT_SIZE = 48
@@ -127,11 +128,11 @@ object GameConstants {
     const val PLAYER_ANIMATION_WALK2_RIGHT = "_walk2_right.png"
 
     //debris
-    const val DEBRIS_ROCK_LARGE_DARK  = "debris/rock_large_dark.png"
+    const val DEBRIS_ROCK_LARGE_DARK = "debris/rock_large_dark.png"
     const val DEBRIS_ROCK_LARGE_LIGHT = "debris/rock_large_light.png"
-    const val DEBRIS_ROCK_SMALL_DARK  = "debris/rock_small_dark.png"
+    const val DEBRIS_ROCK_SMALL_DARK = "debris/rock_small_dark.png"
     const val DEBRIS_ROCK_SMALL_LIGHT = "debris/rock_small_light.png"
-    const val DEBRIS_SPIKES_LONG  = "debris/spikes_long.png"
+    const val DEBRIS_SPIKES_LONG = "debris/spikes_long.png"
     const val DEBRIS_SPIKES_SHORT = "debris/spikes_short.png"
     const val DEBRIS_WEIGHT = "debris/weight.png"
     const val DEBRIS_MIN_SPEED = 2.5F

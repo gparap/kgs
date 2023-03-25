@@ -56,7 +56,9 @@ class MenuScreen(spriteBatch: SpriteBatch, private val game: Falling) : Screen(s
             game.screen = FriendsScreen(spriteBatch, game)
 
         } else if (isSettingsPressed){
-            TODO("Settings screen not implemented yet.")
+            this.dispose()
+            this.hide()
+            game.screen = SettingsScreen(spriteBatch, game)
         }
 
         else if (isExitPressed) {
