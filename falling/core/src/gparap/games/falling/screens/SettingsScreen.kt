@@ -4,12 +4,12 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
+import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.scenes.scene2d.InputEvent
 import com.badlogic.gdx.scenes.scene2d.InputListener
 import com.badlogic.gdx.scenes.scene2d.Stage
-import com.badlogic.gdx.scenes.scene2d.ui.Image
-import com.badlogic.gdx.scenes.scene2d.ui.Label
-import com.badlogic.gdx.scenes.scene2d.ui.Table
+import com.badlogic.gdx.scenes.scene2d.ui.*
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable
 import gparap.games.falling.Falling
 import gparap.games.falling.utils.GameConstants
 import gparap.games.falling.utils.GameConstants.SETTINGS_SCREEN_PAD
@@ -17,8 +17,9 @@ import gparap.games.falling.utils.GameConstants.TABLE_CELL_PAD
 
 class SettingsScreen(spriteBatch: SpriteBatch, private val game: Falling) : Screen(spriteBatch) {
     private var isMenuPressed = false
-    private var buttonToggleMusic: Image? = null
-    private var buttonToggleSFX: Image? = null
+    private var buttonMainMenu: Image? = null
+    private var buttonToggleMusic: ImageButton? = null
+    private var buttonToggleSFX: ImageButton? = null
     private var labelMusic: Label? = null
     private var labelSFX: Label? = null
     private var isMusicPressed = false
@@ -73,7 +74,7 @@ class SettingsScreen(spriteBatch: SpriteBatch, private val game: Falling) : Scre
     private fun createTables(): ArrayList<Table> {
         tables = ArrayList()
 
-        //create table for music toggle and add to list
+        //create table for music & SFX toggles and add them to list
         var table = Table()
         table.center().padBottom(SETTINGS_SCREEN_PAD)
         table.setFillParent(true)
@@ -84,49 +85,104 @@ class SettingsScreen(spriteBatch: SpriteBatch, private val game: Falling) : Scre
         table.add(labelSFX).pad(TABLE_CELL_PAD)
         tables.add(table)
 
-        //create table for SFX toggle and add to list
+        //create table for menu redirection and add it to list
         table = Table()
         table.center().padTop(SETTINGS_SCREEN_PAD)
         table.setFillParent(true)
-        table.add(createToggleButton("button_menu.png")).size(
-            GameConstants.BUTTON_WIDTH,
-            GameConstants.BUTTON_HEIGHT
-        ).pad(TABLE_CELL_PAD)
+        table.add(buttonMainMenu).size(GameConstants.BUTTON_WIDTH, GameConstants.BUTTON_HEIGHT).pad(TABLE_CELL_PAD)
         tables.add(table)
 
         return tables
     }
 
     private fun createButtons() {
-        buttonToggleMusic = createToggleButton("music/on.png")   //create toggle button for music
-        buttonToggleSFX = createToggleButton("sfx/on.png")       //create toggle button for SFX
+        buttonToggleMusic = createMusicToggleButton()   //create toggle button for music
+        buttonToggleSFX = createSFXToggleButton()       //create toggle button for SFX
+        buttonMainMenu = createMenuButton()             //create button for main menu
     }
 
-    private fun createToggleButton(filePath: String): Image {
-        val button = Image(Texture(filePath))
-        button.addListener(object : InputListener() {
+    private fun createMusicToggleButton(): ImageButton {
+        //create a skin and add drawables for on/off states
+        val skin = Skin()
+        val textureRegionON = TextureRegion(Texture("music/on.png"))
+        val textureRegionOFF = TextureRegion(Texture("music/off.png"))
+        skin.add("on", textureRegionON)
+        skin.add("off", textureRegionOFF)
+
+        //create the button style using the on/off state's drawables
+        val drawableON: Drawable = skin.getDrawable("on")
+        val drawableOFF: Drawable = skin.getDrawable("off")
+        val imageButtonStyle = ImageButton.ImageButtonStyle()
+        imageButtonStyle.up = drawableON
+        imageButtonStyle.down = drawableOFF
+        imageButtonStyle.checked = drawableOFF
+        imageButtonStyle.checkedDown = drawableOFF
+
+        //create an image button and set listener based on its state
+        val imageButton = ImageButton(imageButtonStyle)
+        imageButton.addListener(object : InputListener() {
             override fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean {
-                if (filePath.contains("music")) {
-                    isMusicPressed = true
-                } else if (filePath.contains("sfx")) {
-                    isSFXPressed = true
-                } else if (filePath.contains(GameConstants.TEXT_MENU)) {
-                    isMenuPressed = true
-                }
+                isMusicPressed = true
+                imageButtonStyle.up = drawableOFF
                 return true
             }
 
             override fun touchUp(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int) {
-                if (filePath.contains("music")) {
-                    isMusicPressed = false
-                } else if (filePath.contains("sfx")) {
-                    isSFXPressed = false
-                } else if (filePath.contains(GameConstants.TEXT_MENU)) {
-                    isMenuPressed = false
-                }
+                isMusicPressed = false
+                imageButtonStyle.up = drawableON
             }
         })
 
+        return imageButton
+    }
+
+    private fun createSFXToggleButton(): ImageButton {
+        //create a skin and add drawables for on/off states
+        val skin = Skin()
+        val textureRegionON = TextureRegion(Texture("sfx/on.png"))
+        val textureRegionOFF = TextureRegion(Texture("sfx/off.png"))
+        skin.add("on", textureRegionON)
+        skin.add("off", textureRegionOFF)
+
+        //create the button style using the on/off state's drawables
+        val drawableON: Drawable = skin.getDrawable("on")
+        val drawableOFF: Drawable = skin.getDrawable("off")
+        val imageButtonStyle = ImageButton.ImageButtonStyle()
+        imageButtonStyle.up = drawableON
+        imageButtonStyle.down = drawableOFF
+        imageButtonStyle.checked = drawableOFF
+        imageButtonStyle.checkedDown = drawableOFF
+
+        //create an image button and set listener based on its state
+        val imageButton = ImageButton(imageButtonStyle)
+        imageButton.addListener(object : InputListener() {
+            override fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean {
+                isSFXPressed = true
+                imageButtonStyle.up = drawableOFF
+                return true
+            }
+
+            override fun touchUp(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int) {
+                isSFXPressed = false
+                imageButtonStyle.up = drawableON
+            }
+        })
+
+        return imageButton
+    }
+
+    private fun createMenuButton(): Image {
+        val button = Image(Texture("button_menu.png"))
+        button.addListener(object : InputListener() {
+            override fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean {
+                isMenuPressed = true
+                return true
+            }
+
+            override fun touchUp(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int) {
+                isMenuPressed = false
+            }
+        })
         return button
     }
 }
