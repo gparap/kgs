@@ -96,16 +96,16 @@ class SettingsScreen(spriteBatch: SpriteBatch, private val game: Falling) : Scre
     }
 
     private fun createButtons() {
-        buttonToggleMusic = createMusicToggleButton()   //create toggle button for music
-        buttonToggleSFX = createSFXToggleButton()       //create toggle button for SFX
-        buttonMainMenu = createMenuButton()             //create button for main menu
+        buttonToggleMusic = createToggleButton("music/on.png", "music/off.png") //create toggle button for music
+        buttonToggleSFX = createToggleButton("sfx/on.png", "sfx/off.png")       //create toggle button for SFX
+        buttonMainMenu = createMenuButton() //create button for main menu
     }
 
-    private fun createMusicToggleButton(): ImageButton {
+    private fun createToggleButton(filePathToggleOn: String, filePathToggleOff: String) :ImageButton{
         //create a skin and add drawables for on/off states
         val skin = Skin()
-        val textureRegionON = TextureRegion(Texture("music/on.png"))
-        val textureRegionOFF = TextureRegion(Texture("music/off.png"))
+        val textureRegionON = TextureRegion(Texture(filePathToggleOn))
+        val textureRegionOFF = TextureRegion(Texture(filePathToggleOff))
         skin.add("on", textureRegionON)
         skin.add("off", textureRegionOFF)
 
@@ -122,48 +122,21 @@ class SettingsScreen(spriteBatch: SpriteBatch, private val game: Falling) : Scre
         val imageButton = ImageButton(imageButtonStyle)
         imageButton.addListener(object : InputListener() {
             override fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean {
-                isMusicPressed = true
+                if (filePathToggleOn.contains("music")) {
+                    isMusicPressed = true
+                } else if (filePathToggleOn.contains("sfx")) {
+                    isSFXPressed = true
+                }
                 imageButtonStyle.up = drawableOFF
                 return true
             }
 
             override fun touchUp(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int) {
-                isMusicPressed = false
-                imageButtonStyle.up = drawableON
-            }
-        })
-
-        return imageButton
-    }
-
-    private fun createSFXToggleButton(): ImageButton {
-        //create a skin and add drawables for on/off states
-        val skin = Skin()
-        val textureRegionON = TextureRegion(Texture("sfx/on.png"))
-        val textureRegionOFF = TextureRegion(Texture("sfx/off.png"))
-        skin.add("on", textureRegionON)
-        skin.add("off", textureRegionOFF)
-
-        //create the button style using the on/off state's drawables
-        val drawableON: Drawable = skin.getDrawable("on")
-        val drawableOFF: Drawable = skin.getDrawable("off")
-        val imageButtonStyle = ImageButton.ImageButtonStyle()
-        imageButtonStyle.up = drawableON
-        imageButtonStyle.down = drawableOFF
-        imageButtonStyle.checked = drawableOFF
-        imageButtonStyle.checkedDown = drawableOFF
-
-        //create an image button and set listener based on its state
-        val imageButton = ImageButton(imageButtonStyle)
-        imageButton.addListener(object : InputListener() {
-            override fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean {
-                isSFXPressed = true
-                imageButtonStyle.up = drawableOFF
-                return true
-            }
-
-            override fun touchUp(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int) {
-                isSFXPressed = false
+                if (filePathToggleOn.contains("music")) {
+                    isMusicPressed = false
+                } else if (filePathToggleOn.contains("sfx")) {
+                    isSFXPressed = false
+                }
                 imageButtonStyle.up = drawableON
             }
         })
