@@ -1,3 +1,8 @@
+/*******************************
+ * Katocheánian Gaming Studios *
+ * Little Jerry's Friends      *
+ * created by gparap           *
+ *******************************/
 package gparap.games.falling.screens
 
 import com.badlogic.gdx.Gdx
@@ -9,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent
 import com.badlogic.gdx.scenes.scene2d.InputListener
 import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.scenes.scene2d.ui.*
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton.ImageButtonStyle
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable
 import gparap.games.falling.Falling
 import gparap.games.falling.utils.GameConstants
@@ -22,8 +28,6 @@ class SettingsScreen(spriteBatch: SpriteBatch, private val game: Falling) : Scre
     private var buttonToggleSFX: ImageButton? = null
     private var labelMusic: Label? = null
     private var labelSFX: Label? = null
-    private var isMusicPressed = false
-    private var isSFXPressed = false
     private lateinit var stage: Stage
     private var tables = ArrayList<Table>()
 
@@ -50,14 +54,6 @@ class SettingsScreen(spriteBatch: SpriteBatch, private val game: Falling) : Scre
             this.dispose()
             this.hide()
             game.screen = MenuScreen(spriteBatch, game)
-        }
-
-        //toggle music/SFX
-        if (isMusicPressed) {
-            println("DEBUG: Music toggle button pressed...")
-        }
-        if (isSFXPressed) {
-            println("DEBUG: SFX toggle button pressed...")
         }
     }
 
@@ -101,7 +97,14 @@ class SettingsScreen(spriteBatch: SpriteBatch, private val game: Falling) : Scre
         buttonMainMenu = createMenuButton() //create button for main menu
     }
 
-    private fun createToggleButton(filePathToggleOn: String, filePathToggleOff: String) :ImageButton{
+    private fun updateImageButtonStyle(style: ImageButtonStyle, drawable: Drawable) {
+        style.up = drawable
+        style.down = drawable
+        style.checked = drawable
+        style.checkedDown = drawable
+    }
+
+    private fun createToggleButton(filePathToggleOn: String, filePathToggleOff: String): ImageButton {
         //create a skin and add drawables for on/off states
         val skin = Skin()
         val textureRegionON = TextureRegion(Texture(filePathToggleOn))
@@ -112,32 +115,62 @@ class SettingsScreen(spriteBatch: SpriteBatch, private val game: Falling) : Scre
         //create the button style using the on/off state's drawables
         val drawableON: Drawable = skin.getDrawable("on")
         val drawableOFF: Drawable = skin.getDrawable("off")
-        val imageButtonStyle = ImageButton.ImageButtonStyle()
-        imageButtonStyle.up = drawableON
-        imageButtonStyle.down = drawableOFF
-        imageButtonStyle.checked = drawableOFF
-        imageButtonStyle.checkedDown = drawableOFF
+        val imageButtonStyle = createImageButtonStyle(drawableON)
+
+        //set the button ON/OFF state based on preferencesThe style for an image button
+        var isToggleOn: Boolean
+        if (filePathToggleOn.contains("music")) {
+            isToggleOn = preferences.getBoolean(GameConstants.PREFERENCES_MUSIC, GameConstants.PREFERENCES_MUSIC_DEFAULT)
+            if (isToggleOn) {
+                updateImageButtonStyle(imageButtonStyle, drawableON)
+            } else {
+                updateImageButtonStyle(imageButtonStyle, drawableOFF)
+            }
+        } else if (filePathToggleOn.contains("sfx")) {
+            isToggleOn = preferences.getBoolean(GameConstants.PREFERENCES_SXF, GameConstants.PREFERENCES_SXF_DEFAULT)
+            if (isToggleOn) {
+                updateImageButtonStyle(imageButtonStyle, drawableON)
+            } else {
+                updateImageButtonStyle(imageButtonStyle, drawableOFF)
+            }
+        }
 
         //create an image button and set listener based on its state
         val imageButton = ImageButton(imageButtonStyle)
         imageButton.addListener(object : InputListener() {
             override fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean {
                 if (filePathToggleOn.contains("music")) {
-                    isMusicPressed = true
-                } else if (filePathToggleOn.contains("sfx")) {
-                    isSFXPressed = true
-                }
-                imageButtonStyle.up = drawableOFF
-                return true
-            }
+                    //get the button ON/OFF state based on preferences
+                    isToggleOn =
+                        preferences.getBoolean(GameConstants.PREFERENCES_MUSIC, GameConstants.PREFERENCES_MUSIC_DEFAULT)
 
-            override fun touchUp(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int) {
-                if (filePathToggleOn.contains("music")) {
-                    isMusicPressed = false
+                    //reverse the button state and save the preference
+                    if (isToggleOn) {
+                        imageButton.style = createImageButtonStyle(drawableOFF)
+                        preferences.putBoolean(GameConstants.PREFERENCES_MUSIC, false)
+                        preferences.flush()
+                    } else {
+                        imageButton.style = createImageButtonStyle(drawableON)
+                        preferences.putBoolean(GameConstants.PREFERENCES_MUSIC, true)
+                        preferences.flush()
+                    }
                 } else if (filePathToggleOn.contains("sfx")) {
-                    isSFXPressed = false
+                    //get the button ON/OFF state based on preferences
+                    isToggleOn =
+                        preferences.getBoolean(GameConstants.PREFERENCES_SXF, GameConstants.PREFERENCES_SXF_DEFAULT)
+
+                    //reverse the button ON/OFF state and save the preference
+                    if (isToggleOn) {
+                        imageButton.style = createImageButtonStyle(drawableOFF)
+                        preferences.putBoolean(GameConstants.PREFERENCES_SXF, false)
+                        preferences.flush()
+                    } else {
+                        imageButton.style = createImageButtonStyle(drawableON)
+                        preferences.putBoolean(GameConstants.PREFERENCES_SXF, true)
+                        preferences.flush()
+                    }
                 }
-                imageButtonStyle.up = drawableON
+                return true
             }
         })
 
@@ -157,5 +190,14 @@ class SettingsScreen(spriteBatch: SpriteBatch, private val game: Falling) : Scre
             }
         })
         return button
+    }
+
+    private fun createImageButtonStyle(drawable: Drawable): ImageButtonStyle {
+        val style = ImageButtonStyle()
+        style.up = drawable
+        style.down = drawable
+        style.checked = drawable
+        style.checkedDown = drawable
+        return style
     }
 }

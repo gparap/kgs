@@ -6,6 +6,7 @@
 package gparap.games.falling.player
 
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.Preferences
 import com.badlogic.gdx.audio.Sound
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.Animation
@@ -41,6 +42,8 @@ class Player(filePath: String) : GestureAdapter() {
     private var shouldJump = false
     private val friend: String
     private val sfxJump: Sound
+    private var preferences: Preferences
+    private var areSFXOn: Boolean
 
     fun getPosition(): Vector2 {
         return Vector2(sprite.x, sprite.y)
@@ -72,6 +75,10 @@ class Player(filePath: String) : GestureAdapter() {
 
         //init jumping SFX
         sfxJump = SfxManager.getInstance().getSFX(GameConstants.SFX_PLAYER_JUMP)
+
+        //get the SFX preferences
+        preferences = Gdx.app.getPreferences(GameConstants.PREFERENCES)
+        areSFXOn = preferences.getBoolean(GameConstants.PREFERENCES_SXF, GameConstants.PREFERENCES_SXF_DEFAULT)
     }
 
     fun update(delta: Float) {
@@ -114,7 +121,9 @@ class Player(filePath: String) : GestureAdapter() {
                 }
 
                 //play SFX
-                sfxJump.play(GameConstants.SFX_VOLUME_MIN)
+                if (areSFXOn){
+                    sfxJump.play(GameConstants.SFX_VOLUME_MIN)
+                }
             }
         }
     }
