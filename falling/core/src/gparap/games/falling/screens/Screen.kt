@@ -46,7 +46,7 @@ open class Screen(protected val spriteBatch: SpriteBatch) : Screen {
         ScreenUtils.clear(0F, 0F, 0F, 1F)
         spriteBatch.projectionMatrix = camera.combined
         spriteBatch.begin()
-        spriteBatch.draw(background, 0F, 0F)
+        spriteBatch.draw(background, 0F, 0F, viewport.screenWidth.toFloat(), viewport.screenHeight.toFloat())
         spriteBatch.end()
     }
 
