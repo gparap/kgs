@@ -17,11 +17,7 @@ import gparap.games.falling.utils.GameConstants
 class SpiderEnemy(enemySprite: Sprite) : Enemy() {
 
     init {
-        speed = 1.33F
-        enemyType = EnemyType.WALKER
-        sprite = enemySprite
-        position = randomizePosition(sprite.width)
-        sprite.setPosition(position.x, position.y)
+        super.init(EnemyType.WALKER, enemySprite)
 
         //create walking animations (left/right)
         framesLeft = createAnimationFrames(isFacingLeft = true)

@@ -11,10 +11,7 @@ import gparap.games.falling.utils.GameConstants
 class CoinToken(sprite: Sprite) : Token(sprite) {
 
     init {
-        speed = 1.25F
-        super.randomizeSpeed(GameConstants.TOKEN_COIN_MAX_SPEED)
-        tokenType = TokenType.COIN
-        sprite.setPosition(GameConstants.OFF_SCREEN_X, GameConstants.OFF_SCREEN_Y)
+        super.init(GameConstants.TOKEN_COIN_SPEED_DEFAULT, GameConstants.TOKEN_COIN_MAX_SPEED, TokenType.COIN, sprite)
     }
 
     override fun isActiveInGame(): Boolean {

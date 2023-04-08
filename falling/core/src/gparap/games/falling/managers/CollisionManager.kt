@@ -13,6 +13,7 @@ import com.badlogic.gdx.audio.Sound
 import gparap.games.falling.hud.HUD
 import gparap.games.falling.player.Player
 import gparap.games.falling.utils.GameConstants
+import gparap.games.falling.utils.GameConstants.SFX_VOLUME_DEFAULT
 
 /**
  * This manager class is responsible for handling the collisions of the player with the other game objects
@@ -47,7 +48,7 @@ class CollisionManager(private val player: Player, private val spawnManager: Spa
                 token.setCollectedInGame(true)
                 hud.setScore(token.getScorePoints())
                 if (areSFXOn){
-                    sfxPlayerPickToken.play(GameConstants.SFX_VOLUME_DEFAULT)
+                    sfxPlayerPickToken.play(SFX_VOLUME_DEFAULT)
                 }
             }
         }
@@ -60,7 +61,7 @@ class CollisionManager(private val player: Player, private val spawnManager: Spa
                 player.loseLife()
                 hud.setLife(player.getLife())
                 if (areSFXOn){
-                    sfxPlayerHitEnemy.play(GameConstants.SFX_VOLUME_DEFAULT)
+                    sfxPlayerHitEnemy.play(SFX_VOLUME_DEFAULT)
                 }
             }
         }
@@ -73,7 +74,7 @@ class CollisionManager(private val player: Player, private val spawnManager: Spa
                 player.loseLife()
                 hud.setLife(player.getLife())
                 if (areSFXOn){
-                    sfxPlayerHitDebris.play(GameConstants.SFX_VOLUME_DEFAULT)
+                    sfxPlayerHitDebris.play(SFX_VOLUME_DEFAULT)
                 }
             }
         }

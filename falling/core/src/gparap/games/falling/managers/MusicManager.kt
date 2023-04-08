@@ -1,9 +1,17 @@
+/*******************************
+ * Katocheánian Gaming Studios *
+ * Little Jerry's Friends      *
+ * created by gparap           *
+ *******************************/
 package gparap.games.falling.managers
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.audio.Music
 import gparap.games.falling.utils.GameConstants
 
+/**
+ * This manager class is responsible for the game's main music theme
+ */
 object MusicManager {
     private lateinit var music: Music
 

@@ -12,6 +12,8 @@ import com.badlogic.gdx.math.RandomXS128
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import gparap.games.falling.utils.GameConstants
+import gparap.games.falling.utils.GameConstants.DEBRIS_MAX_SPEED
+import gparap.games.falling.utils.GameUtils
 import java.util.*
 import kotlin.properties.Delegates
 
@@ -36,7 +38,7 @@ abstract class Debris(private val sprite: Sprite) {
         if (position.y < 0 - sprite.height) {
             setActiveInGame(false)
             randomizePosition()
-            randomizeSpeed(GameConstants.DEBRIS_MAX_SPEED)
+            randomizeSpeed(DEBRIS_MAX_SPEED)
         }
     }
 
@@ -45,7 +47,7 @@ abstract class Debris(private val sprite: Sprite) {
     }
 
     open fun randomizeSpeed(maxSpeed: Float) {
-        speed = Random().nextFloat() * (maxSpeed - GameConstants.DEBRIS_MIN_SPEED) + GameConstants.DEBRIS_MAX_SPEED
+        speed = Random().nextFloat() * (maxSpeed - GameConstants.DEBRIS_MIN_SPEED) + DEBRIS_MAX_SPEED
     }
 
     /* Randomizes X position (x > 0 && x < screen_width - debris_width) */
@@ -57,10 +59,6 @@ abstract class Debris(private val sprite: Sprite) {
 
     /* Returns the collision boundaries for this debris */
     open fun getCollisionBounds(): Rectangle {
-        val rectangle = Rectangle()
-        rectangle.width = sprite.width - (sprite.width / 10)
-        rectangle.height = sprite.height - (sprite.height / 10)
-        rectangle.setPosition(sprite.x, sprite.y)
-        return rectangle
+        return GameUtils.getCollisionBounds(sprite)
     }
 }

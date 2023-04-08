@@ -17,6 +17,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label
 import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle
 import com.badlogic.gdx.scenes.scene2d.ui.Table
 import gparap.games.falling.Falling
+import gparap.games.falling.utils.GameConstants
 import gparap.games.falling.utils.GameConstants.BUTTON_HEIGHT
 import gparap.games.falling.utils.GameConstants.BUTTON_WIDTH
 import gparap.games.falling.utils.GameConstants.TABLE_CELL_PAD
@@ -51,22 +52,7 @@ class CreditsScreen(spriteBatch: SpriteBatch, private val game: Falling) : Scree
     }
 
     private fun createLabel() {
-        labelCredits = Label(
-            String.format(
-                "%s", """
-     
-                Graphics/SFX/Font: Kenney 
-                www.kenney.nl 
-                
-                Game created with LibGDX 
-                libgdx.badlogicgames.com
-                
-                LibGDX is under Apache 2.0 licence
-                see www.apache.org/licenses/LICENSE-2.0.txt
-                
-                """.trimIndent()
-            ), LabelStyle(font, Color.BLACK)
-        )
+        labelCredits = Label(String.format("%s", GameConstants.CREDITS.trimIndent()), LabelStyle(font, Color.BLACK))
     }
 
     private fun createTable(): Table {
@@ -81,7 +67,7 @@ class CreditsScreen(spriteBatch: SpriteBatch, private val game: Falling) : Scree
     }
 
     private fun createMenuButton() {
-        buttonMenu = Image(Texture("button_menu.png"))
+        buttonMenu = Image(Texture(GameConstants.BUTTON_MENU))
         buttonMenu!!.addListener(object : InputListener() {
             override fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean {
                 isPressedMenu = true

@@ -17,11 +17,7 @@ import gparap.games.falling.utils.GameConstants
 class LadyBugEnemy(enemySprite: Sprite) : Enemy() {
 
     init {
-        speed = 1.33F
-        enemyType = EnemyType.FLYER
-        sprite = enemySprite
-        position = randomizePosition(sprite.width)
-        sprite.setPosition(position.x, position.y)
+        super.init(EnemyType.FLYER, enemySprite)
 
         //create flying animations (left/right)
         framesLeft = createAnimationFrames(isFacingLeft = true)

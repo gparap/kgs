@@ -17,11 +17,7 @@ import gparap.games.falling.utils.GameConstants
 class SnailEnemy(enemySprite: Sprite) : Enemy() {
 
     init {
-        speed = 1.33F
-        enemyType = EnemyType.CRAWLER
-        sprite = enemySprite
-        position = randomizePosition(sprite.width)
-        sprite.setPosition(position.x, position.y)
+        super.init(EnemyType.CRAWLER, enemySprite)
 
         //create crawling animations (left/right)
         framesLeft = createAnimationFrames(isFacingLeft = true)

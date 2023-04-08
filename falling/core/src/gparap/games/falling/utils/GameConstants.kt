@@ -8,21 +8,43 @@ package gparap.games.falling.utils
 import com.badlogic.gdx.graphics.Color
 
 object GameConstants {
-    const val BUTTON_WIDTH = 128F
-    const val BUTTON_HEIGHT = 64F
-    const val TABLE_CELL_PAD = 8F
+    const val PLAYER_SCALE_FACTOR = 1 / 1.5F
+    const val GROUND_ZERO = 40F
+    const val OFF_SCREEN_X = -1600F
+    const val OFF_SCREEN_Y = -960F
+    const val LIFE_DEFAULT = 5
+    const val SCORE_DEFAULT = 0
+    const val COLLISION_RECT_BOUNDS_SCALE_FACTOR = 10F
+
+    //texts
     const val TEXT_TAP = "Tap!"
     const val TEXT_GAME_OVER = "Game Over!"
     const val TEXT_START = "start"
     const val TEXT_MENU = "menu"
     const val TEXT_EXIT = "exit"
-    const val PLAYER_SCALE_FACTOR = 1 / 1.5F
-    const val GROUND_ZERO = 40F
-    const val OFF_SCREEN_X = -1600F
-    const val OFF_SCREEN_Y = -960F
-    const val FRAME_DURATION_DIVIDER = 10
-    const val ENEMY_JUMP_FACTOR = 100F
+    const val TEXT_ON = "on"
+    const val TEXT_OFF = "off"
+    const val TEXT_MUSIC = "music"
+    const val TEXT_SFX = "sfx"
+    const val TEXT_BEIGE = "beige"
+    const val TEXT_BLUE = "blue"
+    const val TEXT_GREEN = "green"
+    const val TEXT_PINK = "pink"
+    const val TEXT_YELLOW = "yellow"
+
+    //stages' table actors
+    const val BUTTON_WIDTH = 128F
+    const val BUTTON_HEIGHT = 64F
+    const val TABLE_CELL_PAD = 8F
     const val SETTINGS_SCREEN_PAD = 2F.times(BUTTON_HEIGHT)
+
+    //buttons
+    const val BUTTON_START = "button_start.png"
+    const val BUTTON_FRIENDS = "button_friends.png"
+    const val BUTTON_SETTINGS = "button_settings.png"
+    const val BUTTON_CREDITS = "button_credits.png"
+    const val BUTTON_EXIT = "button_exit.png"
+    const val BUTTON_MENU = "button_menu.png"
 
     //fonts
     const val GAME_OVER_FONT_SIZE = 48
@@ -45,7 +67,7 @@ object GameConstants {
     const val PREFERENCES_SXF = "jnf_sfx"
     const val PREFERENCES_SXF_DEFAULT = true
 
-    //friends .png
+    //friends
     const val FRIEND_BEIGE = "friends/alien_beige.png"
     const val FRIEND_BLUE = "friends/alien_blue.png"
     const val FRIEND_GREEN = "friends/alien_green.png"
@@ -53,6 +75,9 @@ object GameConstants {
     const val FRIEND_YELLOW = "friends/alien_yellow.png"
 
     //enemies
+    const val ENEMY_FRAME_DURATION_DIVIDER = 10
+    const val ENEMY_JUMP_FACTOR = 100F
+    const val ENEMY_SPEED_DEFAULT = 1.33F
     const val ENEMIES_TYPES_COUNT = 4
     const val ENEMY_POOL_SIZE = 4
     const val ENEMY_SPAWN_TIMER = 5F
@@ -107,6 +132,9 @@ object GameConstants {
     const val TOKEN_COIN_SILVER = "tokens/coin_silver.png"
     const val TOKEN_STAR = "tokens/star.png"
     const val TOKEN_MIN_SPEED = 1.25F
+    const val TOKEN_GEM_SPEED_DEFAULT = 1.33F
+    const val TOKEN_COIN_SPEED_DEFAULT = 1.25F
+    const val TOKEN_STAR_SPEED_DEFAULT = 1.5F
     const val TOKEN_GEM_MAX_SPEED = 2.5F
     const val TOKEN_COIN_MAX_SPEED = 5F
     const val TOKEN_STAR_MAX_SPEED = 10F
@@ -130,6 +158,8 @@ object GameConstants {
     const val PLAYER_ANIMATION_WALK2_LEFT = "_walk2_left.png"
     const val PLAYER_ANIMATION_WALK1_RIGHT = "_walk1_right.png"
     const val PLAYER_ANIMATION_WALK2_RIGHT = "_walk2_right.png"
+    const val PLAYER_ANIMATION_JUMP_LEFT = "_jump_left.png"
+    const val PLAYER_ANIMATION_JUMP_RIGHT = "_jump_right.png"
 
     //debris
     const val DEBRIS_ROCK_LARGE_DARK = "debris/rock_large_dark.png"
@@ -152,8 +182,32 @@ object GameConstants {
     const val SFX_PLAYER_PICKUP_TOKEN = "sfx/pick_token.wav"
     const val SFX_VOLUME_DEFAULT = 0.5f
     const val SFX_VOLUME_MIN = 0.1f
+    const val SFX_ON = "sfx/on.png"
+    const val SFX_OFF = "sfx/off.png"
 
     //music
     const val MUSIC_DEFAULT_VOL = 0.4F
     const val MUSIC_THEME_PATH = "music/theme.mp3"
+    const val LABEL_MUSIC = "Music"
+    const val LABEL_SOUNDS = "Sounds"
+    const val MUSIC_ON = "music/on.png"
+    const val MUSIC_OFF = "music/off.png"
+
+    //background
+    const val BACKGROUND = "background.png"
+
+    //credits
+    const val CREDITS =
+    """
+ 
+    Graphics/SFX/Font: Kenney 
+    www.kenney.nl 
+    
+    Game created with LibGDX 
+    libgdx.badlogicgames.com
+    
+    LibGDX is under Apache 2.0 licence
+    see www.apache.org/licenses/LICENSE-2.0.txt
+    
+    """
 }

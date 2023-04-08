@@ -19,6 +19,7 @@ import com.badlogic.gdx.math.Vector2
 import gparap.games.falling.managers.SfxManager
 import gparap.games.falling.utils.GameConstants
 import gparap.games.falling.utils.GameConstants.GROUND_ZERO
+import gparap.games.falling.utils.GameConstants.PLAYER_ANIMATION_PATH
 import gparap.games.falling.utils.GameConstants.PLAYER_SCALE_FACTOR
 import gparap.games.falling.utils.GameUtils
 import kotlin.math.abs
@@ -70,8 +71,8 @@ class Player(filePath: String) : GestureAdapter() {
 
         //create jumping sprites
         friend = GameUtils.getFriendFromFilePath(filePath)
-        spriteJumpLeft = Sprite(Texture("friends/animations/" + friend + "/" + friend + "_jump_left.png"))
-        spriteJumpRight = Sprite(Texture("friends/animations/" + friend + "/" + friend + "_jump_right.png"))
+        spriteJumpLeft = Sprite(Texture(PLAYER_ANIMATION_PATH + friend + "/" + friend + GameConstants.PLAYER_ANIMATION_JUMP_LEFT))
+        spriteJumpRight = Sprite(Texture(PLAYER_ANIMATION_PATH + friend + "/" + friend + GameConstants.PLAYER_ANIMATION_JUMP_RIGHT))
 
         //init jumping SFX
         sfxJump = SfxManager.getInstance().getSFX(GameConstants.SFX_PLAYER_JUMP)
@@ -208,13 +209,7 @@ class Player(filePath: String) : GestureAdapter() {
      * Returns the collision boundaries for the player
      */
     fun getCollisionBounds(): Rectangle {
-        val rectangle = Rectangle()
-        rectangle.width = sprite.width
-        rectangle.height = sprite.height
-        rectangle.width = sprite.width - (sprite.width / 10F)
-        rectangle.height = sprite.height - (sprite.height / 10F)
-        rectangle.setPosition(sprite.x, sprite.y)
-        return rectangle
+        return GameUtils.getCollisionBounds(sprite)
     }
 
     /**
@@ -230,7 +225,7 @@ class Player(filePath: String) : GestureAdapter() {
     }
 
     /**
-     * Detect up & down swipes for jumping and ducking
+     * Detect up swipes for jumping
      */
     override fun fling(velocityX: Float, velocityY: Float, button: Int): Boolean {
         if (velocityY < 0) {

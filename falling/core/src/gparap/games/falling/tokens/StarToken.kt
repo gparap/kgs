@@ -11,10 +11,7 @@ import gparap.games.falling.utils.GameConstants
 class StarToken(sprite: Sprite) : Token(sprite) {
 
     init {
-        speed = 1.5F
-        super.randomizeSpeed(GameConstants.TOKEN_STAR_MAX_SPEED)
-        tokenType = TokenType.STAR
-        sprite.setPosition(GameConstants.OFF_SCREEN_X, GameConstants.OFF_SCREEN_Y)
+        super.init(GameConstants.TOKEN_STAR_SPEED_DEFAULT, GameConstants.TOKEN_STAR_MAX_SPEED, TokenType.STAR, sprite)
     }
 
     override fun isActiveInGame(): Boolean {

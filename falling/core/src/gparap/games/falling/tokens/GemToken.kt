@@ -11,10 +11,7 @@ import gparap.games.falling.utils.GameConstants
 class GemToken(sprite: Sprite) : Token(sprite) {
 
     init {
-        speed = 1.33F
-        super.randomizeSpeed(GameConstants.TOKEN_GEM_MAX_SPEED)
-        tokenType = TokenType.GEM
-        sprite.setPosition(GameConstants.OFF_SCREEN_X, GameConstants.OFF_SCREEN_Y)
+        super.init(GameConstants.TOKEN_GEM_SPEED_DEFAULT, GameConstants.TOKEN_GEM_MAX_SPEED, TokenType.GEM, sprite)
     }
 
     override fun isActiveInGame(): Boolean {

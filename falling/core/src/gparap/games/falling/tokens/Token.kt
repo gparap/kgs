@@ -12,6 +12,8 @@ import com.badlogic.gdx.math.RandomXS128
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import gparap.games.falling.utils.GameConstants
+import gparap.games.falling.utils.GameConstants.TOKEN_MIN_SPEED
+import gparap.games.falling.utils.GameUtils
 import java.util.*
 import kotlin.properties.Delegates
 
@@ -20,7 +22,7 @@ abstract class Token(private val sprite: Sprite) {
     protected var speed by Delegates.notNull<Float>()
     protected var isActive = false
     protected var isCollected = false
-    protected lateinit var tokenType: TokenType
+    private lateinit var tokenType: TokenType
 
     abstract fun isActiveInGame(): Boolean
     abstract fun setActiveInGame(active: Boolean)
@@ -29,6 +31,13 @@ abstract class Token(private val sprite: Sprite) {
     abstract fun setCollectedInGame(collected: Boolean)
 
     abstract fun getScorePoints(): Int
+
+    open fun init(speed: Float, maxSpeed: Float, type: TokenType, sprite: Sprite) {
+        this.speed = speed
+        randomizeSpeed(maxSpeed)
+        this.tokenType = TokenType.COIN
+        sprite.setPosition(GameConstants.OFF_SCREEN_X, GameConstants.OFF_SCREEN_Y)
+    }
 
     open fun update(delta: Float) {
         //token is falling
@@ -52,7 +61,7 @@ abstract class Token(private val sprite: Sprite) {
     }
 
     open fun randomizeSpeed(maxSpeed: Float) {
-        speed = Random().nextFloat() * (maxSpeed - GameConstants.TOKEN_MIN_SPEED) + GameConstants.TOKEN_MIN_SPEED
+        speed = Random().nextFloat() * (maxSpeed - TOKEN_MIN_SPEED) + TOKEN_MIN_SPEED
     }
 
     /* Randomizes X position (x > 0 && x < screen_width - token_width) */
@@ -64,10 +73,6 @@ abstract class Token(private val sprite: Sprite) {
 
     /* Returns the collision boundaries for this token */
     open fun getCollisionBounds(): Rectangle {
-        val rectangle = Rectangle()
-        rectangle.width = sprite.width - (sprite.width / 10)
-        rectangle.height = sprite.height - (sprite.height / 10)
-        rectangle.setPosition(sprite.x, sprite.y)
-        return rectangle
+        return GameUtils.getCollisionBounds(sprite)
     }
 }

@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.scenes.scene2d.ui.Image
 import com.badlogic.gdx.scenes.scene2d.ui.Table
 import gparap.games.falling.Falling
+import gparap.games.falling.utils.GameConstants
 import gparap.games.falling.utils.GameConstants.BUTTON_HEIGHT
 import gparap.games.falling.utils.GameConstants.TABLE_CELL_PAD
 import gparap.games.falling.utils.GameConstants.BUTTON_WIDTH
@@ -55,13 +56,11 @@ class MenuScreen(spriteBatch: SpriteBatch, private val game: Falling) : Screen(s
             this.hide()
             game.screen = FriendsScreen(spriteBatch, game)
 
-        } else if (isSettingsPressed){
+        } else if (isSettingsPressed) {
             this.dispose()
             this.hide()
             game.screen = SettingsScreen(spriteBatch, game)
-        }
-
-        else if (isExitPressed) {
+        } else if (isExitPressed) {
             this.dispose()
             Gdx.app.exit()
         }
@@ -108,15 +107,15 @@ class MenuScreen(spriteBatch: SpriteBatch, private val game: Falling) : Screen(s
 
         //create an image button
         if (isStartButton) {
-            button = Image(Texture("button_start.png"))
+            button = Image(Texture(GameConstants.BUTTON_START))
         } else if (isFriendsButton) {
-            button = Image(Texture("button_friends.png"))
+            button = Image(Texture(GameConstants.BUTTON_FRIENDS))
         } else if (isSettingsButton) {
-            button = Image(Texture("button_settings.png"))
+            button = Image(Texture(GameConstants.BUTTON_SETTINGS))
         } else if (isCreditsButton) {
-            button = Image(Texture("button_credits.png"))
+            button = Image(Texture(GameConstants.BUTTON_CREDITS))
         } else if (isExiButton) {
-            button = Image(Texture("button_exit.png"))
+            button = Image(Texture(GameConstants.BUTTON_EXIT))
         }
 
         button?.setSize(BUTTON_WIDTH, BUTTON_HEIGHT)
@@ -143,7 +142,7 @@ class MenuScreen(spriteBatch: SpriteBatch, private val game: Falling) : Screen(s
                     isStartPressed = false
                 } else if (isFriendsButton) {
                     isCreditsPressed = false
-                }else if (isSettingsButton) {
+                } else if (isSettingsButton) {
                     isSettingsPressed = false
                 } else if (isCreditsButton) {
                     isCreditsPressed = false

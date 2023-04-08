@@ -26,7 +26,12 @@ import gparap.games.falling.utils.GameConstants.FRIEND_PINK
 import gparap.games.falling.utils.GameConstants.FRIEND_YELLOW
 import gparap.games.falling.utils.GameConstants.PREFERENCES_FRIEND
 import gparap.games.falling.utils.GameConstants.TABLE_CELL_PAD
+import gparap.games.falling.utils.GameConstants.TEXT_BEIGE
+import gparap.games.falling.utils.GameConstants.TEXT_BLUE
+import gparap.games.falling.utils.GameConstants.TEXT_GREEN
+import gparap.games.falling.utils.GameConstants.TEXT_PINK
 import gparap.games.falling.utils.GameConstants.TEXT_TAP
+import gparap.games.falling.utils.GameConstants.TEXT_YELLOW
 
 class FriendsScreen(spriteBatch: SpriteBatch, private val game: Falling) : Screen(spriteBatch) {
     private var buttonBeige: Image? = null
@@ -112,11 +117,11 @@ class FriendsScreen(spriteBatch: SpriteBatch, private val game: Falling) : Scree
     }
 
     private fun createFriendsButtons() {
-        buttonBeige = createImageButton("friends/alien_beige.png")   //create beige friend
-        buttonBlue = createImageButton("friends/alien_blue.png")     //create blue friend
-        buttonGreen = createImageButton("friends/alien_green.png")   //create green friend (aka Jerry!!!)
-        buttonPink = createImageButton("friends/alien_pink.png")     //create pink friend
-        buttonYellow = createImageButton("friends/alien_yellow.png") //create yellow friend
+        buttonBeige = createImageButton(FRIEND_BEIGE)   //create beige friend
+        buttonBlue = createImageButton(FRIEND_BLUE)     //create blue friend
+        buttonGreen = createImageButton(FRIEND_GREEN)   //create green friend (aka Jerry!!!)
+        buttonPink = createImageButton(FRIEND_PINK)     //create pink friend
+        buttonYellow = createImageButton(FRIEND_YELLOW) //create yellow friend
     }
 
     private fun selectFriend(friend: String) {
@@ -133,15 +138,15 @@ class FriendsScreen(spriteBatch: SpriteBatch, private val game: Falling) : Scree
         val button = Image(Texture(filePath))
         button.addListener(object : InputListener() {
             override fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean {
-                if (filePath.contains("beige")) {
+                if (filePath.contains(TEXT_BEIGE)) {
                     isPressedBeige = true
-                } else if (filePath.contains("blue")) {
+                } else if (filePath.contains(TEXT_BLUE)) {
                     isPressedBlue = true
-                } else if (filePath.contains("green")) {
+                } else if (filePath.contains(TEXT_GREEN)) {
                     isPressedGreen = true
-                } else if (filePath.contains("pink")) {
+                } else if (filePath.contains(TEXT_PINK)) {
                     isPressedPink = true
-                } else if (filePath.contains("yellow")) {
+                } else if (filePath.contains(TEXT_YELLOW)) {
                     isPressedYellow = true
                 }
 
@@ -149,15 +154,15 @@ class FriendsScreen(spriteBatch: SpriteBatch, private val game: Falling) : Scree
             }
 
             override fun touchUp(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int) {
-                if (filePath.contains("beige")) {
+                if (filePath.contains(TEXT_BEIGE)) {
                     isPressedBeige = false
-                } else if (filePath.contains("blue")) {
+                } else if (filePath.contains(TEXT_BLUE)) {
                     isPressedBlue = false
-                } else if (filePath.contains("green")) {
+                } else if (filePath.contains(TEXT_GREEN)) {
                     isPressedGreen = false
-                } else if (filePath.contains("pink")) {
+                } else if (filePath.contains(TEXT_PINK)) {
                     isPressedPink = false
-                } else if (filePath.contains("yellow")) {
+                } else if (filePath.contains(TEXT_YELLOW)) {
                     isPressedYellow = false
                 }
             }

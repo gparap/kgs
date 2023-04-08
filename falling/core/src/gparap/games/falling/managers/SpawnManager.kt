@@ -9,9 +9,12 @@ import gparap.games.falling.debris.Debris
 import gparap.games.falling.utils.GameConstants
 import gparap.games.falling.enemies.Enemy
 import gparap.games.falling.tokens.Token
+import gparap.games.falling.utils.GameConstants.DEBRIS_SPAWN_TIMER
+import gparap.games.falling.utils.GameConstants.ENEMY_SPAWN_TIMER
+import gparap.games.falling.utils.GameConstants.TOKEN_SPAWN_TIMER
 
 /**
- * This manager class is responsible for the spawning of tokens and enemies in the game
+ * This manager class is responsible for the spawning of tokens and enemies in the game.
  */
 class SpawnManager(
     private val debrisManager: DebrisManager,
@@ -80,7 +83,7 @@ class SpawnManager(
 
     /* Makes a debris from the pool active in the game based on a time interval */
     private fun spawnDebris() {
-        if (debrisSpawnTimer >= GameConstants.DEBRIS_SPAWN_TIMER) {
+        if (debrisSpawnTimer >= DEBRIS_SPAWN_TIMER) {
             //randomly shuffle debris in the pool
             debrisPool.shuffle()
 
@@ -92,7 +95,7 @@ class SpawnManager(
                 }
             }
             //reset the debris timer
-            if (debrisSpawnTimer >= GameConstants.DEBRIS_SPAWN_TIMER) {
+            if (debrisSpawnTimer >= DEBRIS_SPAWN_TIMER) {
                 debrisSpawnTimer = 0F
             }
         }
@@ -100,7 +103,7 @@ class SpawnManager(
 
     /* Makes a token from the pool active in the game based on a time interval */
     private fun spawnToken() {
-        if (tokenSpawnTimer >= GameConstants.TOKEN_SPAWN_TIMER) {
+        if (tokenSpawnTimer >= TOKEN_SPAWN_TIMER) {
             //retrieve the first active token from the pool
             for (t: Token in tokenPool) {
                 if (!t.isActiveInGame()) {
@@ -109,7 +112,7 @@ class SpawnManager(
                 }
             }
             //reset the token timer
-            if (tokenSpawnTimer >= GameConstants.TOKEN_SPAWN_TIMER) {
+            if (tokenSpawnTimer >= TOKEN_SPAWN_TIMER) {
                 tokenSpawnTimer = 0F
             }
         }
@@ -117,7 +120,7 @@ class SpawnManager(
 
     /* Makes an enemy from the pool active in the game based on a time interval */
     private fun spawnEnemy() {
-        if (enemySpawnTimer >= GameConstants.ENEMY_SPAWN_TIMER) {
+        if (enemySpawnTimer >= ENEMY_SPAWN_TIMER) {
             //retrieve the first active enemy from the pool
             for (e: Enemy in enemyPool) {
                 if (!e.isActiveInGame()) {
@@ -126,7 +129,7 @@ class SpawnManager(
                 }
             }
             //reset the enemy timer
-            if (enemySpawnTimer >= GameConstants.ENEMY_SPAWN_TIMER) {
+            if (enemySpawnTimer >= ENEMY_SPAWN_TIMER) {
                 enemySpawnTimer = 0F
             }
         }

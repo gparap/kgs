@@ -18,8 +18,16 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton.ImageButtonStyle
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable
 import gparap.games.falling.Falling
 import gparap.games.falling.utils.GameConstants
+import gparap.games.falling.utils.GameConstants.PREFERENCES_MUSIC
+import gparap.games.falling.utils.GameConstants.PREFERENCES_MUSIC_DEFAULT
+import gparap.games.falling.utils.GameConstants.PREFERENCES_SXF
+import gparap.games.falling.utils.GameConstants.PREFERENCES_SXF_DEFAULT
 import gparap.games.falling.utils.GameConstants.SETTINGS_SCREEN_PAD
 import gparap.games.falling.utils.GameConstants.TABLE_CELL_PAD
+import gparap.games.falling.utils.GameConstants.TEXT_MUSIC
+import gparap.games.falling.utils.GameConstants.TEXT_OFF
+import gparap.games.falling.utils.GameConstants.TEXT_ON
+import gparap.games.falling.utils.GameConstants.TEXT_SFX
 
 class SettingsScreen(spriteBatch: SpriteBatch, private val game: Falling) : Screen(spriteBatch) {
     private var isMenuPressed = false
@@ -37,11 +45,7 @@ class SettingsScreen(spriteBatch: SpriteBatch, private val game: Falling) : Scre
         createLabels()
         createButtons()
         stage = Stage(viewport, spriteBatch)
-        tables = createTables().apply {
-            forEach {
-                stage.addActor(it)
-            }
-        }
+        tables = createTables().onEach { stage.addActor(it) }
         Gdx.input.inputProcessor = stage
     }
 
@@ -63,8 +67,8 @@ class SettingsScreen(spriteBatch: SpriteBatch, private val game: Falling) : Scre
     }
 
     private fun createLabels() {
-        labelMusic = Label("Music", Label.LabelStyle(font, Color.GREEN))
-        labelSFX = Label("Sounds", Label.LabelStyle(font, Color.GREEN))
+        labelMusic = Label(GameConstants.LABEL_MUSIC, Label.LabelStyle(font, Color.GREEN))
+        labelSFX = Label(GameConstants.LABEL_SOUNDS, Label.LabelStyle(font, Color.GREEN))
     }
 
     private fun createTables(): ArrayList<Table> {
@@ -92,9 +96,9 @@ class SettingsScreen(spriteBatch: SpriteBatch, private val game: Falling) : Scre
     }
 
     private fun createButtons() {
-        buttonToggleMusic = createToggleButton("music/on.png", "music/off.png") //create toggle button for music
-        buttonToggleSFX = createToggleButton("sfx/on.png", "sfx/off.png")       //create toggle button for SFX
-        buttonMainMenu = createMenuButton() //create button for main menu
+        buttonToggleMusic = createToggleButton(GameConstants.MUSIC_ON, GameConstants.MUSIC_OFF) //create toggle button for music
+        buttonToggleSFX = createToggleButton(GameConstants.SFX_ON, GameConstants.SFX_OFF)       //create toggle button for SFX
+        buttonMainMenu = createMenuButton()                                                     //create button for main menu
     }
 
     private fun updateImageButtonStyle(style: ImageButtonStyle, drawable: Drawable) {
@@ -109,25 +113,25 @@ class SettingsScreen(spriteBatch: SpriteBatch, private val game: Falling) : Scre
         val skin = Skin()
         val textureRegionON = TextureRegion(Texture(filePathToggleOn))
         val textureRegionOFF = TextureRegion(Texture(filePathToggleOff))
-        skin.add("on", textureRegionON)
-        skin.add("off", textureRegionOFF)
+        skin.add(TEXT_ON, textureRegionON)
+        skin.add(TEXT_OFF, textureRegionOFF)
 
         //create the button style using the on/off state's drawables
-        val drawableON: Drawable = skin.getDrawable("on")
-        val drawableOFF: Drawable = skin.getDrawable("off")
+        val drawableON: Drawable = skin.getDrawable(TEXT_ON)
+        val drawableOFF: Drawable = skin.getDrawable(TEXT_OFF)
         val imageButtonStyle = createImageButtonStyle(drawableON)
 
-        //set the button ON/OFF state based on preferencesThe style for an image button
+        //set the button ON/OFF state based on preferences
         var isToggleOn: Boolean
-        if (filePathToggleOn.contains("music")) {
-            isToggleOn = preferences.getBoolean(GameConstants.PREFERENCES_MUSIC, GameConstants.PREFERENCES_MUSIC_DEFAULT)
+        if (filePathToggleOn.contains(TEXT_MUSIC)) {
+            isToggleOn = preferences.getBoolean(PREFERENCES_MUSIC, PREFERENCES_MUSIC_DEFAULT)
             if (isToggleOn) {
                 updateImageButtonStyle(imageButtonStyle, drawableON)
             } else {
                 updateImageButtonStyle(imageButtonStyle, drawableOFF)
             }
-        } else if (filePathToggleOn.contains("sfx")) {
-            isToggleOn = preferences.getBoolean(GameConstants.PREFERENCES_SXF, GameConstants.PREFERENCES_SXF_DEFAULT)
+        } else if (filePathToggleOn.contains(TEXT_SFX)) {
+            isToggleOn = preferences.getBoolean(PREFERENCES_SXF, PREFERENCES_SXF_DEFAULT)
             if (isToggleOn) {
                 updateImageButtonStyle(imageButtonStyle, drawableON)
             } else {
@@ -139,35 +143,25 @@ class SettingsScreen(spriteBatch: SpriteBatch, private val game: Falling) : Scre
         val imageButton = ImageButton(imageButtonStyle)
         imageButton.addListener(object : InputListener() {
             override fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean {
-                if (filePathToggleOn.contains("music")) {
+                if (filePathToggleOn.contains(TEXT_MUSIC)) {
                     //get the button ON/OFF state based on preferences
-                    isToggleOn =
-                        preferences.getBoolean(GameConstants.PREFERENCES_MUSIC, GameConstants.PREFERENCES_MUSIC_DEFAULT)
+                    isToggleOn = preferences.getBoolean(PREFERENCES_MUSIC, PREFERENCES_MUSIC_DEFAULT)
 
                     //reverse the button state and save the preference
                     if (isToggleOn) {
-                        imageButton.style = createImageButtonStyle(drawableOFF)
-                        preferences.putBoolean(GameConstants.PREFERENCES_MUSIC, false)
-                        preferences.flush()
+                        reverseState(imageButton, drawableOFF, PREFERENCES_MUSIC, false)
                     } else {
-                        imageButton.style = createImageButtonStyle(drawableON)
-                        preferences.putBoolean(GameConstants.PREFERENCES_MUSIC, true)
-                        preferences.flush()
+                        reverseState(imageButton, drawableON, PREFERENCES_MUSIC, true)
                     }
-                } else if (filePathToggleOn.contains("sfx")) {
+                } else if (filePathToggleOn.contains(TEXT_SFX)) {
                     //get the button ON/OFF state based on preferences
-                    isToggleOn =
-                        preferences.getBoolean(GameConstants.PREFERENCES_SXF, GameConstants.PREFERENCES_SXF_DEFAULT)
+                    isToggleOn = preferences.getBoolean(PREFERENCES_SXF, PREFERENCES_SXF_DEFAULT)
 
                     //reverse the button ON/OFF state and save the preference
                     if (isToggleOn) {
-                        imageButton.style = createImageButtonStyle(drawableOFF)
-                        preferences.putBoolean(GameConstants.PREFERENCES_SXF, false)
-                        preferences.flush()
+                        reverseState(imageButton, drawableOFF, PREFERENCES_SXF, false)
                     } else {
-                        imageButton.style = createImageButtonStyle(drawableON)
-                        preferences.putBoolean(GameConstants.PREFERENCES_SXF, true)
-                        preferences.flush()
+                        reverseState(imageButton, drawableON, PREFERENCES_SXF, true)
                     }
                 }
                 return true
@@ -178,7 +172,7 @@ class SettingsScreen(spriteBatch: SpriteBatch, private val game: Falling) : Scre
     }
 
     private fun createMenuButton(): Image {
-        val button = Image(Texture("button_menu.png"))
+        val button = Image(Texture(GameConstants.BUTTON_MENU))
         button.addListener(object : InputListener() {
             override fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean {
                 isMenuPressed = true
@@ -190,6 +184,13 @@ class SettingsScreen(spriteBatch: SpriteBatch, private val game: Falling) : Scre
             }
         })
         return button
+    }
+
+    /** Reverses an image button's state and saves the preference. */
+    private fun reverseState(imageButton: ImageButton, drawable: Drawable, prefName: String, prefValue: Boolean) {
+        imageButton.style = createImageButtonStyle(drawable)
+        preferences.putBoolean(prefName, prefValue)
+        preferences.flush()
     }
 
     private fun createImageButtonStyle(drawable: Drawable): ImageButtonStyle {

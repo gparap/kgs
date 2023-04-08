@@ -24,11 +24,7 @@ class FrogEnemy(enemySprite: Sprite) : Enemy() {
     private var spriteJumpRight = GameConstants.ENEMY_FROG_JUMP_RIGHT
 
     init {
-        speed = 1.33F
-        enemyType = EnemyType.JUMPER
-        sprite = enemySprite
-        position = randomizePosition(sprite.width)
-        sprite.setPosition(position.x, position.y)
+        super.init(EnemyType.JUMPER, enemySprite)
     }
 
     override fun isActiveInGame(): Boolean {

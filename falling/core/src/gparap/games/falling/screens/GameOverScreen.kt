@@ -1,3 +1,8 @@
+/*******************************
+ * Katocheánian Gaming Studios *
+ * Little Jerry's Friends      *
+ * created by gparap           *
+ *******************************/
 package gparap.games.falling.screens
 
 import com.badlogic.gdx.Gdx
@@ -12,6 +17,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label
 import com.badlogic.gdx.scenes.scene2d.ui.Table
 import gparap.games.falling.Falling
 import gparap.games.falling.utils.GameConstants
+import gparap.games.falling.utils.GameConstants.TEXT_EXIT
+import gparap.games.falling.utils.GameConstants.TEXT_MENU
+import gparap.games.falling.utils.GameConstants.TEXT_START
 
 class GameOverScreen(spriteBatch: SpriteBatch, private val game: Falling) : Screen(spriteBatch) {
     private var labelGameOver: Label? = null
@@ -69,17 +77,17 @@ class GameOverScreen(spriteBatch: SpriteBatch, private val game: Falling) : Scre
         table.setFillParent(true)
         table.add(labelGameOver).center()
         table.row()
-        table.add(createImageButton("button_start.png")).size(
+        table.add(createImageButton(GameConstants.BUTTON_START)).size(
             GameConstants.BUTTON_WIDTH,
             GameConstants.BUTTON_HEIGHT
         ).pad(GameConstants.TABLE_CELL_PAD)
         table.row()
-        table.add(createImageButton("button_menu.png")).size(
+        table.add(createImageButton(GameConstants.BUTTON_MENU)).size(
             GameConstants.BUTTON_WIDTH,
             GameConstants.BUTTON_HEIGHT
         ).pad(GameConstants.TABLE_CELL_PAD)
         table.row()
-        table.add(createImageButton("button_exit.png")).size(
+        table.add(createImageButton(GameConstants.BUTTON_EXIT)).size(
             GameConstants.BUTTON_WIDTH,
             GameConstants.BUTTON_HEIGHT
         ).pad(GameConstants.TABLE_CELL_PAD)
@@ -91,22 +99,22 @@ class GameOverScreen(spriteBatch: SpriteBatch, private val game: Falling) : Scre
         val button = Image(Texture(filePath))
         button.addListener(object : InputListener() {
             override fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean {
-                if (filePath.contains(GameConstants.TEXT_START)) {
+                if (filePath.contains(TEXT_START)) {
                     isStartPressed = true
-                } else if (filePath.contains(GameConstants.TEXT_MENU)) {
+                } else if (filePath.contains(TEXT_MENU)) {
                     isMenuPressed = true
-                } else if (filePath.contains(GameConstants.TEXT_EXIT)) {
+                } else if (filePath.contains(TEXT_EXIT)) {
                     isExitPressed = true
                 }
                 return true
             }
 
             override fun touchUp(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int) {
-                if (filePath.contains(GameConstants.TEXT_START)) {
+                if (filePath.contains(TEXT_START)) {
                     isStartPressed = false
-                } else if (filePath.contains(GameConstants.TEXT_MENU)) {
+                } else if (filePath.contains(TEXT_MENU)) {
                     isMenuPressed = false
-                } else if (filePath.contains(GameConstants.TEXT_EXIT)) {
+                } else if (filePath.contains(TEXT_EXIT)) {
                     isExitPressed = false
                 }
             }

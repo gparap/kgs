@@ -1,9 +1,17 @@
+/*******************************
+ * Katocheánian Gaming Studios *
+ * Little Jerry's Friends      *
+ * created by gparap           *
+ *******************************/
 package gparap.games.falling.managers;
 
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Sound;
 import gparap.games.falling.utils.GameConstants;
 
+/**
+ * This manager class is responsible for all the sound effects in the game
+ */
 public class SfxManager {
     private static SfxManager instance;
     private AssetManager assetManager;

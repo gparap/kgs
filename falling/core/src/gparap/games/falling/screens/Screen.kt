@@ -18,7 +18,6 @@ import com.badlogic.gdx.utils.ScreenUtils
 import com.badlogic.gdx.utils.viewport.ScreenViewport
 import gparap.games.falling.utils.GameConstants
 
-
 /**
  * Base class for all screens of the game.
  */
@@ -31,19 +30,22 @@ open class Screen(protected val spriteBatch: SpriteBatch) : Screen {
 
     override fun show() {
         //set up how the game world coordinates are mapped to and from the screen
-        camera = OrthographicCamera(Gdx.graphics.width * 4F, Gdx.graphics.height * 4F)
+        camera = OrthographicCamera(Gdx.graphics.width.toFloat(), Gdx.graphics.height.toFloat())
         camera.setToOrtho(false)
         viewport = ScreenViewport(camera)
 
         //create background
-        background = Texture("background.png")
+        background = Texture(GameConstants.BACKGROUND)
 
         //get the preferences of this game
         preferences = Gdx.app.getPreferences(GameConstants.PREFERENCES)
     }
 
     override fun render(delta: Float) {
+        //clear the screen before drawing
         ScreenUtils.clear(0F, 0F, 0F, 1F)
+
+        //draw background
         spriteBatch.projectionMatrix = camera.combined
         spriteBatch.begin()
         spriteBatch.draw(background, 0F, 0F, viewport.screenWidth.toFloat(), viewport.screenHeight.toFloat())
@@ -54,13 +56,9 @@ open class Screen(protected val spriteBatch: SpriteBatch) : Screen {
         viewport.update(width, height, true)
     }
 
-    override fun pause() {
-        TODO("Not yet implemented - pause")
-    }
+    override fun pause() {}
 
-    override fun resume() {
-        TODO("Not yet implemented - resume")
-    }
+    override fun resume() {}
 
     override fun hide() {}
 
@@ -70,8 +68,8 @@ open class Screen(protected val spriteBatch: SpriteBatch) : Screen {
 
     /** Creates the default font that will be used throughout the screens */
     protected open fun createFont(fontSize: Int = GameConstants.DEFAULT_FONT_SIZE) {
-        font = BitmapFont(Gdx.files.internal("fonts/kenney_pixel.fnt"))
-        val generator = FreeTypeFontGenerator(Gdx.files.internal("fonts/kenney_pixel.otf"))
+        font = BitmapFont(Gdx.files.internal(GameConstants.DEFAULT_FONT))
+        val generator = FreeTypeFontGenerator(Gdx.files.internal(GameConstants.OPEN_TYPE_FONT))
         val parameter = FreeTypeFontParameter()
         parameter.size = fontSize
         font = generator.generateFont(parameter)

@@ -21,6 +21,8 @@ import com.badlogic.gdx.utils.Align
 import com.badlogic.gdx.utils.Disposable
 import com.badlogic.gdx.utils.viewport.FitViewport
 import gparap.games.falling.utils.GameConstants
+import gparap.games.falling.utils.GameConstants.PREFERENCES_HIGH_SCORE
+import gparap.games.falling.utils.GameConstants.SCORE_DEFAULT
 import java.util.*
 
 /**
@@ -53,10 +55,10 @@ class HUD(spriteBatch: SpriteBatch?) : Disposable {
         stage = Stage(viewport, spriteBatch)
         font = BitmapFont(Gdx.files.internal(GameConstants.DEFAULT_FONT))
         preferences = Gdx.app.getPreferences(GameConstants.PREFERENCES).apply {
-            highScore = this.getInteger(GameConstants.PREFERENCES_HIGH_SCORE, 0)
+            highScore = this.getInteger(PREFERENCES_HIGH_SCORE, SCORE_DEFAULT)
         }
-        score = 0
-        life = 5
+        score = SCORE_DEFAULT
+        life = GameConstants.LIFE_DEFAULT
         createFont()
         createLabels()
         createLabelsTables().forEach {
@@ -72,7 +74,7 @@ class HUD(spriteBatch: SpriteBatch?) : Disposable {
         //check for high score
         if (score > highScore) {
             highScore = score
-            preferences?.putInteger(GameConstants.PREFERENCES_HIGH_SCORE, highScore)
+            preferences?.putInteger(PREFERENCES_HIGH_SCORE, highScore)
             preferences?.flush()
         }
     }

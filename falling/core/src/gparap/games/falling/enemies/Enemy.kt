@@ -15,7 +15,7 @@ import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.utils.Array
 import gparap.games.falling.utils.GameConstants
-import javax.swing.text.Position
+import gparap.games.falling.utils.GameUtils
 import kotlin.properties.Delegates
 
 abstract class Enemy {
@@ -39,6 +39,14 @@ abstract class Enemy {
 
     abstract fun update(delta: Float)
     abstract fun draw(spriteBatch: SpriteBatch)
+
+    fun init(type: EnemyType, sprite: Sprite) {
+        speed = GameConstants.ENEMY_SPEED_DEFAULT
+        enemyType = type
+        this.sprite = sprite
+        position = randomizePosition(sprite.width)
+        this.sprite.setPosition(position.x, position.y)
+    }
 
     /** Handles the enemy positioning when it reaches or approaches the ground */
     fun setGroundedPosition() {
@@ -80,11 +88,7 @@ abstract class Enemy {
      *  Returns the collision boundaries for this enemy
      */
     fun getCollisionBounds(): Rectangle {
-        val rectangle = Rectangle()
-        rectangle.width = sprite.width - (sprite.width / 10)
-        rectangle.height = sprite.height - (sprite.height / 10)
-        rectangle.setPosition(sprite.x, sprite.y)
-        return rectangle
+        return GameUtils.getCollisionBounds(sprite)
     }
 
     /**
@@ -163,7 +167,7 @@ abstract class Enemy {
     /** Animates the enemy sprites based on facing. */
     fun animate() {
         //increase the amount of seconds the bat has spent in current animation state
-        stateTime += frameDuration.div(GameConstants.FRAME_DURATION_DIVIDER)
+        stateTime += frameDuration.div(GameConstants.ENEMY_FRAME_DURATION_DIVIDER)
 
         //animate
         if (facingDirection == FacingDirection.LEFT) {
