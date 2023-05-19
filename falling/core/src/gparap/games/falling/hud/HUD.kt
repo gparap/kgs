@@ -23,7 +23,9 @@ import com.badlogic.gdx.utils.viewport.FitViewport
 import gparap.games.falling.utils.GameConstants
 import gparap.games.falling.utils.GameConstants.PREFERENCES_HIGH_SCORE
 import gparap.games.falling.utils.GameConstants.SCORE_DEFAULT
+import gparap.games.falling.utils.GameUtils
 import java.util.*
+import kotlin.math.roundToInt
 
 /**
  * Heads-up display (presents game data to the user)
@@ -166,11 +168,12 @@ class HUD(spriteBatch: SpriteBatch?) : Disposable {
     private fun getFontSize(): Int {
         var size = GameConstants.DEFAULT_FONT_SIZE
 
-        //check for lower resolutions and adjust the size
+        //check for higher resolutions and adjust the size
         val width = Gdx.graphics.width.toFloat()
         val height = Gdx.graphics.height.toFloat()
-        if (width < Gdx.graphics.width.toFloat() || width < Gdx.graphics.height.toFloat() || height < Gdx.graphics.width.toFloat() || height < Gdx.graphics.height.toFloat()) {
-            size = GameConstants.LOW_RESOLUTION_FONT_SIZE
+        if (width > GameConstants.GAME_DESIGN_WIDTH || width > GameConstants.GAME_DESIGN_HEIGHT ||
+            height > GameConstants.GAME_DESIGN_WIDTH || height > GameConstants.GAME_DESIGN_HEIGHT) {
+            size = (GameConstants.HIGH_RESOLUTION_FONT_SIZE * GameUtils.getScaleFactor()).roundToInt()
         }
 
         return size

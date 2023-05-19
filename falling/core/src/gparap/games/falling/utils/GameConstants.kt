@@ -15,6 +15,7 @@ object GameConstants {
     const val LIFE_DEFAULT = 5
     const val SCORE_DEFAULT = 0
     const val COLLISION_RECT_BOUNDS_SCALE_FACTOR = 10F
+    const val GAME_DESIGN_WIDTH = 600F
     const val GAME_DESIGN_HEIGHT = 480F
 
     //texts
@@ -50,7 +51,7 @@ object GameConstants {
     //fonts
     const val GAME_OVER_FONT_SIZE = 48
     const val DEFAULT_FONT_SIZE = 24
-    const val LOW_RESOLUTION_FONT_SIZE = 32
+    const val HIGH_RESOLUTION_FONT_SIZE = 32
     const val DEFAULT_FONT = "fonts/kenney_pixel.fnt"
     const val OPEN_TYPE_FONT = "fonts/kenney_pixel.otf"
 
