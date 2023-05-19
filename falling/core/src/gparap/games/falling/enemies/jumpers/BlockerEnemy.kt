@@ -13,6 +13,7 @@ import gparap.games.falling.enemies.EnemyState
 import gparap.games.falling.enemies.EnemyType
 import gparap.games.falling.enemies.FacingDirection
 import gparap.games.falling.utils.GameConstants
+import gparap.games.falling.utils.GameUtils
 
 class BlockerEnemy(enemySprite: Sprite) : Enemy() {
     private var isAbleToJump = false
@@ -61,7 +62,7 @@ class BlockerEnemy(enemySprite: Sprite) : Enemy() {
             }
 
             //don't fall of the ground
-            if (sprite.y < GameConstants.GROUND_ZERO) {
+            if (sprite.y < GameUtils.getGroundZero()) {
                 enemyState = EnemyState.FALLING
                 setGroundedPosition()
 

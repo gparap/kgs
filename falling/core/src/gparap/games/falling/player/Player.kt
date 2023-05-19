@@ -18,7 +18,6 @@ import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import gparap.games.falling.managers.SfxManager
 import gparap.games.falling.utils.GameConstants
-import gparap.games.falling.utils.GameConstants.GROUND_ZERO
 import gparap.games.falling.utils.GameConstants.PLAYER_ANIMATION_PATH
 import gparap.games.falling.utils.GameConstants.PLAYER_SCALE_FACTOR
 import gparap.games.falling.utils.GameUtils
@@ -29,10 +28,10 @@ class Player(filePath: String) : GestureAdapter() {
     private var spriteIdle: Sprite = Sprite(Texture(filePath))
     private var spriteJumpLeft: Sprite
     private var spriteJumpRight: Sprite
-    private val speed = 7.5F
+    private var speed = 7.5F * GameUtils.getScaleFactor()
     private var state: PlayerState
     private var velocity = 0F
-    private var velocityUpdateFactor = 1.5F
+    private var velocityUpdateFactor = 1.5F * GameUtils.getScaleFactor()
     private var velocityUpdateMax = velocityUpdateFactor * 10
     private var life = 5
     private val animationLeft: Animation<Texture>
@@ -55,8 +54,8 @@ class Player(filePath: String) : GestureAdapter() {
     }
 
     init {
-        sprite.setPosition(0F, GROUND_ZERO)
-        sprite.setSize(sprite.width * PLAYER_SCALE_FACTOR, sprite.height * PLAYER_SCALE_FACTOR)
+        sprite.setPosition(0F, GameUtils.getGroundZero())
+        sprite.setSize(sprite.width * PLAYER_SCALE_FACTOR * GameUtils.getScaleFactor(), sprite.height * PLAYER_SCALE_FACTOR * GameUtils.getScaleFactor())
 
         state = PlayerState.IDLE
         facing = PlayerFacing.NONE
@@ -141,8 +140,8 @@ class Player(filePath: String) : GestureAdapter() {
         }
 
         //don't fall of the ground
-        if (sprite.y < GROUND_ZERO) {
-            sprite.y = GROUND_ZERO
+        if (sprite.y < GameUtils.getGroundZero()) {
+            sprite.y = GameUtils.getGroundZero()
             state = PlayerState.WALK
         }
 
@@ -160,20 +159,20 @@ class Player(filePath: String) : GestureAdapter() {
     private fun checkIfPlayerShouldJump() {
         if (shouldJump && ((state != PlayerState.JUMP) && (state != PlayerState.FALL))) {
             state = PlayerState.JUMP
-            sprite.y = GROUND_ZERO
+            sprite.y = GameUtils.getGroundZero()
             shouldJump = false
         }
     }
 
     private fun updatePlayerState() {
-        if (sprite.y == GROUND_ZERO) {
+        if (sprite.y == GameUtils.getGroundZero()) {
             state = PlayerState.IDLE
             if (Gdx.input.isTouched) {
                 state = PlayerState.WALK
             }
-        } else if (sprite.y > GROUND_ZERO && velocity > 0) {
+        } else if (sprite.y > GameUtils.getGroundZero() && velocity > 0) {
             state = PlayerState.JUMP
-        } else if (sprite.y > GROUND_ZERO && velocity < 0) {
+        } else if (sprite.y > GameUtils.getGroundZero() && velocity < 0) {
             state = PlayerState.FALL
         }
     }

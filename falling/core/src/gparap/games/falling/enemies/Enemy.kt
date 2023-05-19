@@ -41,9 +41,10 @@ abstract class Enemy {
     abstract fun draw(spriteBatch: SpriteBatch)
 
     fun init(type: EnemyType, sprite: Sprite) {
-        speed = GameConstants.ENEMY_SPEED_DEFAULT
+        speed = GameConstants.ENEMY_SPEED_DEFAULT * GameUtils.getScaleFactor()
         enemyType = type
         this.sprite = sprite
+        this.sprite.setScale(GameUtils.getScaleFactor())
         position = randomizePosition(sprite.width)
         this.sprite.setPosition(position.x, position.y)
     }
@@ -51,12 +52,12 @@ abstract class Enemy {
     /** Handles the enemy positioning when it reaches or approaches the ground */
     fun setGroundedPosition() {
         if (enemyType == EnemyType.CRAWLER || enemyType == EnemyType.JUMPER || enemyType == EnemyType.WALKER) {
-            sprite.y = GameConstants.GROUND_ZERO
-            position.y = GameConstants.GROUND_ZERO
+            sprite.y = GameUtils.getGroundZero()
+            position.y = GameUtils.getGroundZero()
 
         } else if (enemyType == EnemyType.FLYER) {
-            sprite.y = GameConstants.GROUND_ZERO + sprite.height * 2
-            position.y = GameConstants.GROUND_ZERO + sprite.height * 2
+            sprite.y = GameUtils.getGroundZero() + sprite.height * GameUtils.getScaleFactor() * 2
+            position.y = GameUtils.getGroundZero() + sprite.height * GameUtils.getScaleFactor() * 2
         }
     }
 

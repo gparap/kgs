@@ -37,6 +37,7 @@ abstract class Token(private val sprite: Sprite) {
         randomizeSpeed(maxSpeed)
         this.tokenType = TokenType.COIN
         sprite.setPosition(GameConstants.OFF_SCREEN_X, GameConstants.OFF_SCREEN_Y)
+        sprite.setScale(GameUtils.getScaleFactor())
     }
 
     open fun update(delta: Float) {
@@ -61,7 +62,7 @@ abstract class Token(private val sprite: Sprite) {
     }
 
     open fun randomizeSpeed(maxSpeed: Float) {
-        speed = Random().nextFloat() * (maxSpeed - TOKEN_MIN_SPEED) + TOKEN_MIN_SPEED
+        speed = (Random().nextFloat() * (maxSpeed - TOKEN_MIN_SPEED) + TOKEN_MIN_SPEED) * GameUtils.getScaleFactor()
     }
 
     /* Randomizes X position (x > 0 && x < screen_width - token_width) */

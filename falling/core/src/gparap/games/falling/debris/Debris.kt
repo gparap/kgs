@@ -47,7 +47,7 @@ abstract class Debris(private val sprite: Sprite) {
     }
 
     open fun randomizeSpeed(maxSpeed: Float) {
-        speed = Random().nextFloat() * (maxSpeed - GameConstants.DEBRIS_MIN_SPEED) + DEBRIS_MAX_SPEED
+        speed = (Random().nextFloat() * (maxSpeed - GameConstants.DEBRIS_MIN_SPEED) + DEBRIS_MAX_SPEED) * GameUtils.getScaleFactor()
     }
 
     /* Randomizes X position (x > 0 && x < screen_width - debris_width) */

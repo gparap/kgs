@@ -13,6 +13,7 @@ import gparap.games.falling.enemies.Enemy
 import gparap.games.falling.enemies.EnemyState
 import gparap.games.falling.enemies.EnemyType
 import gparap.games.falling.utils.GameConstants
+import gparap.games.falling.utils.GameUtils
 
 class SnailEnemy(enemySprite: Sprite) : Enemy() {
 
@@ -38,7 +39,7 @@ class SnailEnemy(enemySprite: Sprite) : Enemy() {
             setFalling(delta)
 
             //don't fall of the ground
-            if (sprite.y < GameConstants.GROUND_ZERO) {
+            if (sprite.y < GameUtils.getGroundZero()) {
                 setGroundedPosition()
                 setGroundedState()
                 moveSideways(delta)

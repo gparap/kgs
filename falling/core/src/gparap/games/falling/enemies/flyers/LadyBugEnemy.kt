@@ -13,6 +13,7 @@ import gparap.games.falling.enemies.Enemy
 import gparap.games.falling.enemies.EnemyState
 import gparap.games.falling.enemies.EnemyType
 import gparap.games.falling.utils.GameConstants
+import gparap.games.falling.utils.GameUtils
 
 class LadyBugEnemy(enemySprite: Sprite) : Enemy() {
 
@@ -38,7 +39,7 @@ class LadyBugEnemy(enemySprite: Sprite) : Enemy() {
             setFalling(delta)
 
             //fly above the ground
-            if (sprite.y < GameConstants.GROUND_ZERO + sprite.height * 2) {
+            if (sprite.y < GameUtils.getGroundZero() + sprite.height * 2 * GameUtils.getScaleFactor()) {
                 setGroundedPosition()
                 setGroundedState()
                 moveSideways(delta)

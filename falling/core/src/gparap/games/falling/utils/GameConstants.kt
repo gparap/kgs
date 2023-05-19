@@ -15,6 +15,7 @@ object GameConstants {
     const val LIFE_DEFAULT = 5
     const val SCORE_DEFAULT = 0
     const val COLLISION_RECT_BOUNDS_SCALE_FACTOR = 10F
+    const val GAME_DESIGN_HEIGHT = 480F
 
     //texts
     const val TEXT_TAP = "Tap!"
