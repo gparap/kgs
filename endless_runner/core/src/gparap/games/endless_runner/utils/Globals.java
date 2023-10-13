@@ -44,6 +44,7 @@ public class Globals {
     public static final String ALIEN_2_SPRITESHEET              = "alien/p2_spritesheet.png";
     public static final String ALIEN_3_SPRITESHEET              = "alien/p3_spritesheet.png";
     public static final String ALIEN_STAND                      = "alien/p1_stand.png";
+    public static final int ALIEN_DEFAULT                       = 1;
 
     //enemies
     public static final int ENEMY_INIT_XY                       = 1000000;

@@ -87,7 +87,7 @@ public class Player extends GameObject {
 
         //get alien from preferences
         Preferences preferences = Gdx.app.getPreferences(Globals.PREFERENCES);
-        player = preferences.getInteger(Globals.PREFERENCES_PLAYER);
+        player = preferences.getInteger(Globals.PREFERENCES_PLAYER, Globals.ALIEN_DEFAULT);
         switch (player) {
             case 1:
                 spritesheet = new Texture(Globals.ALIEN_1_SPRITESHEET);
