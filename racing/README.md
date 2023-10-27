@@ -5,3 +5,7 @@ A racing game, created with LibGDX framework.
 View on Google Play:
 --------------------
 https://play.google.com/store/apps/details?id=gparap.games.racing
+
+View on itch.io:
+----------------
+https://katocheanian.itch.io/bikes-vs-rallies
