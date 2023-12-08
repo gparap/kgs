@@ -27,11 +27,12 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+import gparap.games.threeheartlandrun.Background;
 import gparap.games.threeheartlandrun.ThreeHeartLandRun;
 
 public class MenuScreen implements Screen {
     private final ThreeHeartLandRun game;
-    private Texture background;
+    private Background background;
     private Stage stage;
     private Image buttonStart, buttonPlayer, buttonOptions, buttonCredits, buttonExit;
     private boolean isButtonStartPressed, isButtonPlayerPressed, isButtonOptionsPressed,
@@ -49,7 +50,7 @@ public class MenuScreen implements Screen {
     @Override
     public void show() {
         //create the background
-        background = new Texture("background-empty.png");
+        background = new Background(game);
 
         //create the stage
         Viewport viewport = new FillViewport(ThreeHeartLandRun.MIN_WIDTH, ThreeHeartLandRun.MIN_HEIGHT, game.getCamera());
@@ -71,7 +72,8 @@ public class MenuScreen implements Screen {
         //draw background
         game.getSpriteBatch().setProjectionMatrix(game.getCamera().combined);
         game.getSpriteBatch().begin();
-        game.getSpriteBatch().draw(background, 0, 0, game.getCamera().viewportWidth, game.getCamera().viewportHeight);
+        background.update(delta);
+        background.draw();
         game.getSpriteBatch().end();
 
         //draw stage
@@ -91,11 +93,6 @@ public class MenuScreen implements Screen {
         if (isButtonOptionsPressed) {
             this.dispose();
             //TODO: show the options screen
-        }
-        //view credits
-        if (isButtonCreditsPressed) {
-            this.dispose();
-            //TODO: show the credits screen
         }
         //view credits
         if (isButtonCreditsPressed) {
