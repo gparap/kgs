@@ -30,21 +30,21 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import gparap.games.threeheartlandrun.Background;
 import gparap.games.threeheartlandrun.ThreeHeartLandRun;
 
-public class MenuScreen implements Screen {
+public class PlayerScreen implements Screen {
     private final ThreeHeartLandRun game;
     private Background background;
     private Stage stage;
-    private Image buttonStart, buttonPlayer, buttonOptions, buttonCredits, buttonExit;
-    private boolean isButtonStartPressed, isButtonPlayerPressed, isButtonOptionsPressed,
-            isButtonCreditsPressed, isButtonExitPressed;
+    private Image buttonPlayer1, buttonPlayer2, buttonPlayer3, buttonPlayer4, buttonPlayer5, buttonMenu;
+    private boolean isPlayer1Pressed, isPlayer2Pressed, isPlayer3Pressed, isPlayer4Pressed, isPlayer5Pressed, isMenuPressed;
 
-    public MenuScreen(ThreeHeartLandRun game) {
+    public PlayerScreen(ThreeHeartLandRun game) {
         this.game = game;
-        isButtonStartPressed = false;
-        isButtonPlayerPressed = false;
-        isButtonOptionsPressed = false;
-        isButtonCreditsPressed = false;
-        isButtonExitPressed = false;
+        isPlayer1Pressed = false;
+        isPlayer2Pressed = false;
+        isPlayer3Pressed = false;
+        isPlayer4Pressed = false;
+        isPlayer5Pressed = false;
+        isMenuPressed = false;
     }
 
     @Override
@@ -56,7 +56,7 @@ public class MenuScreen implements Screen {
         Viewport viewport = new FillViewport(ThreeHeartLandRun.MIN_WIDTH, ThreeHeartLandRun.MIN_HEIGHT, game.getCamera());
         stage = new Stage(viewport);
 
-        //create actors and add them to stage
+        //create actors and add them to stage   //TODO: add info label
         createButtons();
         stage.addActor(createTable());
 
@@ -79,31 +79,27 @@ public class MenuScreen implements Screen {
         //draw stage
         stage.draw();
 
-        //start game
-        if (isButtonStartPressed) {
-            this.dispose();
-            //TODO: start game
+        //select player character
+        if (isPlayer1Pressed) {
+            //TODO: select player
         }
-        //select player
-        if (isButtonPlayerPressed) {
-            this.dispose();
-            game.setScreen(new PlayerScreen(game));
+        if (isPlayer2Pressed) {
+            //TODO: select player
         }
-        //view options
-        if (isButtonOptionsPressed) {
-            this.dispose();
-            //TODO: show the options screen
+        if (isPlayer3Pressed) {
+            //TODO: select player
         }
-        //view credits
-        if (isButtonCreditsPressed) {
-            this.dispose();
-            //TODO: show the credits screen
+        if (isPlayer4Pressed) {
+            //TODO: select player
         }
-        //exit game
-        if (isButtonExitPressed) {
+        if (isPlayer5Pressed) {
+            //TODO: select player
+        }
+
+        //goto main menu
+        if (isMenuPressed) {
             this.dispose();
-            game.dispose();
-            Gdx.app.exit();
+            game.setScreen(new MenuScreen(game));
         }
     }
 
@@ -138,80 +134,95 @@ public class MenuScreen implements Screen {
     public void dispose() {
         background.dispose();
         stage.dispose();
+        //TODO: dispose the other player textures
     }
 
     /**
      * Creates the menu buttons.
      */
     private void createButtons() {
-        //start button
-        buttonStart = new Image(new Texture("buttons/button_start.png"));
-        buttonStart.addListener(new InputListener() {
+        //player #1
+        buttonPlayer1 = new Image(new Texture("players/adventurer_idle.png"));
+        buttonPlayer1.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                isButtonStartPressed = true;
+                isPlayer1Pressed = true;
                 return true;
             }
 
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                isButtonStartPressed = false;
+                isPlayer1Pressed = false;
             }
         });
-        //player button
-        buttonPlayer = new Image(new Texture("buttons/button_player.png"));
-        buttonPlayer.addListener(new InputListener() {
+        //player #2
+        buttonPlayer2 = new Image(new Texture("players/female_idle.png"));
+        buttonPlayer2.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                isButtonPlayerPressed = true;
+                isPlayer2Pressed = true;
                 return true;
             }
 
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                isButtonPlayerPressed = false;
+                isPlayer2Pressed = false;
             }
         });
-        //options button
-        buttonOptions = new Image(new Texture("buttons/button_options.png"));
-        buttonOptions.addListener(new InputListener() {
+        //player #3
+        buttonPlayer3 = new Image(new Texture("players/player_idle.png"));
+        buttonPlayer3.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                isButtonOptionsPressed = true;
+                isPlayer3Pressed = true;
                 return true;
             }
 
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                isButtonOptionsPressed = false;
+                isPlayer3Pressed = false;
             }
         });
-        //credits button
-        buttonCredits = new Image(new Texture("buttons/button_credits.png"));
-        buttonCredits.addListener(new InputListener() {
+        //player #4
+        buttonPlayer4 = new Image(new Texture("players/soldier_idle.png"));
+        buttonPlayer4.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                isButtonCreditsPressed = true;
+                isPlayer4Pressed = true;
                 return true;
             }
 
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                isButtonCreditsPressed = false;
+                isPlayer4Pressed = false;
             }
         });
-        //exit button
-        buttonExit = new Image(new Texture("buttons/button_exit.png"));
-        buttonExit.addListener(new InputListener() {
+        //player #5
+        buttonPlayer5 = new Image(new Texture("players/zombie_idle.png"));
+        buttonPlayer5.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
-                isButtonExitPressed = true;
+                isPlayer5Pressed = true;
                 return true;
             }
 
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                isButtonExitPressed = false;
+                isPlayer5Pressed = false;
+            }
+        });
+        //main menu
+        buttonMenu = new Image(new Texture("buttons/button_menu.png"));
+        buttonMenu.addListener(new InputListener() {
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                isMenuPressed = true;
+                return true;
+            }
+
+            @Override
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                isMenuPressed = false;
             }
         });
     }
@@ -220,17 +231,15 @@ public class MenuScreen implements Screen {
         Table table = new Table();
         table.center();
         table.setFillParent(true);
-        float PAD = 8;
-        table.add(buttonStart).size(buttonStart.getWidth() / 2, buttonStart.getHeight() / 2).pad(PAD);
+        float PAD = 16;
+        table.add(buttonPlayer1).size(buttonPlayer1.getWidth() / 2, buttonPlayer1.getHeight() / 2).pad(PAD);
+        table.add(buttonPlayer2).size(buttonPlayer2.getWidth() / 2, buttonPlayer2.getHeight() / 2).pad(PAD);
+        table.add(buttonPlayer3).size(buttonPlayer3.getWidth() / 2, buttonPlayer3.getHeight() / 2).pad(PAD);
+        table.add(buttonPlayer4).size(buttonPlayer4.getWidth() / 2, buttonPlayer4.getHeight() / 2).pad(PAD);
+        table.add(buttonPlayer5).size(buttonPlayer5.getWidth() / 2, buttonPlayer5.getHeight() / 2).pad(PAD);
         table.row();
-        table.add(buttonPlayer).size(buttonPlayer.getWidth() / 2, buttonPlayer.getHeight() / 2).pad(PAD);
-        table.row();
-        table.add(buttonOptions).size(buttonOptions.getWidth() / 2, buttonOptions.getHeight() / 2).pad(PAD);
-        table.row();
-        table.add(buttonCredits).size(buttonCredits.getWidth() / 2, buttonCredits.getHeight() / 2).pad(PAD);
-        table.row();
-        table.add(buttonExit).size(buttonExit.getWidth() / 2, buttonExit.getHeight() / 2).pad(PAD);
-        table.row();
+        //TODO: fix positioning
+        table.add(buttonMenu).size(buttonMenu.getWidth() / 2, buttonMenu.getHeight() / 2).pad(PAD);
         return table;
     }
 }
