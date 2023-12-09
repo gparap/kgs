@@ -16,8 +16,10 @@
 package gparap.games.threeheartlandrun.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -35,7 +37,11 @@ public class PlayerScreen implements Screen {
     private Background background;
     private Stage stage;
     private Image buttonPlayer1, buttonPlayer2, buttonPlayer3, buttonPlayer4, buttonPlayer5, buttonMenu;
+    private final Sprite spritePlayer1, spritePlayer2, spritePlayer3, spritePlayer4, spritePlayer5;
+    private final Texture textureIdlePlayer1, textureIdlePlayer2, textureIdlePlayer3, textureIdlePlayer4, textureIdlePlayer5;
+    private final Texture textureSelectedPlayer1, textureSelectedPlayer2, textureSelectedPlayer3, textureSelectedPlayer4, textureSelectedPlayer5;
     private boolean isPlayer1Pressed, isPlayer2Pressed, isPlayer3Pressed, isPlayer4Pressed, isPlayer5Pressed, isMenuPressed;
+    private final Preferences preferences;
 
     public PlayerScreen(ThreeHeartLandRun game) {
         this.game = game;
@@ -45,6 +51,28 @@ public class PlayerScreen implements Screen {
         isPlayer4Pressed = false;
         isPlayer5Pressed = false;
         isMenuPressed = false;
+
+        //create player character textures
+        textureIdlePlayer1 = new Texture("players/adventurer_idle.png");
+        textureSelectedPlayer1 = new Texture("players/adventurer_cheer1.png");
+        textureIdlePlayer2 = new Texture("players/female_idle.png");
+        textureSelectedPlayer2 = new Texture("players/female_cheer1.png");
+        textureIdlePlayer3 = new Texture("players/player_idle.png");
+        textureSelectedPlayer3 = new Texture("players/player_cheer1.png");
+        textureIdlePlayer4 = new Texture("players/soldier_idle.png");
+        textureSelectedPlayer4 = new Texture("players/soldier_cheer1.png");
+        textureIdlePlayer5 = new Texture("players/zombie_idle.png");
+        textureSelectedPlayer5 = new Texture("players/zombie_cheer1.png");
+
+        //initialize player sprites
+        spritePlayer1 = new Sprite(textureIdlePlayer1);
+        spritePlayer2 = new Sprite(textureIdlePlayer2);
+        spritePlayer3 = new Sprite(textureIdlePlayer3);
+        spritePlayer4 = new Sprite(textureIdlePlayer4);
+        spritePlayer5 = new Sprite(textureIdlePlayer5);
+
+        //get the game preferences
+        preferences = Gdx.app.getPreferences("preferences");
     }
 
     @Override
@@ -81,23 +109,54 @@ public class PlayerScreen implements Screen {
 
         //select player character
         if (isPlayer1Pressed) {
-            //TODO: select player
+            spritePlayer1.setTexture(textureSelectedPlayer1);
+
+            //reset other sprites
+            spritePlayer2.setTexture(textureIdlePlayer2);
+            spritePlayer3.setTexture(textureIdlePlayer3);
+            spritePlayer4.setTexture(textureIdlePlayer4);
+            spritePlayer5.setTexture(textureIdlePlayer5);
         }
         if (isPlayer2Pressed) {
-            //TODO: select player
+            spritePlayer2.setTexture(textureSelectedPlayer2);
+
+            //reset other sprites
+            spritePlayer1.setTexture(textureIdlePlayer1);
+            spritePlayer3.setTexture(textureIdlePlayer3);
+            spritePlayer4.setTexture(textureIdlePlayer4);
+            spritePlayer5.setTexture(textureIdlePlayer5);
         }
         if (isPlayer3Pressed) {
-            //TODO: select player
+            spritePlayer3.setTexture(textureSelectedPlayer3);
+
+            //reset other sprites
+            spritePlayer1.setTexture(textureIdlePlayer1);
+            spritePlayer2.setTexture(textureIdlePlayer2);
+            spritePlayer4.setTexture(textureIdlePlayer4);
+            spritePlayer5.setTexture(textureIdlePlayer5);
         }
         if (isPlayer4Pressed) {
-            //TODO: select player
+            spritePlayer4.setTexture(textureSelectedPlayer4);
+
+            //reset other sprites
+            spritePlayer1.setTexture(textureIdlePlayer1);
+            spritePlayer2.setTexture(textureIdlePlayer2);
+            spritePlayer3.setTexture(textureIdlePlayer3);
+            spritePlayer5.setTexture(textureIdlePlayer5);
         }
         if (isPlayer5Pressed) {
-            //TODO: select player
+            spritePlayer5.setTexture(textureSelectedPlayer5);
+
+            //reset other sprites
+            spritePlayer1.setTexture(textureIdlePlayer1);
+            spritePlayer2.setTexture(textureIdlePlayer2);
+            spritePlayer3.setTexture(textureIdlePlayer3);
+            spritePlayer4.setTexture(textureIdlePlayer4);
         }
 
         //goto main menu
         if (isMenuPressed) {
+            savePlayerPreferences();
             this.dispose();
             game.setScreen(new MenuScreen(game));
         }
@@ -142,7 +201,7 @@ public class PlayerScreen implements Screen {
      */
     private void createButtons() {
         //player #1
-        buttonPlayer1 = new Image(new Texture("players/adventurer_idle.png"));
+        buttonPlayer1 = new Image(spritePlayer1);
         buttonPlayer1.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -152,11 +211,15 @@ public class PlayerScreen implements Screen {
 
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                isPlayer1Pressed = false;
+                //unselect other players
+                isPlayer2Pressed = false;
+                isPlayer3Pressed = false;
+                isPlayer4Pressed = false;
+                isPlayer5Pressed = false;
             }
         });
         //player #2
-        buttonPlayer2 = new Image(new Texture("players/female_idle.png"));
+        buttonPlayer2 = new Image(spritePlayer2);
         buttonPlayer2.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -166,11 +229,15 @@ public class PlayerScreen implements Screen {
 
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                isPlayer2Pressed = false;
+                //unselect other players
+                isPlayer1Pressed = false;
+                isPlayer3Pressed = false;
+                isPlayer4Pressed = false;
+                isPlayer5Pressed = false;
             }
         });
         //player #3
-        buttonPlayer3 = new Image(new Texture("players/player_idle.png"));
+        buttonPlayer3 = new Image(spritePlayer3);
         buttonPlayer3.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -180,11 +247,15 @@ public class PlayerScreen implements Screen {
 
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                isPlayer3Pressed = false;
+                //unselect other players
+                isPlayer1Pressed = false;
+                isPlayer2Pressed = false;
+                isPlayer4Pressed = false;
+                isPlayer5Pressed = false;
             }
         });
         //player #4
-        buttonPlayer4 = new Image(new Texture("players/soldier_idle.png"));
+        buttonPlayer4 = new Image(spritePlayer4);
         buttonPlayer4.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -194,11 +265,15 @@ public class PlayerScreen implements Screen {
 
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                isPlayer4Pressed = false;
+                //unselect other players
+                isPlayer1Pressed = false;
+                isPlayer2Pressed = false;
+                isPlayer3Pressed = false;
+                isPlayer5Pressed = false;
             }
         });
         //player #5
-        buttonPlayer5 = new Image(new Texture("players/zombie_idle.png"));
+        buttonPlayer5 = new Image(spritePlayer5);
         buttonPlayer5.addListener(new InputListener() {
             @Override
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
@@ -208,7 +283,11 @@ public class PlayerScreen implements Screen {
 
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                isPlayer5Pressed = false;
+                //unselect other players
+                isPlayer1Pressed = false;
+                isPlayer2Pressed = false;
+                isPlayer3Pressed = false;
+                isPlayer4Pressed = false;
             }
         });
         //main menu
@@ -241,5 +320,15 @@ public class PlayerScreen implements Screen {
         //TODO: fix positioning
         table.add(buttonMenu).size(buttonMenu.getWidth() / 2, buttonMenu.getHeight() / 2).pad(PAD);
         return table;
+    }
+
+    private void savePlayerPreferences() {
+        int value = 1;
+        if (isPlayer2Pressed) value = 2;
+        if (isPlayer3Pressed) value = 3;
+        if (isPlayer4Pressed) value = 4;
+        if (isPlayer5Pressed) value = 5;
+        preferences.putInteger("player_selected", value);
+        preferences.flush();
     }
 }
