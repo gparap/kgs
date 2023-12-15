@@ -82,7 +82,7 @@ public class MenuScreen implements Screen {
         //start game
         if (isButtonStartPressed) {
             this.dispose();
-            //TODO: start game
+            game.setScreen(new GameScreen(game));
         }
         //select player
         if (isButtonPlayerPressed) {

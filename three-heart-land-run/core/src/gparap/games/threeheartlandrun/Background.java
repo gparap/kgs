@@ -23,7 +23,11 @@ public class Background implements Disposable {
     private final Texture texture1, texture2;
     private float x1, x2;
     private final float width;
-    private final float speed;
+    private float speed;
+
+    public void setSpeed(float speed) {
+        this.speed = speed;
+    }
 
     public Background(ThreeHeartLandRun game) {
         this.game = game;
