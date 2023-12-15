@@ -1,6 +1,6 @@
 /*******************************
  * Katocheánian Gaming Studios *
- * Little Jerry's Friends      *
+ * Falling Evaders Chaos       *
  * created by gparap           *
  *******************************/
 package gparap.games.falling.hud
