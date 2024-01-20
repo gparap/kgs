@@ -1,5 +1,5 @@
 /*
- * Copyright 2023 gparap
+ * Copyright 2024 gparap
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,6 +23,7 @@ import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import gparap.games.threeheartlandrun.Background;
+import gparap.games.threeheartlandrun.HUD;
 import gparap.games.threeheartlandrun.ThreeHeartLandRun;
 
 public class GameScreen implements Screen {
@@ -32,6 +33,7 @@ public class GameScreen implements Screen {
     private boolean isGameRunning;
     private float gameStartTimer;
     private BitmapFont font;
+    private HUD hud;
 
     public GameScreen(ThreeHeartLandRun game) {
         this.game = game;
@@ -52,6 +54,9 @@ public class GameScreen implements Screen {
 
         //create a starter font for countdown
         font = new BitmapFont(Gdx.files.internal("fonts/test-font.fnt"));
+
+        //create the heads up display
+        hud = new HUD(game);
     }
 
     @Override
@@ -86,6 +91,10 @@ public class GameScreen implements Screen {
         //END drawing
         //-----------
         game.getSpriteBatch().end();
+
+        //draw heads up display
+        hud.render();
+
     }
 
     @Override
