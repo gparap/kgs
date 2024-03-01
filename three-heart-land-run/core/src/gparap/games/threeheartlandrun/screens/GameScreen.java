@@ -79,7 +79,7 @@ public class GameScreen implements Screen {
         background.draw();
 
         //draw ground
-        ground.update();
+        ground.update(delta);
         ground.draw();
 
         //game has stopped

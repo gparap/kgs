@@ -54,7 +54,10 @@ public class Grass implements Disposable {
     }
 
     public void update(Vector2 position) {
+        //update the sprite's position along with the exposed one
         sprite.setPosition(position.x, position.y);
+        this.position.x = position.x;
+        this.position.y = position.y;
     }
 
     public void draw() {
