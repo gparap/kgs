@@ -21,6 +21,7 @@ import static gparap.games.threeheartlandrun.ThreeHeartLandRun.MIN_WIDTH;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Disposable;
 
 import gparap.games.threeheartlandrun.ThreeHeartLandRun;
@@ -28,6 +29,19 @@ import gparap.games.threeheartlandrun.ThreeHeartLandRun;
 public class Grass implements Disposable {
     private final ThreeHeartLandRun game;
     private final Sprite sprite;
+    private Vector2 position = new Vector2(0, 0);
+
+    public Vector2 getPosition() {
+        return position;
+    }
+
+    public void setPosition(Vector2 position) {
+        this.position = position;
+    }
+
+    public int getWidth() {
+        return (int) sprite.getWidth();
+    }
 
     public Grass(ThreeHeartLandRun game) {
         this.game = game;
@@ -39,12 +53,12 @@ public class Grass implements Disposable {
         sprite.setRegionHeight((int) sprite.getHeight());
     }
 
-    public void update() {
-
+    public void update(Vector2 position) {
+        sprite.setPosition(position.x, position.y);
     }
 
     public void draw() {
-        game.getSpriteBatch().draw(sprite, 0,0);
+        game.getSpriteBatch().draw(sprite, sprite.getX(),sprite.getY());
     }
 
     @Override

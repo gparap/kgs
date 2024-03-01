@@ -23,12 +23,14 @@ import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import gparap.games.threeheartlandrun.Background;
+import gparap.games.threeheartlandrun.Ground;
 import gparap.games.threeheartlandrun.HUD;
 import gparap.games.threeheartlandrun.ThreeHeartLandRun;
 
 public class GameScreen implements Screen {
     private final ThreeHeartLandRun game;
     private Background background;
+    private Ground ground;
     private Viewport viewport;
     private boolean isGameRunning;
     private float gameStartTimer;
@@ -48,6 +50,9 @@ public class GameScreen implements Screen {
         //create the background
         background = new Background(game);
         background.setSpeed(0);
+
+        //create the ground
+        ground = new Ground(game);
 
         //create the game viewport
         viewport = new FillViewport(ThreeHeartLandRun.MIN_WIDTH, ThreeHeartLandRun.MIN_HEIGHT, game.getCamera());
@@ -72,6 +77,10 @@ public class GameScreen implements Screen {
         //draw background
         background.update(delta);
         background.draw();
+
+        //draw ground
+        ground.update();
+        ground.draw();
 
         //game has stopped
         if (!isGameRunning) {
