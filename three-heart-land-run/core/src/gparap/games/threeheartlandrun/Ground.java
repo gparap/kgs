@@ -21,26 +21,42 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Disposable;
 
 import gparap.games.threeheartlandrun.tiles.Grass;
+import gparap.games.threeheartlandrun.tiles.Dirt;
 
 /**
- * Ground will be consisted of many grass tiles.
+ * Ground will be consisted of many grass & dirt tiles.
  */
 public class Ground implements Disposable {
-    private final Grass[] ground = new Grass[11];    //we need game's width div 10 plus 1 tile
+    private final Grass[] grass = new Grass[10];    //we need game's width tiles
+    private final Dirt[] dirt = new Dirt[11];       //we need game's width div 10 plus 1 tile
     private final float speed;
 
     public Ground(ThreeHeartLandRun game) {
         speed = 60;
 
         //create the grass tiles
-        for (int i = 0; i < 11; i++) {
-            ground[i] = new Grass(game);
+        for (int i = 0; i < 10; i++) {
+            grass[i] = new Grass(game);
 
             //every grass tile will be next to the previous one
             if (i > 0) {
-                float x = ground[i - 1].getPosition().x + ground[i].getWidth();
+                float x = grass[i - 1].getPosition().x + grass[i].getWidth();
                 float y = 0;
-                ground[i].setPosition(new Vector2(x, y));
+                grass[i].setPosition(new Vector2(x, y));
+                grass[i].update(grass[i].getPosition());
+            }
+        }
+
+        //create the dirt tiles
+        for (int i = 0; i < 11; i++) {
+            dirt[i] = new Dirt(game);
+
+            //every dirt tile will be next to the previous one
+            if (i > 0) {
+                float x = dirt[i - 1].getPosition().x + dirt[i].getWidth();
+                float y = 0;
+                dirt[i].setPosition(new Vector2(x, y));
+                dirt[i].update(dirt[i].getPosition());
             }
         }
     }
@@ -48,25 +64,29 @@ public class Ground implements Disposable {
     public void update(float delta) {
         Vector2 position;
 
-        for (Grass grass : ground) {
-            position = new Vector2(grass.getPosition());
+        //update ground dirt tiles to create parallax scrolling effect
+        for (Dirt dirt : this.dirt) {
+            position = new Vector2(dirt.getPosition());
 
-            //move the ground tiles using parallax scrolling
+            //move the dirt tiles leftwards
             position.x -= speed * delta;
 
             //reset position if tile is off the screen
-            if (position.x + grass.getWidth() < 0) {
+            if (position.x + dirt.getWidth() < 0) {
                 position.x = MIN_WIDTH;
             }
 
-            //set the final position for the grass tile
-            grass.update(position); //TODO: fix minor positioning bug
+            //set the final position for the dirt tile
+            dirt.update(position);
         }
     }
 
     public void draw() {
-        for (Grass grass : ground) {
+        for (Grass grass : grass) {
             grass.draw();
+        }
+        for (Dirt dirt : this.dirt) {
+            dirt.draw();
         }
     }
 
