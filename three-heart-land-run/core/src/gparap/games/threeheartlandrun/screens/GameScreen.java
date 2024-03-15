@@ -25,6 +25,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import gparap.games.threeheartlandrun.Background;
 import gparap.games.threeheartlandrun.Ground;
 import gparap.games.threeheartlandrun.HUD;
+import gparap.games.threeheartlandrun.Player;
 import gparap.games.threeheartlandrun.ThreeHeartLandRun;
 
 public class GameScreen implements Screen {
@@ -36,6 +37,7 @@ public class GameScreen implements Screen {
     private float gameStartTimer;
     private BitmapFont font;
     private HUD hud;
+    private Player player;
 
     public GameScreen(ThreeHeartLandRun game) {
         this.game = game;
@@ -62,6 +64,9 @@ public class GameScreen implements Screen {
 
         //create the heads up display
         hud = new HUD(game);
+
+        //create the player
+        player = new Player(game);
     }
 
     @Override
@@ -82,6 +87,10 @@ public class GameScreen implements Screen {
         ground.update(delta);
         ground.draw();
 
+        //player
+        player.update(delta);
+        player.draw();
+
         //game has stopped
         if (!isGameRunning) {
             gameStartTimer -= delta;
@@ -91,12 +100,14 @@ public class GameScreen implements Screen {
             background.setSpeed(0);
             ground.setSpeed(0);
             font.draw(game.getSpriteBatch(), String.valueOf((int) gameStartTimer), game.getCamera().viewportWidth / 2f, game.getCamera().viewportHeight / 2f);
+            player.setSpeed(0);
         }
 
         //game has started
         else {
             background.setSpeed(100);
             ground.setSpeed(100);
+            player.setSpeed(100);
         }
 
         //END drawing
