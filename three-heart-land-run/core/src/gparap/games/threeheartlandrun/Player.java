@@ -29,6 +29,8 @@ public class Player {
     private final Vector2 position = new Vector2(0, 0);
     private float speed;
     private final float groundPosition;
+    private final float gravity;
+    private boolean isJumping = false;
 
     public float getSpeed() {
         return speed;
@@ -44,6 +46,7 @@ public class Player {
 
     public Player(ThreeHeartLandRun game) {
         this.game = game;
+        gravity = 9.80665f; //Earth's gravity
 
         //get the selected player from game preferences
         Preferences preferences = Gdx.app.getPreferences("preferences");
@@ -72,7 +75,7 @@ public class Player {
         //setup the player sprite
         if (playerSelectedTexture != null) {
             sprite = new Sprite(playerSelectedTexture);
-        }else {
+        } else {
             sprite = new Sprite(new Texture(Gdx.files.internal("players/adventurer_idle.png")));
         }
         sprite.setRegionWidth((int) sprite.getWidth());
@@ -80,13 +83,34 @@ public class Player {
 
         //setup player starting position on the ground
         groundPosition = MIN_HEIGHT / 10f;
-        position.y =  groundPosition;
+        position.y = groundPosition + MIN_HEIGHT;
     }
 
     public void update(float delta) {
         //TODO: player animation
-        //TODO: player jumping
-        //TODO: gravity simulation
+
+        //simulate the Earth's gravity
+        if (!isJumping) {
+            position.y -= gravity + gravity * delta;
+        }
+
+        //keep the player on the ground
+        if (position.y < groundPosition) {
+            position.y = groundPosition;
+
+            //set player ready to jump
+            if (Gdx.input.justTouched()) {
+                isJumping = true;
+            }
+        }
+
+        //make player jump
+        if (isJumping) {
+            position.y += 2 * gravity + MIN_HEIGHT * delta;
+            if (position.y > MIN_HEIGHT / 2f) {
+                isJumping = false;
+            }
+        }
     }
 
     public void draw() {
