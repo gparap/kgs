@@ -29,10 +29,19 @@ import gparap.games.threeheartlandrun.tiles.Dirt;
 public class Ground implements Disposable {
     private final Grass[] grass = new Grass[10];    //we need game's width tiles
     private final Dirt[] dirt = new Dirt[11];       //we need game's width div 10 plus 1 tile
-    private final float speed;
+    private float speed;
+
+    public float getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(float speed) {
+        this.speed = speed;
+    }
 
     public Ground(ThreeHeartLandRun game) {
-        speed = 60;
+        //ground not moving
+        speed = 0;
 
         //create the grass tiles
         for (int i = 0; i < 10; i++) {

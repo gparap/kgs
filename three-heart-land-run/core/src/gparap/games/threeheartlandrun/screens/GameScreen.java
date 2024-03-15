@@ -89,12 +89,14 @@ public class GameScreen implements Screen {
                 isGameRunning = true;
             }
             background.setSpeed(0);
+            ground.setSpeed(0);
             font.draw(game.getSpriteBatch(), String.valueOf((int) gameStartTimer), game.getCamera().viewportWidth / 2f, game.getCamera().viewportHeight / 2f);
         }
 
         //game has started
         else {
             background.setSpeed(100);
+            ground.setSpeed(100);
         }
 
         //END drawing
