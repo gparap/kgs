@@ -2,6 +2,6 @@
 
 An old-school platformer, created with LibGDX game-development application framework.
 
-View on Google Play:
---------------------
-https://play.google.com/store/apps/details?id=dmn.games.platformer
+Get this game on itch.io:
+-------------------------
+https://katocheanian.itch.io/jerry

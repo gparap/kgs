@@ -2,6 +2,6 @@
 
 A classic endless runner, created with LibGDX game-development application framework.
 
-View on Google Play:
---------------------
-https://play.google.com/store/apps/details?id=gparap.games.endless_runner
+Get this game on itch.io:
+-------------------------
+https://katocheanian.itch.io/aliens

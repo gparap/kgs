@@ -2,10 +2,6 @@
 
 Classic shoot'em up space shooter, created with LibGDX game-development application framework.
 
-View on Google Play:
---------------------
-https://play.google.com/store/apps/details?id=gparap.game.shooter
-
-View on itch.io:
-----------------
+Get this game on itch.io:
+-------------------------
 https://katocheanian.itch.io/purple-cosmos-shooter
